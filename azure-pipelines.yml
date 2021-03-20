@@ -1,0 +1,53 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcloudFront'
+    organization: '210215-usf-net'
+    scannerMode: 'CLI'
+    configMode: 'file'
+    cliProjectKey: '210215-USF-NET_GivHub-By-SHRKD-Angular'
+    cliProjectName: 'GivHub-By-SHRKD-Angular'
+    extraProperties: |
+      sonar.coverage.exclusions=**/*.spec.ts
+
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'test'
+#     projects: '**SHRKD_GivHub/GivHubTests/*.csproj'
+#     arguments: --configuration $(buildConfiguration) --collect "Code Coverage"
+
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    sudo npm install -g @angular/cli
+    sudo npm install
+    sudo ng build --prod
+  displayName: 'npm install and build'
+  
+- task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure subscription 1(583825bd-d55a-497c-bfe6-2e3972e128e2)'
+    appType: 'webAppLinux'
+    appName: 'GivHub'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    runtimeStack: 'NODE|14-lts'
