@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  appDir: GivHub-Angular
+
 steps:
 
 - task: SonarCloudPrepare@1
@@ -19,8 +22,9 @@ steps:
     configMode: 'file'
     cliProjectKey: '210215-USF-NET_GivHub-By-SHRKD-Angular'
     cliProjectName: 'GivHub-By-SHRKD-Angular'
+    cliSources: '$(appDir)'
     extraProperties: |
-      sonar.coverage.exclusions=**/*.spec.ts
+      sonar.coverage.exclusions=**/GivHub-Angular/*.spec.ts
 
 # - task: DotNetCoreCLI@2
 #   inputs:
@@ -31,14 +35,16 @@ steps:
 
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: '14.x'
   displayName: 'Install Node.js'
 
-- script: |
-    sudo npm install -g @angular/cli
-    sudo npm install
-    sudo ng build --prod
-  displayName: 'npm install and build'
+- script: npm ci
+  displayName: npm install
+  workingDirectory: $(appDir)
+
+- script: npx ng build --prod
+  displayName: ng build
+  workingDirectory: $(appDir)
   
 - task: SonarCloudAnalyze@1
 - task: SonarCloudPublish@1
@@ -48,7 +54,6 @@ steps:
   inputs:
     azureSubscription: 'Azure subscription 1(583825bd-d55a-497c-bfe6-2e3972e128e2)'
     appType: 'webAppLinux'
-    appName: 'GivHub'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    runtimeStack: 'NODE|14-lts'
-  # giv-hub-angular
+    #appName: 'GivHub'
+    appName: 'giv-hub-angular'
+    package: '$(appDir)/dist/*'
