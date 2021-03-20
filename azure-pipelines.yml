@@ -51,3 +51,4 @@ steps:
     appName: 'GivHub'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
     runtimeStack: 'NODE|14-lts'
+  # giv-hub-angular
