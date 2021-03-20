@@ -22,7 +22,7 @@ steps:
     configMode: 'file'
     cliProjectKey: '210215-USF-NET_GivHub-By-SHRKD-Angular'
     cliProjectName: 'GivHub-By-SHRKD-Angular'
-    cliSources: '$(appDir)/src'
+    cliSources: '$(appDir)'
     extraProperties: |
       sonar.coverage.exclusions=**/GivHub-Angular/*.spec.ts
 
