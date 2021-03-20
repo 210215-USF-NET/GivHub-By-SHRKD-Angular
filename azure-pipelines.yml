@@ -22,6 +22,7 @@ steps:
     configMode: 'file'
     cliProjectKey: '210215-USF-NET_GivHub-By-SHRKD-Angular'
     cliProjectName: 'GivHub-By-SHRKD-Angular'
+    cliSources: '$(appDir)/src'
     extraProperties: |
       sonar.coverage.exclusions=**/GivHub-Angular/*.spec.ts
 
@@ -41,12 +42,9 @@ steps:
   displayName: npm install
   workingDirectory: $(appDir)
 
-- script: |
-    workingDirectory: $(appDir)
-    sudo npm install -g @angular/cli
-    sudo npm install
-    sudo ng build --prod
-  displayName: 'npm install and build'
+- script: npx ng build --prod
+  displayName: ng build
+  workingDirectory: $(appDir)
   
 - task: SonarCloudAnalyze@1
 - task: SonarCloudPublish@1
