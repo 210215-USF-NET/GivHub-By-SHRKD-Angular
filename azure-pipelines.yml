@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  appDir: GivHub-Angular
+
 steps:
 
 - task: SonarCloudPrepare@1
@@ -31,11 +34,15 @@ steps:
 
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: '14.x'
   displayName: 'Install Node.js'
 
+- script: npm ci
+  displayName: npm install
+  workingDirectory: $(appDir)
+
 - script: |
-    cd /GivHub-Angular/
+    workingDirectory: $(appDir)
     sudo npm install -g @angular/cli
     sudo npm install
     sudo ng build --prod
@@ -49,7 +56,6 @@ steps:
   inputs:
     azureSubscription: 'Azure subscription 1(583825bd-d55a-497c-bfe6-2e3972e128e2)'
     appType: 'webAppLinux'
-    appName: 'GivHub'
-    package: '$(System.DefaultWorkingDirectory)/**/GivHub-Angular/*.zip'
-    runtimeStack: 'NODE|14-lts'
-  # giv-hub-angular
+    #appName: 'GivHub'
+    appName: 'giv-hub-angular'
+    package: '$(appDir)/dist/*'
