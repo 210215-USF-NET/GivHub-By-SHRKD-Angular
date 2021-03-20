@@ -20,7 +20,7 @@ steps:
     cliProjectKey: '210215-USF-NET_GivHub-By-SHRKD-Angular'
     cliProjectName: 'GivHub-By-SHRKD-Angular'
     extraProperties: |
-      sonar.coverage.exclusions=**/*.spec.ts
+      sonar.coverage.exclusions=**/GivHub-Angular/*.spec.ts
 
 # - task: DotNetCoreCLI@2
 #   inputs:
