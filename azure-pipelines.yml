@@ -35,6 +35,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    cd /GivHub-Angular/
     sudo npm install -g @angular/cli
     sudo npm install
     sudo ng build --prod
