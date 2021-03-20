@@ -1,0 +1,9 @@
+dist: trusty
+
+addons:
+  sonarcloud:
+    organization: "210215-usf-net" # To find your organization, go to: https://sonarcloud.io/account/organizations
+
+script:
+  # Put before sonar-scanner your other script steps
+  - sonar-scanner -Dsonar.verbose=true -X
