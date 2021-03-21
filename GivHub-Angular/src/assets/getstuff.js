@@ -1,7 +1,7 @@
 function GetCharity()
 {
     let charity2Search = document.querySelector('#charity2Search').value;
-    fetch(`http://data.orghunter.com/v1/charitysearch?user_key=153f832c549a150e74121c7c7c40667e&searchTerm=${charity2Search}`)
+    fetch(`http://data.orghunter.com/v1/charitysearch?user_key=153f832c549a150e74121c7c7c40667e&searchTerm=${charity2Search}`,{mode: 'no-cors'})
         .then(result => result.json())
         .then(charity => {
             document.querySelector('.charityResult name').forEach(name => name.remove());
