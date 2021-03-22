@@ -1,22 +1,17 @@
+
 function GetCharityAjax()
 {
     console.log("ahhh");
     //Creating the object that sends the request and receives the response from the pokeapi
     let xhr = new XMLHttpRequest();
-    // XMLHttpRequest.prototype.open = (function(open) {
-    //     return function(method,url,async) {
-    //         url = ;
-    //         console.log('the outgoing url is ',url);
-    //         open.apply(this,arguments);
-    //       };
-    //   })(XMLHttpRequest.prototype.open);
+    XMLHttpRequest.prototype.open = (function(open) {
+        return function(method,url,async) {
+            console.log('the outgoing url is ',url);
+            open.apply(this,arguments);
+          };
+      })(XMLHttpRequest.prototype.open);
     let charity2search = document.querySelector('#charity2Search').value;
-    xhr.open('GET', "http://data.orghunter.com/v1/charitysearch?user_key=153f832c549a150e74121c7c7c40667e&searchTerm=${charity2Search}", true);
-    xhr.onload = function () {
-    console.log(xhr.responseURL);
-    };
-    //send the request
-    xhr.send();
+    
     //the onreadystate just describes the state of your request 
     // 0 - uninitialized
     // 1 - loading (server connection established) the open method has been invoked
@@ -56,4 +51,16 @@ function GetCharityAjax()
             document.querySelector('#charity2Search').value = '';
         }
     }
+    xhr.withCredentials = true;
+    xhr.open('GET', "http://data.orghunter.com/v1/charitysearch?user_key=153f832c549a150e74121c7c7c40667e&searchTerm=${charity2Search}", true);
+    xhr.onload = function () {
+    console.log(xhr.responseURL);
+    };
+    //send the request
+    xhr.setRequestHeader("Access-Control-Allow-Origin","localhost:4200,*,Authorization,Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers");
+    xhr.setRequestHeader("Accept","application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, POST, DELETE, OPTIONS");
+    xhr.setRequestHeader("Access-Control-Max-Age", 86400);
+    xhr.send();
 }
