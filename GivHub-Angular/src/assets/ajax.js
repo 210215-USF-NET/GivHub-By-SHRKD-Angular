@@ -1,21 +1,22 @@
-function GetCharity()
+function GetCharityAjax()
 {
     console.log("ahhh");
     //Creating the object that sends the request and receives the response from the pokeapi
     let xhr = new XMLHttpRequest();
-    XMLHttpRequest.prototype.open = (function(open) {
-        
-        return function(method,url,async) {
-            var url = "http://data.orghunter.com/v1/charitysearch?user_key=153f832c549a150e74121c7c7c40667e&searchTerm=${charity2Search}";
-            console.log('the outgoing url is ',url);
-            open.apply(this,arguments);
-          };
-      })(XMLHttpRequest.prototype.open);
-    //Creating the object that holds the response data
-    let pokemon = {};
-    //Creating the variable that holds the id/name of the pokemon i wanna find
+    // XMLHttpRequest.prototype.open = (function(open) {
+    //     return function(method,url,async) {
+    //         url = ;
+    //         console.log('the outgoing url is ',url);
+    //         open.apply(this,arguments);
+    //       };
+    //   })(XMLHttpRequest.prototype.open);
     let charity2search = document.querySelector('#charity2Search').value;
-
+    xhr.open('GET', "http://data.orghunter.com/v1/charitysearch?user_key=153f832c549a150e74121c7c7c40667e&searchTerm=${charity2Search}", true);
+    xhr.onload = function () {
+    console.log(xhr.responseURL);
+    };
+    //send the request
+    xhr.send();
     //the onreadystate just describes the state of your request 
     // 0 - uninitialized
     // 1 - loading (server connection established) the open method has been invoked
