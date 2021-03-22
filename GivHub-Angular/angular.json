@@ -36,7 +36,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["src/getstuff.js"]
           },
           "configurations": {
             "production": {
@@ -99,7 +99,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": ["src/getstuff.js"]
+            "scripts": []
           }
         },
         "lint": {
