@@ -1,6 +1,6 @@
 function GetCharity()
 {
-    let charity2search = document.querySelector('#charity2Search').value;
+    let charity2Search = document.querySelector('#charity2Search').value;
 
     let headers = new Headers();
 
@@ -14,7 +14,7 @@ function GetCharity()
   
   //  headers.append('Authorization', 'Basic ' + base64.encode(username + ":" + password));
 
-    fetch('http://data.orghunter.com/v1/charitysearch?user_key=153f832c549a150e74121c7c7c40667e&searchTerm=${charity2Search}',
+    fetch(`http://data.orghunter.com/v1/charitysearch?user_key=153f832c549a150e74121c7c7c40667e&searchTerm=${charity2Search}`,
     {mode: 'no-cors',
     credentials: 'include',
     method: 'POST',
