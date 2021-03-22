@@ -18,7 +18,7 @@ function GetCharity()
     {mode: 'no-cors',
     credentials: 'include',
     method: 'POST',
-    headers: headers})
+    headers: {'Content-Type': 'application/json'}})
         .then(result => {
             let json = result.json();
             if (json.status >= 200 && json.status < 300) {

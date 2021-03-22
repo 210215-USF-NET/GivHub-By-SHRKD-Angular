@@ -36,7 +36,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": ["src/getstuff.js"]
+            "scripts": ["src/assets/getstuff.js"]
           },
           "configurations": {
             "production": {
