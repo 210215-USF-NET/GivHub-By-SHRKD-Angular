@@ -21,11 +21,17 @@ function GetCharity()
     headers: {'Content-Type': 'application/json'}})
         .then(result => {
             let json = result.json();
-            if (json.status >= 200 && json.status < 300) {
-            
-            } else {
+            if(result.ok){
+                let json = result.json();
+                if (json.status >= 200 && json.status < 300) {
+                
+                } else {
+                    return json.then(Promise.reject.bind(Promise));
+                }
+            }else {
                 return json.then(Promise.reject.bind(Promise));
             }
+            
             
         })
 
