@@ -24,9 +24,9 @@ import {
 import config from './app.config';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { MessagesComponent } from './messages/messages.component';
-import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './components/home/home.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const appRoutes: Routes = [
   {
