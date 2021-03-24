@@ -65,7 +65,13 @@ steps:
     command: 'custom'
     customCommand: 'run ng build -prop'
     workingDir: $(appDir)
-  
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'GivHub-Angular/dist'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
 # - task: PublishPipelineArtifact@1
 #   inputs:
 #     targetPath: '$(appDir)/dist'
