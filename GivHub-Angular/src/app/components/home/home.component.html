@@ -2,16 +2,28 @@
   {{ error }}
 </div>
 
-<!-- Charity Articles Here -->
-<!-- <div class="mdc-grid-list"> cols="4" rowHeight="100px">
-  <li class="mdc-grid-tile">
-      *ngFor="let tile of tiles"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [style.background]="tile.color">
-    {{tile.text}}
-  </li>
-</div> -->
+<div class="container-fluid">
+  <div class="row">
+    <!-- Articles -->
+    <div class="col text-center">
+      <h1>Articles</h1>
+      <div *ngFor="let number of [0,1,2,3,4]" class="container">
+        <h2>My article Title</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </div>
+    <!-- Trending charities -->
+    <div class="col my-sidebar">
+      <h3>Trending Charities</h3>
+      <div *ngFor="let number of [0,1,2,3,4]" class="container outer">
+        <h4>Charity Name</h4>
+        <div class="container inner">
+          <img id="logo" class="ui mini image" src="../../assets/shrkd_color.svg">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- <h1 class="ui header">PKCE Flow w/ Okta Hosted Login Page</h1> -->
 <!-- <div *ngIf="!isAuthenticated">
