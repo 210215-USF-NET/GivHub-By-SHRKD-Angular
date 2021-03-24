@@ -27,9 +27,9 @@ import config from './app.config';
 
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { MessagesComponent } from './messages/messages.component';
-import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './components/home/home.component';
+import { UserCharitiesComponent } from './components/userCharities/userCharities.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const appRoutes: Routes = [
   {
@@ -46,8 +46,8 @@ const appRoutes: Routes = [
     canActivate: [ OktaAuthGuard ],
   },
   {
-    path: 'messages',
-    component: MessagesComponent,
+    path: 'userCharities',
+    component: UserCharitiesComponent,
     canActivate: [ OktaAuthGuard ],
   },
 ];
@@ -57,7 +57,7 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     ProfileComponent,
-    MessagesComponent,
+    UserCharitiesComponent,
   ],
   imports: [
     BrowserModule,
