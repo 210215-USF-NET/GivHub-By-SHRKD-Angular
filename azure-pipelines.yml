@@ -71,10 +71,17 @@ steps:
 #     targetPath: '$(appDir)/dist'
 #     artifact: 'drop'
 #     publishLocation: 'pipeline'
-- task: AzureWebApp@1
+# - task: AzureWebApp@1
+#   inputs:
+#     azureSubscription: 'Azure subscription 1(583825bd-d55a-497c-bfe6-2e3972e128e2)'
+#     appType: 'webAppLinux'
+#     #appName: 'GivHub'
+#     appName: 'GivHub'
+#     package: $(System.DefaultWorkingDirectory)/dist'
+- task: AzureRmWebAppDeployment@4
   inputs:
+    ConnectionType: 'AzureRM'
     azureSubscription: 'Azure subscription 1(583825bd-d55a-497c-bfe6-2e3972e128e2)'
     appType: 'webAppLinux'
-    #appName: 'GivHub'
-    appName: 'GivHub'
-    package: $(System.DefaultWorkingDirectory)/$(appDir)/dist/'
+    WebAppName: 'GivHub'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
