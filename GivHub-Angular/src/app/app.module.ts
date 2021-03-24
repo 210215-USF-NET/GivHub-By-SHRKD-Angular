@@ -47,11 +47,6 @@ const appRoutes: Routes = [
     component: MessagesComponent,
     canActivate: [ OktaAuthGuard ],
   },
-  {
-    path: 'logout',
-    component: HomeComponent,
-    canActivate: [ OktaAuthGuard ],
-  },
 ];
 
 @NgModule({
