@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
- 
+
+import { OktaAuthGuard } from './app.guard';
+import { CallbackComponent } from './callback.component';
+import { ProtectedComponent } from './protected.component';
 
 const routes: Routes = [
-  { path: 'auth-callback', component: AuthCallbackComponent  },
-  // Fallback when no prior route is matched
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  {
+    path: 'callback',
+    component: CallbackComponent
+  },
+  {
+    path: 'protected',
+    component: ProtectedComponent,
+    canActivate: [OktaAuthGuard]
+  }
 ];
 
 @NgModule({
