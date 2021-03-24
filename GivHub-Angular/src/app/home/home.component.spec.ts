@@ -10,15 +10,28 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+import { HomeComponent } from './home.component';
 
-if (environment.production) {
-  enableProdMode();
-}
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ HomeComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
