@@ -9,8 +9,10 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
-
+//import {  } from "@angular/common/http";
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
@@ -22,6 +24,7 @@ import {
 } from '@okta/okta-angular';
 
 import config from './app.config';
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -58,6 +61,8 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+
+    AppRoutingModule,
     HttpClientModule,
     OktaAuthModule,
     RouterModule.forRoot(appRoutes),
