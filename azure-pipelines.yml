@@ -62,4 +62,4 @@ steps:
     appType: 'webAppLinux'
     #appName: 'GivHub'
     appName: 'GivHub'
-    package: '$(appDir)/dist/**'
+    package: '$(appDir)/dist/'
