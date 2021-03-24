@@ -19,17 +19,17 @@ variables:
 
 steps:
 
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'sonarcloudFront'
-    organization: '210215-usf-net'
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: '210215-USF-NET_GivHub-By-SHRKD-Angular'
-    cliProjectName: 'GivHub-By-SHRKD-Angular'
-    cliSources: '$(appDir)/src'
-    extraProperties: |
-      sonar.coverage.exclusions=**/GivHub-Angular/*.spec.ts
+# - task: SonarCloudPrepare@1
+#   inputs:
+#     SonarCloud: 'sonarcloudFront'
+#     organization: '210215-usf-net'
+#     scannerMode: 'CLI'
+#     configMode: 'manual'
+#     cliProjectKey: '210215-USF-NET_GivHub-By-SHRKD-Angular'
+#     cliProjectName: 'GivHub-By-SHRKD-Angular'
+#     cliSources: '$(appDir)/src'
+#     extraProperties: |
+#       sonar.coverage.exclusions=**/GivHub-Angular/*.spec.ts
 
 # - task: DotNetCoreCLI@2
 #   inputs:
@@ -51,10 +51,10 @@ steps:
   displayName: ng build
   workingDirectory: $(appDir)
   
-- task: SonarCloudAnalyze@1
-- task: SonarCloudPublish@1
-  inputs:
-    pollingTimeoutSec: '300'
+# - task: SonarCloudAnalyze@1
+# - task: SonarCloudPublish@1
+#   inputs:
+#     pollingTimeoutSec: '300'
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'Azure subscription 1(583825bd-d55a-497c-bfe6-2e3972e128e2)'
