@@ -34,7 +34,7 @@ const appRoutes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'login/callback',
+    path: 'callback',
     component: OktaCallbackComponent,
   },
   {
@@ -45,6 +45,11 @@ const appRoutes: Routes = [
   {
     path: 'messages',
     component: MessagesComponent,
+    canActivate: [ OktaAuthGuard ],
+  },
+  {
+    path: 'logout',
+    component: HomeComponent,
     canActivate: [ OktaAuthGuard ],
   },
 ];
