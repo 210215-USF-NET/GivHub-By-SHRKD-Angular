@@ -66,15 +66,15 @@ steps:
     customCommand: 'run ng build -prop'
     workingDir: $(appDir)
   
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(appDir)/dist'
-    artifact: 'drop'
-    publishLocation: 'pipeline'
-# - task: AzureWebApp@1
+# - task: PublishPipelineArtifact@1
 #   inputs:
-#     azureSubscription: 'Azure subscription 1(583825bd-d55a-497c-bfe6-2e3972e128e2)'
-#     appType: 'webAppLinux'
-#     #appName: 'GivHub'
-#     appName: 'GivHub'
-#     package: '$(appDir)/dist/'
+#     targetPath: '$(appDir)/dist'
+#     artifact: 'drop'
+#     publishLocation: 'pipeline'
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure subscription 1(583825bd-d55a-497c-bfe6-2e3972e128e2)'
+    appType: 'webAppLinux'
+    #appName: 'GivHub'
+    appName: 'GivHub'
+    package: '$(appDir)/dist/'
