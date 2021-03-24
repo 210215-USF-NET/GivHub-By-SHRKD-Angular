@@ -11,9 +11,37 @@
     <a id="messages-button" class="item" *ngIf="isAuthenticated" routerLink="/userCharities"><i aria-hidden="true" class=""></i>Your Charities</a>
     <a id="profile-button" class="item" *ngIf="isAuthenticated" routerLink="/profile">Profile</a>
     <a id="logout-button" class="item" *ngIf="isAuthenticated" (click)="logout()">Logout</a>
+    <a id="help-button" class="item" (click)="helpDisplay()">Help</a>
   </div>
+  
 </div>
 
-<div class="ui text container" style="margin-top: 7em;">
-  <router-outlet></router-outlet>
-</div>
+<table>
+  <tbody id="body-container">
+    <tr>
+      <td>
+        <div class="ui text container" id="body-main"style="margin-top: 7em;">
+          <router-outlet></router-outlet>
+        </div>
+    </td>
+    <td id="help-side-bar">
+      <div id="help-item" *ngIf="display">
+        <p>Narrow down your philantropic priorities to realistically fit your resources and donation goals.  
+          Understand how your donations can best contribute to the causes that are important to you.  A national 
+          organization may be better suited for conducting research, while a local group can serve your community.  
+          Through GivHub, it is possible to discover charities by category.</p>
+        <p>Once you have found a charity, research the organization before committing your support.  Ensure that the 
+          charity is a tax exempt public charity [US Internal Revenue Code section 501(c)(2)].  You can request the 
+          organization's EIN in order to confirm its status with the IRS.  Review the charity's finances to assess its 
+          efficiency in accomplishing their mission.  The GivHub team is working to create features that will allow 
+          users to better assess financial history and records.</p>
+        <p>Check an organization's mission statement.  What have been their significant accomplishments?  What are their 
+          current goals, and what, if any, challenges are they facing?  When you trust a charity, you can comfortably 
+          contribute unrestricted donations; allowing the charity discretion to determine how best to provide its services.  
+          Charities are dependent on long-term support, so follow up on your investments and ensure that your goals are 
+          being satisfied by the organization.</p>
+      </div>
+    </td>
+    </tr>
+  </tbody>
+</table>

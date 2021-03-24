@@ -38,4 +38,9 @@ export class AppComponent implements OnInit {
   logout() {
     this.oktaAuth.logout('/');
   }
+  display = false;
+  helpDisplay() {
+    this.display = !this.display;
+    
+  }
 }
