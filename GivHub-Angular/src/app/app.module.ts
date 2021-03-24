@@ -30,6 +30,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserCharitiesComponent } from './components/userCharities/userCharities.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CharityAPIComponent } from './services/charity-api/charity-api.component';
 
 const appRoutes: Routes = [
   {
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
     HomeComponent,
     ProfileComponent,
     UserCharitiesComponent,
+    CharityAPIComponent,
   ],
   imports: [
     BrowserModule,
