@@ -10,12 +10,13 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 //import {  } from "@angular/common/http";
-import { AppRoutingModule } from './app-routing.module';
+//import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
+
 import {
   OKTA_CONFIG,
   OktaAuthGuard,
@@ -28,6 +29,7 @@ import config from './app.config';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UserCharitiesComponent } from './components/userCharities/userCharities.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
@@ -39,6 +41,10 @@ const appRoutes: Routes = [
   {
     path: 'callback',
     component: OktaCallbackComponent,
+  },
+  {
+    path: 'about-us',
+    component: AboutUsComponent,
   },
   {
     path: 'profile',
@@ -61,8 +67,6 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-
-    AppRoutingModule,
     HttpClientModule,
     OktaAuthModule,
     RouterModule.forRoot(appRoutes),
