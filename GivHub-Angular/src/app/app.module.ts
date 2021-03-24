@@ -30,7 +30,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserCharitiesComponent } from './components/userCharities/userCharities.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { CharityAPIComponent } from './services/charity-api/charity-api.component';
+import { SearchCharityComponent } from './components/searchCharity/searchCharity.component';
 
 const appRoutes: Routes = [
   {
@@ -51,6 +51,11 @@ const appRoutes: Routes = [
     component: UserCharitiesComponent,
     canActivate: [ OktaAuthGuard ],
   },
+  {
+    path: 'searchCharity',
+    component: SearchCharityComponent,
+    canActivate: [ OktaAuthGuard ],
+  },
 ];
 
 @NgModule({
@@ -59,7 +64,8 @@ const appRoutes: Routes = [
     HomeComponent,
     ProfileComponent,
     UserCharitiesComponent,
-    CharityAPIComponent,
+    SearchCharityComponent,
+
   ],
   imports: [
     BrowserModule,
