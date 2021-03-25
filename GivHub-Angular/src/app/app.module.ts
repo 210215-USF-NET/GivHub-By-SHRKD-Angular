@@ -12,6 +12,9 @@
 //import {  } from "@angular/common/http";
 //import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { FormsModule } from '@angular/forms';
+
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
@@ -31,6 +34,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UserCharitiesComponent } from './components/userCharities/userCharities.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SearchCharityComponent } from './components/searchCharity/searchCharity.component';
 
 import { environment } from '../environments/environment';
 let appRoutes : Routes = [];
@@ -79,6 +83,11 @@ appRoutes = [
     component: UserCharitiesComponent,
     canActivate: [ OktaAuthGuard ],
   },
+  {
+    path: 'searchCharity',
+    component: SearchCharityComponent,
+    canActivate: [ OktaAuthGuard ],
+  },
 ];
 
 @NgModule({
@@ -87,6 +96,8 @@ appRoutes = [
     HomeComponent,
     ProfileComponent,
     UserCharitiesComponent,
+    SearchCharityComponent,
+
   ],
   imports: [
     BrowserModule,
