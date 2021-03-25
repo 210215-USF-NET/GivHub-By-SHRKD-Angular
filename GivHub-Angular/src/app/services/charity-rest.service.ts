@@ -8,18 +8,30 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class CharityRESTService {
-  ulr: string = 'https://localhost:5001/api/charity';
+
+  httpOptions = {
+    headers: new HttpHeaders(
+      {
+        'Content-Type': 'application/json'
+      }
+    )
+  }
+
+  ulr: string = 'https://localhost:44389/api/Location';
 
   constructor( private http: HttpClient){}
 
-
+  location: Location;
   GetCharity(): Observable<charity[]>{
     return 
   }
   GetUsersCharities(userId: number) : Observable<charity[]>{
-  return
+    return
   }
 
+  GetCharityLocations() : Observable<location[]>{
+    return this.http.get<location[]>(this.ulr,this.httpOptions);
+  }
 
 
 
