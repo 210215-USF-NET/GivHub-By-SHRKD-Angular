@@ -16,6 +16,9 @@ export class CharityRESTService {
   GetCharity(): Observable<charity[]>{
     return 
   }
+  GetUsersCharities(userId: number) : Observable<charity[]>{
+  return
+  }
 
 
 

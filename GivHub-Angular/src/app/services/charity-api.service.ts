@@ -25,4 +25,7 @@ export class CharityAPIService {
   SearchCharities(searchTerm: string): Observable<charity[]>{
     return this.http.post<charity[]>(`${this.url}&searchTerm=${searchTerm}`, this.httpOptions);
   }
+  GetSomeCharities():Observable<charity[]>{
+    return this.http.post<charity[]>(`${this.url}&searchTerm=fcancer`, this.httpOptions)
+  }
 }
