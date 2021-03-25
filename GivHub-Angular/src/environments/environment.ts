@@ -16,5 +16,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  ISSUER: "https://dev-09038350.okta.com/oauth2/default",
+  CLIENT_ID: "0oacsxl6qTlJ2Mp3j5d6",
+  REDIRECTURI: "http://localhost:8080/callback",
 };
