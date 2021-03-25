@@ -63,7 +63,7 @@ steps:
 - task: Npm@1
   inputs:
     command: 'custom'
-    customCommand: 'run build -prop'
+    customCommand: 'run build --prod'
     workingDir: $(appDir)
 - task: ArchiveFiles@2
   inputs:
