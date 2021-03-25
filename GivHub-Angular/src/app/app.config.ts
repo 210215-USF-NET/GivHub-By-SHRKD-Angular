@@ -2,9 +2,9 @@ const { CLIENT_ID, ISSUER, OKTA_TESTING_DISABLEHTTPSCHECK } = process.env;
 import { environment } from '../environments/environment';
 var url = "";
 if(environment.production === true){
-  url = "http://192.168.1.5:8080/callback";
+  url = "https://givhub.azurewebsites.net/callback";
 }else{
-  url = "http://192.168.1.5:8080/callback";
+  url = "https://givhub.azurewebsites.net/callback";
 }
 
 export default {
