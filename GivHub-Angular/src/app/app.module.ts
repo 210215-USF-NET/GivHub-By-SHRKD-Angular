@@ -12,7 +12,6 @@
 //import {  } from "@angular/common/http";
 //import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
@@ -33,7 +32,35 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UserCharitiesComponent } from './components/userCharities/userCharities.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
-const appRoutes: Routes = [
+import { environment } from '../environments/environment';
+let appRoutes : Routes = [];
+if(environment.production === true){
+  appRoutes = [
+    {
+      path: '',
+      component: HomeComponent,
+    },
+    {
+      path: 'callback',
+      component: OktaCallbackComponent,
+    },
+    {
+      path: 'about-us',
+      component: AboutUsComponent,
+    },
+    {
+      path: 'profile',
+      component: ProfileComponent,
+      canActivate: [ OktaAuthGuard ],
+    },
+    {
+      path: 'userCharities',
+      component: UserCharitiesComponent,
+      canActivate: [ OktaAuthGuard ],
+    },
+  ];
+}
+appRoutes = [
   {
     path: '',
     component: HomeComponent,
@@ -41,10 +68,6 @@ const appRoutes: Routes = [
   {
     path: 'callback',
     component: OktaCallbackComponent,
-  },
-  {
-    path: 'about-us',
-    component: AboutUsComponent,
   },
   {
     path: 'profile',
