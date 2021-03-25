@@ -1,6 +1,4 @@
 import { location } from './location';
-
-
 export interface charity
 {
     name: string,
