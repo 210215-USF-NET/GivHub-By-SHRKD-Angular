@@ -2,9 +2,15 @@
 const path = require('path');
 const dotenv = require('dotenv');
 const fs = require('fs');
-
+TESTENV = "";
+//
+if (process.env.NODE_ENV !== "production") {
+  TESTENV = path.resolve(__dirname, '.', 'testenv');
+}else{
+  TESTENV = path.resolve(__dirname, '.', 'prodenv');
+}
 // Read environment variables from "testenv". Override environment vars if they are already set.
-const TESTENV = path.resolve(__dirname, '.', 'testenv');
+
 if (fs.existsSync(TESTENV)) {
   const envConfig = dotenv.parse(fs.readFileSync(TESTENV));
   Object.keys(envConfig).forEach((k) => {
@@ -22,7 +28,7 @@ const env = {};
   'CLIENT_ID',
 ].forEach(function (key) {
   if (!process.env[key]) {
-    throw new Error(`Environment variable ${key} must be set. See README.md`);
+    throw new Error(`${process.env.NODE_ENV} Environment variable ${key} must be set. See README.md`);
   }
   env[key] = JSON.stringify(process.env[key]);
 });
