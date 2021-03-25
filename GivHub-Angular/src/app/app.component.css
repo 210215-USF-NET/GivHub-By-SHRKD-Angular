@@ -1,6 +1,12 @@
+
 #navbar{
     background-color: grey;
 }
+
+.nav-right{
+    margin-left: 30%;
+}
+
 #logo{
     width: 5em;
 }
@@ -57,6 +63,4 @@
         .sidenav {padding-top: 15px;}
         .sidenav a {font-size: 18px;}
   }
-  .nav-right{
-    justify-content: flex-end;
-}
+  
