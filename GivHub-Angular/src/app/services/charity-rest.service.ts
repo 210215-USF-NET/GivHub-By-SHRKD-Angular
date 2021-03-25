@@ -12,14 +12,20 @@ export class CharityRESTService {
   httpOptions = {
     headers: new HttpHeaders(
       {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*/*',
+        'Access-Control-Allow-Methods': 'OPTIONS, HEAD, GET, POST, PUT, PATCH, DELETE',
+        'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding, X-Auth-Token, content-type',
+
       }
     )
   }
 
   ulr: string = 'https://localhost:44389/api/Location';
 
-  constructor( private http: HttpClient){}
+  constructor( private http: HttpClient){
+    
+  }
 
   location: Location;
   GetCharity(): Observable<charity[]>{
