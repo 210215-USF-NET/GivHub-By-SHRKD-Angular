@@ -1,10 +1,19 @@
 const { CLIENT_ID, ISSUER, OKTA_TESTING_DISABLEHTTPSCHECK } = process.env;
+import { environment } from '../environments/environment';
+var url = "";
+//azure doesnt see this environment variable for some reason
+//http://localhost:8080/callback
+if(environment.production === false){
+  url = "https://givhub.azurewebsites.net/callback";
+}else{
+  url = "https://givhub.azurewebsites.net/callback";
+}
 
 export default {
   oidc: {
-    clientId: `${CLIENT_ID}`,
-    issuer: `${ISSUER}`,
-    redirectUri: 'http://localhost:8080/callback',
+    clientId: environment.CLIENT_ID,
+    issuer: environment.ISSUER,
+    redirectUri: url,
     scopes: ['openid', 'profile', 'email'],
     pkce: true,
     testing: {

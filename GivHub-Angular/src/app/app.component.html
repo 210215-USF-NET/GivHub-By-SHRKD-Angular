@@ -1,5 +1,3 @@
-<!--The content below is only a placeholder and can be replaced.-->
-
 <div id="navbar"class="ui inverted top fixed menu ">
   <div class="ui container">
     <a routerLink="/" class="header item">
@@ -7,6 +5,7 @@
       &nbsp;
       Giv Hub
     </a>
+    <a id="profile-button" class="item" routerLink="/about-us">About Us</a>
     <a class="item" *ngIf="!isAuthenticated" (click)="login()">Login</a>
     <a id="messages-button" class="item" *ngIf="isAuthenticated" routerLink="/userCharities"><i aria-hidden="true" class=""></i>Your Charities</a>
     <a id="profile-button" class="item" *ngIf="isAuthenticated" routerLink="/profile">Profile</a>
@@ -22,6 +21,6 @@
   </div>
 </div>
 
-<div class="ui text container" style="margin-top: 7em;">
+<div class="ui container" style="margin-top: 7em;">
   <router-outlet></router-outlet>
 </div>
