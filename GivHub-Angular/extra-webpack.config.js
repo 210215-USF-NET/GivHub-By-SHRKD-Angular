@@ -2,36 +2,36 @@
 const path = require('path');
 const dotenv = require('dotenv');
 const fs = require('fs');
-TESTENV = "";
-//
-if (process.env.NODE_ENV !== "production") {
-  TESTENV = path.resolve(__dirname, '.', 'testenv');
-}else{
-  TESTENV = path.resolve(__dirname, '.', 'prodenv');
-}
-// Read environment variables from "testenv". Override environment vars if they are already set.
+// TESTENV = "";
+// //
+// if (process.env.NODE_ENV !== "production") {
+//   TESTENV = path.resolve(__dirname, '.', 'testenv');
+// }else{
+//   TESTENV = path.resolve(__dirname, '.', 'prodenv');
+// }
+// // Read environment variables from "testenv". Override environment vars if they are already set.
 
-if (fs.existsSync(TESTENV)) {
-  const envConfig = dotenv.parse(fs.readFileSync(TESTENV));
-  Object.keys(envConfig).forEach((k) => {
-    process.env[k] = envConfig[k];
-  });
-}
-process.env.CLIENT_ID = process.env.CLIENT_ID || process.env.SPA_CLIENT_ID;
+// if (fs.existsSync(TESTENV)) {
+//   const envConfig = dotenv.parse(fs.readFileSync(TESTENV));
+//   Object.keys(envConfig).forEach((k) => {
+//     process.env[k] = envConfig[k];
+//   });
+// }
+// process.env.CLIENT_ID = process.env.CLIENT_ID || process.env.SPA_CLIENT_ID;
 
 const webpack = require('webpack');
 const env = {};
 
 // List of environment variables made available to the app
-[
-  'ISSUER',
-  'CLIENT_ID',
-].forEach(function (key) {
-  if (!process.env[key]) {
-    throw new Error(`${process.env.NODE_ENV} Environment variable ${key} must be set. See README.md`);
-  }
-  env[key] = JSON.stringify(process.env[key]);
-});
+// [
+//   'ISSUER',
+//   'CLIENT_ID',
+// ].forEach(function (key) {
+//   if (!process.env[key]) {
+//     throw new Error(`${process.env.NODE_ENV} Environment variable ${key} must be set. See README.md`);
+//   }
+//   env[key] = JSON.stringify(process.env[key]);
+// });
 
 // Added to angular's webpack config by @angular-builders/custom-webpack
 module.exports = {
