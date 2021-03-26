@@ -1,4 +1,4 @@
-import { charityapi } from './../models/charityapi';
+import { charityapi } from '../models/charityapi';
 import { charity } from '../models/charity';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';

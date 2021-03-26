@@ -11,22 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchCharityComponent implements OnInit {
   searchTerm: any;
-  charitiesapi: charityapi[] =[];
+  charitiesapi: any[] =[];
 
-  constructor(private charityService: CharityAPIService, private router: Router) {
-    this.searchTerm = {
-      searchTerm: ''
-    }
+  constructor(private charityService: CharityAPIService, private router: Router) {  }
 
-  }
 
   ngOnInit(): void {
     this.charityService.GetSomeCharities().subscribe(
       (result) =>{
         this.charitiesapi = result;
-      }
+      } 
     )
-    console.log(this.charitiesapi);
+
+    console.log(this.charitiesapi)
   }
   onSubmit(): void{
     this.charityService.SearchCharities(this.searchTerm);
