@@ -4,8 +4,10 @@
 }
 
 .nav-right{
-    /* margin-left: 60%; */
+  position: sticky;
+  float: right;
 }
+
 
 #logo{
     width: 5em;
