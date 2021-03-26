@@ -61,8 +61,15 @@ steps:
     command: 'install'
     workingDir: $(appDir)
 - task: DownloadSecureFile@1
+  name: mySecureFile
   inputs:
     secureFile: 'environment.prod.ts'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Agent.TempDirectory)'
+    Contents: 'environment.prod.ts'
+    TargetFolder: '$(build.artifactstagingdirectory)/$(appDir)/src/environments'
+
 - task: Npm@1
   inputs:
     command: 'custom'
