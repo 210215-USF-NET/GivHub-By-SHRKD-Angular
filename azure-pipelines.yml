@@ -60,11 +60,16 @@ steps:
   inputs:
     command: 'install'
     workingDir: $(appDir)
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'environment.prod.ts'
 - task: Npm@1
   inputs:
     command: 'custom'
     customCommand: 'run ng build --prod'
     workingDir: $(appDir)
+
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(appDir)/dist/'
