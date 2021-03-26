@@ -35,6 +35,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UserCharitiesComponent } from './components/userCharities/userCharities.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SearchCharityComponent } from './components/searchCharity/searchCharity.component';
+import { DisplayCharityComponent} from './components/displayCharity/displayCharity.component';
 
 import { environment } from '../environments/environment';
 let appRoutes : Routes = [];
@@ -65,6 +66,11 @@ let appRoutes : Routes = [];
       path: 'searchCharity',
       component: SearchCharityComponent,
       canActivate: [ OktaAuthGuard ],
+    },
+    {
+      path: 'displayCharity',
+      component: DisplayCharityComponent,
+      canActivate: [OktaAuthGuard],
     },
     {
       path: '**',

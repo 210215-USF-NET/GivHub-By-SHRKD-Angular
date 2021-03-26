@@ -1,3 +1,32 @@
-<p>
-  displayCharity works!
-</p>
+<div *ngIf="charity" class="container transparent">
+
+  <h2>{{charity.name | uppercase}} Details</h2>
+  <table class="table">
+      <tbody>
+          <tr>
+              <td>Mission Statement: </td>
+              <td>{{charity.missionstatement}}</td>
+          </tr>
+          <tr>
+              <td>Website: </td>
+              <td>{{charity.website}}</td>
+          </tr>
+          <tr>
+              <td>Category: </td>
+              <td>{{charity.category}}</td>
+          </tr>
+          <tr>
+              <td>Eid: </td>
+              <td>{{charity.eid}}</td>
+          </tr>
+          <tr>
+              <td>Location: </td>
+              <td>{{charity.location.state}},{{charity.location.city}},{{charity.location.zipcode}}</td>
+          </tr>
+          <tr> 
+            <td><img src={{charity.logourl}} alt="Their Logo"></td>
+        </tr>
+      </tbody>
+  </table>
+  <button class="btn btn-primary" (click)="SubscribeToCharity(charity.eid)">Subscribe</button> |
+</div>

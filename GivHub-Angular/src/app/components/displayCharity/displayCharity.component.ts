@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { charity } from 'src/app/models/charity';
-import { CharityRESTService } from 'src/app/services/charity-rest.service';
+import { charity } from '../../models/charity';
+import { CharityRESTService } from '../../services/charity-rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
