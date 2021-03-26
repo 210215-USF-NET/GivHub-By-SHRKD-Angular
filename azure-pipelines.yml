@@ -59,12 +59,13 @@ steps:
 - task: DownloadSecureFile@1
   name: mySecureFile
   inputs:
-    secureFile: 'environment.prod.ts'
+    secureFile: 'environment.ts'
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Agent.TempDirectory)'
-    Contents: 'environment.prod.ts'
+    Contents: 'environment.ts'
     TargetFolder: '$(System.DefaultWorkingDirectory)/$(appDir)/src/environments'
+    OverWrite: true
 - task: Npm@1
   inputs:
     command: 'install'
