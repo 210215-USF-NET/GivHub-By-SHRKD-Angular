@@ -56,10 +56,6 @@ steps:
 #   inputs:
 #     pollingTimeoutSec: '300'
 
-- task: Npm@1
-  inputs:
-    command: 'install'
-    workingDir: $(appDir)
 - task: DownloadSecureFile@1
   name: mySecureFile
   inputs:
@@ -69,6 +65,10 @@ steps:
     SourceFolder: '$(Agent.TempDirectory)'
     Contents: 'environment.prod.ts'
     TargetFolder: '$(build.artifactstagingdirectory)/$(appDir)/src/environments'
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: $(appDir)
 
 - task: Npm@1
   inputs:
