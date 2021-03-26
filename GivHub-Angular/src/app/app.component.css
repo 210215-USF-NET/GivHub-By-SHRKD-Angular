@@ -3,12 +3,6 @@
     background-color: grey;
 }
 
-.nav-right{
-  position: sticky;
-  float: right;
-}
-
-
 #logo{
     width: 5em;
 }
