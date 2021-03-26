@@ -63,7 +63,7 @@ steps:
 - task: Npm@1
   inputs:
     command: 'custom'
-    customCommand: 'run build --env=prod'
+    customCommand: 'run ng build --prod --configuration production'
     workingDir: $(appDir)
 - task: ArchiveFiles@2
   inputs:
