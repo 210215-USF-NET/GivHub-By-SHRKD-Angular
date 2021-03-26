@@ -11,11 +11,11 @@
             <th>Category</th>
         </thead>
         <tbody>
-            <!-- <tr *ngFor="let charity of charities;" (click)="Getcharity(charity.name)">
-                <td>{{charity.name}}</td>
-                <td>{{charity.missionstatement}}</td>
-                <td>{{charity.category}}</td>
-            </tr> -->
+            <tr *ngFor="let charityapi of charitiesapi;">
+                <td>{{charityapi.charityName}}</td>
+                <td>{{charityapi.missionStatement}}</td>
+                <td>{{charityapi.category}}</td>
+            </tr>
         </tbody>
     </table>
 </div>

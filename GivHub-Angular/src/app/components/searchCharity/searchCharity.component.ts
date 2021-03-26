@@ -26,6 +26,7 @@ export class SearchCharityComponent implements OnInit {
         this.charitiesapi = result;
       }
     )
+    console.log(this.charitiesapi);
   }
   onSubmit(): void{
     this.charityService.SearchCharities(this.searchTerm);
