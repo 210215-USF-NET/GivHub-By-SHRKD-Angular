@@ -1,18 +1,24 @@
 <div id="navbar"class="ui inverted top fixed menu ">
   <div class="ui container">
-    <a routerLink="/" class="header item">
-      <img id="logo" class="ui mini image" src="/assets/shrkd_color.svg">
-      &nbsp;
-      Giv Hub
-    </a>
+    <div id="navbar" class="ui inverted menu">
+        <a routerLink="/" class="header item">
+          <img id="logo" class="ui mini image" src="/assets/shrkd_color.svg">
+          &nbsp;
+          Giv Hub
+        </a>
+    
+        <a id="profile-button" class="item" routerLink="/about-us">About Us</a>
+        <a id="help-button" class="item" (click)="openHelp()">Help</a>
+        <a id="messages-button" class="item" *ngIf="isAuthenticated" routerLink="/userCharities"><i aria-hidden="true" class=""></i>Your Charities</a>
+        <a id="search-button" class="item" *ngIf="isAuthenticated" routerLink="/searchCharity">Search</a>  
+    </div>
+      <div class=" inverted right menu">
+        <a id="profile-button" class="item" *ngIf="isAuthenticated" routerLink="/profile">Profile</a>
+        <a id="logout-button" class="item" *ngIf="isAuthenticated" (click)="logout()">Logout</a>
+        <a class="item" *ngIf="!isAuthenticated" (click)="login()">Login</a>
+      </div>
+  </div>
 
-    <a id="profile-button" class="item" routerLink="/about-us">About Us</a>
-    <a id="help-button" class="item" (click)="openHelp()">Help</a>
-    <a id="messages-button" class="item" *ngIf="isAuthenticated" routerLink="/userCharities"><i aria-hidden="true" class=""></i>Your Charities</a>
-    <a id="search-button" class="item" *ngIf="isAuthenticated" routerLink="/searchCharity">Search</a>  
-    <a id="profile-button" class="item ml-auto" *ngIf="isAuthenticated" routerLink="/profile">Profile</a>
-    <a id="logout-button" class="item ml-auto" *ngIf="isAuthenticated" (click)="logout()">Logout</a>
-    <a class="item ml-auto" *ngIf="!isAuthenticated" (click)="login()">Login</a>
     <!-- <a>
       <form (ngSubmit)= "onSubmit()" class="form-inline md-form mr-auto mb-4">  
         <input id='searchTerm'class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search Charities" [(ngModel)]="searchTerm"
@@ -20,10 +26,8 @@
         <button mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Search</button>
       </form>
     </a> -->
-
-  </div>
+  
 </div>
-
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" (click)="closeHelp()">&times;</a>
