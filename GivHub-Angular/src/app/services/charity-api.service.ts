@@ -1,3 +1,4 @@
+import { charityapi } from './../models/charityapi';
 import { charity } from '../models/charity';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -26,10 +27,10 @@ export class CharityAPIService {
 
   constructor(private http: HttpClient) { }
 
-  SearchCharities(searchTerm: string): Observable<charity[]>{
-    return this.http.post<charity[]>(`${this.url}&searchTerm=${searchTerm}`, this.httpOptions);
+  SearchCharities(searchTerm: string): Observable<charityapi[]>{
+    return this.http.post<charityapi[]>(`${this.url}&searchTerm=${searchTerm}`, this.httpOptions);
   }
-  GetSomeCharities():Observable<charity[]>{
-    return this.http.post<charity[]>(`${this.url}&searchTerm=fcancer`, this.httpOptions)
+  GetSomeCharities():Observable<charityapi[]>{
+    return this.http.post<charityapi[]>(`${this.url}&searchTerm=fcancer`, this.httpOptions)
   }
 }

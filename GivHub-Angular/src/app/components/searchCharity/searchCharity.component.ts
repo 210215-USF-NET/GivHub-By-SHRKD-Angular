@@ -1,4 +1,4 @@
-import { charity } from '../../models/charity';
+import { charityapi } from '../../models/charityapi';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { CharityAPIService } from '../../services/charity-api.service';
@@ -11,7 +11,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchCharityComponent implements OnInit {
   searchTerm: any;
-  charities: charity[] =[];
+  charitiesapi: charityapi[] =[];
+
   constructor(private charityService: CharityAPIService, private router: Router) {
     this.searchTerm = {
       searchTerm: ''
@@ -22,7 +23,7 @@ export class SearchCharityComponent implements OnInit {
   ngOnInit(): void {
     this.charityService.GetSomeCharities().subscribe(
       (result) =>{
-        this.charities = result;
+        this.charitiesapi = result;
       }
     )
   }
