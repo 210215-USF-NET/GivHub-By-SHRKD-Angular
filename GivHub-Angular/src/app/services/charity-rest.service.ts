@@ -28,13 +28,11 @@ export class CharityRESTService {
   GetUsersCharities(userId: number) : Observable<charity[]>{
     return
   }
-
   GetCharityLocations() : Observable<location[]>{
     return this.http.get<location[]>(this.ulr,this.httpOptions);
   }
 
-
-
-
-
+  GetMostPopularCharities(): Observable<charity[]>{
+    return this.http.get<charity[]>(this.ulr,this.httpOptions);
+  }
 }

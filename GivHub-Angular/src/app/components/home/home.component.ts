@@ -12,13 +12,9 @@
 
 import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
-
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
+import { charity } from 'src/app/models/charity';
+import { CharityRESTService } from 'src/app/services/charity-rest.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -29,15 +25,9 @@ export class HomeComponent implements OnInit {
   userName: string;
   isAuthenticated: boolean;
   error: Error;
+  charities: charity[] = [];
 
-  tiles: Tile[] = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-  ];
-
-  constructor(public oktaAuth: OktaAuthService) {
+  constructor(public oktaAuth: OktaAuthService, private charityService : CharityRESTService, private router : Router) {
     this.oktaAuth.$authenticationState.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
   }
 
@@ -56,5 +46,14 @@ export class HomeComponent implements OnInit {
       const userClaims = await this.oktaAuth.getUser();
       this.userName = userClaims.name;
     }
+    this.charityService.GetMostPopularCharities().subscribe(
+      (result) => {
+        this.charities = result;
+      }
+    );
+  }
+
+  DisplayCharity(charityName : string){
+    this.router.navigate(['displayCharity'],{queryParams:{charity: charityName}});
   }
 }
