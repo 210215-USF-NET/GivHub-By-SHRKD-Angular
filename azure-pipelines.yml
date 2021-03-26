@@ -64,7 +64,7 @@ steps:
   inputs:
     SourceFolder: '$(Agent.TempDirectory)'
     Contents: 'environment.prod.ts'
-    TargetFolder: '$(build.artifactstagingdirectory)/$(appDir)/src/environments'
+    TargetFolder: '$(System.DefaultWorkingDirectory)/$(appDir)/src/environments'
 - task: Npm@1
   inputs:
     command: 'install'
