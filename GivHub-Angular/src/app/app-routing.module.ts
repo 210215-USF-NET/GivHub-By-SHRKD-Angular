@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-import { OktaAuthGuard } from './app.guard';
-import { CallbackComponent } from './callback.component';
-import { ProtectedComponent } from './protected.component';
-
+//This module gets scaffolded when you say to include routing in your angular app
+//This property is where you define, which routes/routerLinks goes to certain components
+// you need two things to define a route: path (endpoint) to go to, component that it is routing to
+import {
+    OKTA_CONFIG,
+    OktaAuthGuard,
+    OktaAuthModule,
+    OktaCallbackComponent,
+  } from '@okta/okta-angular';
+  import config from './app.config';
 const routes: Routes = [
-  {
-    path: 'callback',
-    component: CallbackComponent
-  },
-  {
-    path: 'protected',
-    component: ProtectedComponent,
-    canActivate: [OktaAuthGuard]
-  }
+    {
+        path: 'callback',
+        component: OktaCallbackComponent,
+    },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    { provide: OKTA_CONFIG, useValue: config.oidc },
+  ],
 })
 export class AppRoutingModule { }

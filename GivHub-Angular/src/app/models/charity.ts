@@ -1,3 +1,4 @@
+import { location } from './location';
 export interface charity
 {
     name: string,
@@ -5,5 +6,6 @@ export interface charity
     website: string,
     category: string,
     logourl: string,
-    
+    eid: string,
+    location: location
 }

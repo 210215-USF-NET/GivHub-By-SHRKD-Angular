@@ -38,28 +38,59 @@ steps:
 #     arguments: --configuration $(buildConfiguration) --collect "Code Coverage"
 
 
-- task: NodeTool@0
-  inputs:
-    versionSpec: '14.x'
-  displayName: 'Install Node.js'
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '14.x'
+#   displayName: 'Install Node.js'
 
-- script: npm ci
-  displayName: npm install
-  workingDirectory: $(appDir)
+# - script: npm ci
+#   displayName: npm install
+#   workingDirectory: $(appDir)
 
-- script: npx ng build --prod
-  displayName: ng build
-  workingDirectory: $(appDir)
+# - script: npx ng build --prod
+#   displayName: ng build
+#   workingDirectory: $(appDir)
   
 # - task: SonarCloudAnalyze@1
 # - task: SonarCloudPublish@1
 #   inputs:
 #     pollingTimeoutSec: '300'
 
-- task: AzureWebApp@1
+- task: Npm@1
   inputs:
+    command: 'install'
+    workingDir: $(appDir)
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    customCommand: 'run build --env=prod'
+    workingDir: $(appDir)
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(appDir)/dist/'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.BuildId).zip'
+    replaceExistingArchive: true
+    
+#archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+
+# - task: PublishPipelineArtifact@1
+#   inputs:
+#     targetPath: '$(appDir)/dist'
+#     artifact: 'drop'
+#     publishLocation: 'pipeline'
+# - task: AzureWebApp@1
+#   inputs:
+#     azureSubscription: 'Azure subscription 1(583825bd-d55a-497c-bfe6-2e3972e128e2)'
+#     appType: 'webAppLinux'
+#     #appName: 'GivHub'
+#     appName: 'GivHub'
+#     package: $(System.DefaultWorkingDirectory)/dist'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
     azureSubscription: 'Azure subscription 1(583825bd-d55a-497c-bfe6-2e3972e128e2)'
     appType: 'webAppLinux'
-    #appName: 'GivHub'
-    appName: 'GivHub'
-    package: '$(appDir)/dist/'
+    WebAppName: 'GivHub'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'

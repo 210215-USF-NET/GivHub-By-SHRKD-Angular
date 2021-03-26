@@ -9,7 +9,9 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
-
+//https://givhub.azurewebsites.net/callback/
 export const environment = {
-  production: true
+  production: true,
+  ISSUER: "https://dev-09038350.okta.com/oauth2/default",
+  CLIENT_ID: "0oad4azjyex4ywm9o5d6"
 };

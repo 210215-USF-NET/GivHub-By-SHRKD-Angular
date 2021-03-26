@@ -10,12 +10,15 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 //import {  } from "@angular/common/http";
-import { AppRoutingModule } from './app-routing.module';
+//import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { FormsModule } from '@angular/forms';
 
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
+
 import {
   OKTA_CONFIG,
   OktaAuthGuard,
@@ -28,10 +31,40 @@ import config from './app.config';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UserCharitiesComponent } from './components/userCharities/userCharities.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SearchCharityComponent } from './components/searchCharity/searchCharity.component';
 
-const appRoutes: Routes = [
+import { environment } from '../environments/environment';
+let appRoutes : Routes = [];
+if(environment.production === true){
+  appRoutes = [
+    {
+      path: '',
+      component: HomeComponent,
+    },
+    {
+      path: 'callback',
+      component: OktaCallbackComponent,
+    },
+    {
+      path: 'about-us',
+      component: AboutUsComponent,
+    },
+    {
+      path: 'profile',
+      component: ProfileComponent,
+      canActivate: [ OktaAuthGuard ],
+    },
+    {
+      path: 'userCharities',
+      component: UserCharitiesComponent,
+      canActivate: [ OktaAuthGuard ],
+    },
+  ];
+}
+appRoutes = [
   {
     path: '',
     component: HomeComponent,
@@ -50,6 +83,11 @@ const appRoutes: Routes = [
     component: UserCharitiesComponent,
     canActivate: [ OktaAuthGuard ],
   },
+  {
+    path: 'searchCharity',
+    component: SearchCharityComponent,
+    canActivate: [ OktaAuthGuard ],
+  },
 ];
 
 @NgModule({
@@ -58,11 +96,11 @@ const appRoutes: Routes = [
     HomeComponent,
     ProfileComponent,
     UserCharitiesComponent,
+    SearchCharityComponent,
+
   ],
   imports: [
     BrowserModule,
-
-    AppRoutingModule,
     HttpClientModule,
     OktaAuthModule,
     RouterModule.forRoot(appRoutes),

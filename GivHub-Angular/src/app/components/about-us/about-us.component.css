@@ -1,0 +1,13 @@
+#teamName{
+    color: #13E800;
+    font-size: 75pt;
+}
+#logo{
+    width: 14em;
+}
+.outer{
+    text-align: center;
+}
+.inner{
+    display: inline-flex;
+}
