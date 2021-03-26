@@ -38,4 +38,22 @@ export class AppComponent implements OnInit {
   logout() {
     this.oktaAuth.logout('/');
   }
+  display=false;
+  /* Set the width of the side navigation to 250px */
+  openHelp() {
+    this.display = !this.display;
+    if (this.display==false){
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+    else {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+    
+}
+
+/* Set the width of the side navigation to 0 */
+  closeHelp() {
+    this.display=!this.display;
+    document.getElementById("mySidenav").style.width = "0";
+}
 }

@@ -38,7 +38,6 @@ import { SearchCharityComponent } from './components/searchCharity/searchCharity
 
 import { environment } from '../environments/environment';
 let appRoutes : Routes = [];
-if(environment.production === true){
   appRoutes = [
     {
       path: '',
@@ -62,33 +61,14 @@ if(environment.production === true){
       component: UserCharitiesComponent,
       canActivate: [ OktaAuthGuard ],
     },
+    {
+      path: 'searchCharity',
+      component: SearchCharityComponent,
+      canActivate: [ OktaAuthGuard ],
+    },
   ];
-}
-appRoutes = [
-  {
-    path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'callback',
-    component: OktaCallbackComponent,
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [ OktaAuthGuard ],
-  },
-  {
-    path: 'userCharities',
-    component: UserCharitiesComponent,
-    canActivate: [ OktaAuthGuard ],
-  },
-  {
-    path: 'searchCharity',
-    component: SearchCharityComponent,
-    canActivate: [ OktaAuthGuard ],
-  },
-];
+
+
 
 @NgModule({
   declarations: [

@@ -18,5 +18,5 @@
 export const environment = {
   production: false,
   ISSUER: "https://dev-09038350.okta.com/oauth2/default",
-  CLIENT_ID: "0oad4azjyex4ywm9o5d6"
+  CLIENT_ID: "0oacsxl6qTlJ2Mp3j5d6"//
 };
