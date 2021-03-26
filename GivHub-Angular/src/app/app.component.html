@@ -6,13 +6,13 @@
       Giv Hub
     </a>
 
-    <a id="messages-button" class="item" *ngIf="isAuthenticated" routerLink="/userCharities"><i aria-hidden="true" class=""></i>Your Charities</a>
-    <a id="profile-button" class="item" *ngIf="isAuthenticated" routerLink="/profile">Profile</a>
-    <a id="search-button" class="item" *ngIf="isAuthenticated" routerLink="/searchCharity">Search</a>
-    <a class="item nav-right" *ngIf="!isAuthenticated" (click)="login()">Login</a>
-    <a id="logout-button" class="item nav-right" *ngIf="isAuthenticated" (click)="logout()">Logout</a>
-    <a id="help-button" class="item" (click)="openHelp()">Help</a>
     <a id="profile-button" class="item" routerLink="/about-us">About Us</a>
+    <a id="help-button" class="item" (click)="openHelp()">Help</a>
+    <a id="messages-button" class="item" *ngIf="isAuthenticated" routerLink="/userCharities"><i aria-hidden="true" class=""></i>Your Charities</a>
+    <a id="search-button" class="item" *ngIf="isAuthenticated" routerLink="/searchCharity">Search</a>  
+    <a id="profile-button" class="item ml-auto" *ngIf="isAuthenticated" routerLink="/profile">Profile</a>
+    <a id="logout-button" class="item ml-auto" *ngIf="isAuthenticated" (click)="logout()">Logout</a>
+    <a class="item ml-auto" *ngIf="!isAuthenticated" (click)="login()">Login</a>
     <!-- <a>
       <form (ngSubmit)= "onSubmit()" class="form-inline md-form mr-auto mb-4">  
         <input id='searchTerm'class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search Charities" [(ngModel)]="searchTerm"
@@ -22,7 +22,6 @@
     </a> -->
 
   </div>
-  
 </div>
 
 
