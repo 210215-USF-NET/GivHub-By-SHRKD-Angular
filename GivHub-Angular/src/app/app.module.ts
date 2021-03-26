@@ -66,6 +66,10 @@ let appRoutes : Routes = [];
       component: SearchCharityComponent,
       canActivate: [ OktaAuthGuard ],
     },
+    {
+      path: '**',
+      redirectTo: ""
+    },
   ];
 
 
