@@ -25,35 +25,23 @@ export class CharityRESTService {
     )
   }
 
-  url: string = 'https://localhost:44389/api/Location';
-
-  constructor( private http: HttpClient){
-    
-  }
+  locationURL: string = 'https://localhost:44389/api/Location';
+  charityURL: string = "https://localhost:44389/api/Charity";
+  subscriptionURL: string = "https://localhost:44389/api/Subscription"
+  constructor( private http: HttpClient){}
 
   location: Location;
-  GetCharity(): Observable<charity[]>{
-    return 
+  GetCharity(charityName: string): Observable<charity>{
+    return this.http.get<charity>(`${this.charityURL}/${charityName}`,this.httpOptions);
   }
-  GetUsersCharities(userId: number) : Observable<charity[]>{
-    return
+  GetUsersCharities(userEmail: string) : Observable<charity[]>{
+    return this.http.get<charity[]>(`${this.subscriptionURL}/${userEmail}`,this.httpOptions);
   }
-
   GetCharityLocations() : Observable<location[]>{
-    return this.http.get<location[]>(`${this.url}/Locaiton`,this.httpOptions);
-  }
-  GetSubscriptionByUser(email: string) :Observable<subscription[]>{
-    return this.http.get<subscription[]>(`${this.url}/Subsciption/${email}`)
-  }
-  GetSearchhistoryByUser(email: string) :Observable<searchHistory[]>{
-    return this.http.get<searchHistory[]>(`${this.url}/SearchHistory/${email}`)
-  }
-  GetDonationByUser(email: string) :Observable<donation[]>{
-    return this.http.get<donation[]>(`${this.url}/Donation/${email}`)
+    return this.http.get<location[]>(this.locationURL,this.httpOptions);
   }
 
-
-
-
-
+  GetMostPopularCharities(): Observable<charity[]>{
+    return this.http.get<charity[]>(this.charityURL,this.httpOptions);
+  }
 }
