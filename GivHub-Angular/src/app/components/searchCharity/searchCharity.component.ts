@@ -23,15 +23,11 @@ export class SearchCharityComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.searchTerm = params['searchTerm'];
-  });
+    });
     this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
     // console.log(this.charitiesapi);
   }
-  onSubmit(event: any): void{
-    this.charitiesapi = this.charityService.SearchCharities(event.target.searchTerm.value);  
-    console.log(event.target.searchTerm.value);  
-    console.log(this.charitiesapi); 
-  }
+  onSubmit(event: any): void{}
 
 
 }
