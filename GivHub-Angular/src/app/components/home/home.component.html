@@ -6,12 +6,12 @@
   <div class="row">
     <!-- Articles -->
     <div class="col text-center">
-      <h1>Articles</h1>
-      <div *ngFor="let nytapi of nytsapi;" class="container">
-        <h2>{{nytapi.docs.headline.main}}</h2>
-        <p>{{nytapi.docs.lead_paragraph}}</p>
-        <p>{{nytapi.docs.web_url}}</p>
-        <p>{{nytapi.docs.pub_date}}</p>
+      <h1>Recent News</h1>
+      <div *ngFor="let nytapi of nytapiDocs;" class="container">
+        <h2>{{nytapi.headline.main}}</h2>
+        <p>{{nytapi.lead_paragraph}}</p>
+        <a href="{{nytapi.web_url}}">Link to article.</a>
+        <p>{{nytapi.pub_date}}</p>
       </div>
     </div>
     <!-- Trending charities -->

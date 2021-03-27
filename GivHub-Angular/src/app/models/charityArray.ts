@@ -5,3 +5,4 @@ export interface charityArray{
     data:charityapi[],
     msg:string
 }
+//no.. data:charityapi[],

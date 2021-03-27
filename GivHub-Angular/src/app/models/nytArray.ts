@@ -4,5 +4,5 @@ export interface nytArray
 {
     status: string,
     copyright: string,
-    response: nytapi[],
+    response: nytapi,
 }

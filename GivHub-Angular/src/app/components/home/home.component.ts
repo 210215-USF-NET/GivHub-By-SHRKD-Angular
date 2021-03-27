@@ -14,7 +14,9 @@ import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
 import { charity } from '../../models/charity';
 import { CharityRESTService } from '../../services/charity-rest.service';
-import { Router } from '@angular/router';
+import { NytApiService } from '../../services/nyt-api.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { nytapiDocs } from '../../models/nytapiDocs';
 
 @Component({
   selector: 'app-home',
@@ -26,8 +28,9 @@ export class HomeComponent implements OnInit {
   isAuthenticated: boolean;
   error: Error;
   charities: charity[] = [];
+  nytapiDocs: nytapiDocs[] = [];
 
-  constructor(public oktaAuth: OktaAuthService, private charityService : CharityRESTService, private router : Router) {
+  constructor(public oktaAuth: OktaAuthService, private charityService : CharityRESTService, private router : Router, private route: ActivatedRoute, private nytApiService: NytApiService) {
     this.oktaAuth.$authenticationState.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
   }
 
@@ -46,6 +49,10 @@ export class HomeComponent implements OnInit {
       const userClaims = await this.oktaAuth.getUser();
       this.userName = userClaims.name;
     }
+
+    this.nytapiDocs = this.nytApiService.GetTopArticles();
+    console.log(this.nytapiDocs);
+    //this is for trending charities
     this.charityService.GetMostPopularCharities().subscribe(
       (result) => {
         this.charities = result;
