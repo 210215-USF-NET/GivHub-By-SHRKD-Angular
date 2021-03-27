@@ -1,6 +1,6 @@
-import { charity } from '../../models/charity';
+import { charityapi } from '../../models/charityapi';
 import { NgModule } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 import { CharityAPIService } from '../../services/charity-api.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,8 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchCharityComponent implements OnInit {
   searchTerm: any;
-  charities: charity[] =[];
-  constructor(private charityService: CharityAPIService, private router: Router) {
+  charitiesapi: charityapi[] =[];
+
+  constructor(private charityService: CharityAPIService, private router: Router, private route: ActivatedRoute) {
     this.searchTerm = {
       searchTerm: ''
     }
@@ -20,17 +21,13 @@ export class SearchCharityComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.charityService.GetSomeCharities().subscribe(
-      (result) =>{
-        this.charities = result;
-      }
-    )
+    this.route.queryParams.subscribe(params => {
+      this.searchTerm = params['searchTerm'];
+    });
+    this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
+    // console.log(this.charitiesapi);
   }
-  onSubmit(): void{
-    this.charityService.SearchCharities(this.searchTerm);
-    alert("search was made")
-    
-  }
+  onSubmit(event: any): void{}
 
 
 }

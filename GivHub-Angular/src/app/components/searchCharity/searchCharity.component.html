@@ -1,5 +1,5 @@
-<form (ngSubmit)="onSubmit()" class="form-inline md-form mr-auto mb-4">
-    <!-- <input class="form-control mr-sm-2" type="text" [(ngModel)]= "searchTerm" name = "searchTerm" id = "searchTerm" placeholder="Search" aria-label="Search"> -->
+<form (ngSubmit)="onSubmit($event)" class="form-inline md-form mr-auto mb-4">
+    <input class="form-control mr-sm-2" type="text" name = "searchTerm" id = "searchTerm" placeholder="Search" aria-label="Search">
     <button mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Search</button>
 </form>
 
@@ -7,16 +7,18 @@
     <table class="table">
         <thead>
             <th>Charity name</th>
-            <th>Mission statement</th>
+            <!-- <th>Mission statement</th> -->
             <th>Category</th>
+            <th>Link</th>
+            <th>EIN</th>
         </thead>
         <tbody>
-            <!-- <tr *ngFor="let charity of charities;" (click)="Getcharity(charity.name)">
-                <td>{{charity.name}}</td>
-                <td>{{charity.missionstatement}}</td>
-                <td>{{charity.category}}</td>
-            </tr> -->
+            <tr *ngFor="let charityapi of charitiesapi;">
+                <td>{{charityapi.charityName}}</td>
+                <td>{{charityapi.category}}</td>
+                <td><a href="{{charityapi.url}}">URL</a></td>
+                <td>{{charityapi.ein}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
-search page works
