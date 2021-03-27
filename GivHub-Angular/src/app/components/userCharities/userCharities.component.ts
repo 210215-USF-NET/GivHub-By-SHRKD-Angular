@@ -14,25 +14,29 @@ import {location } from '../../models/location';
 })
 export class UserCharitiesComponent implements OnInit {
   subscriptions:subscription[]=[];
-  charities : Array<charity>;
+  charities : charity[]=[];
   constructor(private oktaAuth: OktaAuthService, private charityService: CharityRESTService, private router:Router) { }
   email:string;
   async ngOnInit() {
     const userClaims =  await this.oktaAuth.getUser();
     this.email = userClaims.email;
     this.email= 'hans.mittig@revature.net'
-    this.charityService.GetUserSubscription(this.email).subscribe(
-    (result)=>{ this.subscriptions= result;}
-    );
-    console.log(this.subscriptions);
-    this.subscriptions.forEach(function (element) {
-
-      this.charities.push(this.charityService.GetCharityById(element.charityId));
-      console.log(this.charities);
-    });
     
+    this.charityService.GetUserSubscription(this.email).subscribe(
+    (result)=>{
+     this.subscriptions= result;}
+    );
 
-
+    console.log(this.subscriptions);
+    console.log(this.charities);
+    this.subscriptions.forEach(function (element) {
+      this.charities.push(this.charityService.GetCharityById(element.charityId));
+    }); 
   }
+
+  DisplayCharity(charityName: string){
+    this.router.navigate(['hero-details'], { queryParams: { charity: charityName } });
+  }
+  
 
 }
