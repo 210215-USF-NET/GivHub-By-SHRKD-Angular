@@ -3,6 +3,6 @@ import { nytapiMeta } from './nytapiMeta';
 
 export interface nytapi
 {
-    docs: nytapiDocs[],
+    docs: nytapiDocs,
     meta: nytapiMeta
 }
