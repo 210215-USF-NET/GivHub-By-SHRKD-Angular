@@ -1,4 +1,4 @@
-import { charityapi } from './../models/charityapi';
+import { charityapi } from '../models/charityapi';
 import { charity } from '../models/charity';
 import { charityArray } from '../models/charityArray';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
