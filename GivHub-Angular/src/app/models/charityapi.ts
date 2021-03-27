@@ -11,7 +11,7 @@ export interface charityapi
     rows: number,
     recordCount: number,
     score: number,
-    acceptingDonations: 1,
+    acceptingDonations: number,
     category: string,
     eligibleCd: number,
     deductibilityCd: number,
