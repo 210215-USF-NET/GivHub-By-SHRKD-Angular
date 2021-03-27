@@ -25,12 +25,12 @@ export class NytApiService {
   
   constructor(private http: HttpClient) { }
 
-  GetTopArticles(): nytapi[] {
+  GetTopArticles(): nytapiDocs[] {
     let result = this.http.get<nytArray>(`${this.url}?${this.query}&${this.key}`, {'headers':this.headers});
-    var newNYTArray: nytapi[]=[];
+    var newNYTArray: nytapiDocs[]=[];
     result.toPromise().then(data => {
       data.response.forEach(x => {
-        newNYTArray.push(x);
+        newNYTArray.push(x.docs);
       })
     })
     return newNYTArray;
