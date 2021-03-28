@@ -59,4 +59,14 @@ export class CharityAPIService {
     })
     return newCharityArray;
   }
+  SearchCharitiesByCategory(category: string): charityapi[]{
+    let result = this.http.get<charityArray>(`${this.url}&categoty=${category}`, {'headers':this.headers});
+    var newCharityArray:charityapi[] = [];
+    result.toPromise().then(data => {
+      data.data.forEach(x => {
+        newCharityArray.push(x);
+      });
+    })
+    return newCharityArray;
+  }
 }
