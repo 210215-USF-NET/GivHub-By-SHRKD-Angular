@@ -1,3 +1,4 @@
+import { charityapi } from './../models/charityapi';
 import { searchHistory } from './../models/searchHistory';
 import { donation } from './../models/donatin';
 import { charity } from '../models/charity'
@@ -43,5 +44,11 @@ export class CharityRESTService {
 
   GetMostPopularCharities(): Observable<charity[]>{
     return this.http.get<charity[]>(this.charityURL,this.httpOptions);
+  }
+  GetUserSubscription(userEmail: string): Observable<subscription []>{
+    return this.http.get<subscription[]>(`${this.subscriptionURL}/email?email=${userEmail}`,this.httpOptions);
+  }
+  GetCharityById(id:number): Observable<charity>{
+    return this.http.get<charity>(`${this.charityURL}/${id}`,this.httpOptions);
   }
 }

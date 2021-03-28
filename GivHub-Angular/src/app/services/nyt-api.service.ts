@@ -16,9 +16,7 @@ export class NytApiService {
   }
   headers = new HttpHeaders()
   .append('content-type','application/json')
-  .append('Access-Control-Allow-Origin', 'http://localhost:8080/')
-  .append('Access-Control-Request-Method', 'POST, GET')
-  .append('Access-Control-Allow-Headers','X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding, X-Auth-Token, content-type');
+
   // url: string = 'https://api.nytimes.com/svc/search/v2/articlesearch.json'
   // query: string = 'fq=subject:(%22Nonprofit%20Organizations%22)&page=1&sort=newest'
   // key: string = 'api-key=qgJur0BO2ym1GQzYiAU5IAp3orFiMtLR'
