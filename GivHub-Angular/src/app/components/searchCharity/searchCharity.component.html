@@ -20,7 +20,9 @@
                 <td><a href="{{charityapi.url}}">Org</a></td>
                 <td><a href="{{charityapi.donationUrl}}">Donate</a>
                 <td>{{charityapi.ein}}</td>
+                <td><button class="btn btn-primary" (click)="onSubscribe(charityapi.ein,charityapi.charityName)">Subscribe</button></td>
             </tr>
         </tbody>
+
     </table>
 </div>

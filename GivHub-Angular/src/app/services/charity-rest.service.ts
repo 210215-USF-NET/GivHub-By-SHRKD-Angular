@@ -51,4 +51,11 @@ export class CharityRESTService {
   GetCharityById(id:number): Observable<charity>{
     return this.http.get<charity>(`${this.charityURL}/${id}`,this.httpOptions);
   }
+
+  //makes a user sub, gets called from the search-charity component
+  UserSubscribe(subscription: subscription): Observable<subscription>{
+    // console.log(subscription.charityId);
+    // console.log(subscription.email);
+    return this.http.post<subscription>(`${this.subscriptionURL}`,subscription,this.httpOptions);
+  }
 }
