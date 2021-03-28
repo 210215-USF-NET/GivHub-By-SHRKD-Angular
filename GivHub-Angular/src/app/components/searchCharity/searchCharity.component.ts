@@ -24,7 +24,8 @@ export class SearchCharityComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.searchTerm = params['searchTerm'];
     });
-    if(this.searchTerm === ""){
+    
+    if(this.searchTerm){
       this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
     }
     

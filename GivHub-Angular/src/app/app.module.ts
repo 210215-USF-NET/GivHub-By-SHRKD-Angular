@@ -16,7 +16,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 
 import {
@@ -101,6 +101,7 @@ let appRoutes : Routes = [];
     HttpClientModule,
     OktaAuthModule,
     RouterModule.forRoot(appRoutes),
+    HttpClientJsonpModule,
   ],
   providers: [
     { provide: OKTA_CONFIG, useValue: config.oidc },
