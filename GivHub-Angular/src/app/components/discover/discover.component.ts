@@ -2,7 +2,7 @@ import { category } from './../../models/category';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CharityAPIService } from '../../services/charity-api.service';
-import { charityapi } from 'src/app/models/charityapi';
+import { charityapi } from '../../models/charityapi';
 
 @Component({
   selector: 'app-discover',
