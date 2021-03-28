@@ -38,6 +38,7 @@ import { SearchCharityComponent } from './components/searchCharity/searchCharity
 import { DisplayCharityComponent} from './components/displayCharity/displayCharity.component';
 
 import { environment } from '../environments/environment';
+import { DiscoverComponent } from './components/discover/discover.component';
 let appRoutes : Routes = [];
   appRoutes = [
     {
@@ -73,6 +74,11 @@ let appRoutes : Routes = [];
       canActivate: [OktaAuthGuard],
     },
     {
+      path: 'discover',
+      component: DiscoverComponent,
+      canActivate: [OktaAuthGuard],
+    },
+    {
       path: '**',
       redirectTo: ""
     },
@@ -87,6 +93,7 @@ let appRoutes : Routes = [];
     ProfileComponent,
     UserCharitiesComponent,
     SearchCharityComponent,
+    DiscoverComponent,
 
   ],
   imports: [
