@@ -12,13 +12,16 @@ import { charityapi } from '../../models/charityapi';
 export class DiscoverComponent implements OnInit {
   category: any;
   charitiesapi: charityapi[] =[];
-  constructor(private charityService: CharityAPIService, private router: Router, private route: ActivatedRoute) { }
+  
+  constructor(private charityService: CharityAPIService, private router: Router, private route: ActivatedRoute) { 
+
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.category = params['category'];
     });
-    
+    console.log(this.category)
     if(this.category){
       this.charitiesapi = this.charityService.SearchCharitiesByCategory(this.category);
     }

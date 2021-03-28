@@ -1,4 +1,4 @@
-<p>discover works!</p>
+
 
 <!-- <ul class="nav">
   <li class="nav-item">
@@ -13,9 +13,9 @@
   </li>
 </ul> -->
 <div class="button-row">
-    <button mat-raised-button color="primary" (click)="$event" name= "A" id="A">Art</button>
-    <button mat-raised-button color="primary" (click)="$event" name= "B" id="B">Education</button>
-    <button mat-raised-button color="primary" (click)="$event" name= "C" id="D">Enviorment</button>
+    <button mat-raised-button color="primary" (click)="$event" name= "A" id="A" [routerLink]="[]" [queryParams]= "{ category: 'A'}">Art</button>
+    <button mat-raised-button color="primary" (click)="$event" name= "B" id="B"[routerLink]="[]" [queryParams]= "{ category: 'B'}">Education</button>
+    <button mat-raised-button color="primary" (click)="$event" name= "C" id="D"[routerLink]="[]" [queryParams]= "{ category: 'C'}">Enviorment</button>
 </div>
 
 <div class="container transparent">
