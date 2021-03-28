@@ -23,9 +23,9 @@ export class CharityAPIService {
   }
   headers = new HttpHeaders()
   .append('content-type','application/json')
-  .append('Access-Control-Allow-Origin', '*')
-  .append('Access-Control-Request-Method', 'POST, GET')
-  .append('Access-Control-Allow-Headers','X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding, X-Auth-Token, content-type');
+  // .append('Access-Control-Allow-Origin', '*')
+  // .append('Access-Control-Request-Method', 'POST, GET')
+.append('Access-Control-Allow-Headers','X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding, X-Auth-Token, content-type');
   url: string = 'https://data.orghunter.com/v1/charitysearch?user_key=153f832c549a150e74121c7c7c40667e'
 
   constructor(private http: HttpClient) { }
