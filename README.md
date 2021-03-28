@@ -14,4 +14,3 @@ Project 2 Angular Front End, Givhub by SHRKD
 - [ ] Recommendation of similar charities
 - [ ] Track user donations
 - [ ] Social feature
--
