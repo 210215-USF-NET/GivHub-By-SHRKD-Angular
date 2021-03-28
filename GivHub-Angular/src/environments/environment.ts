@@ -18,5 +18,8 @@
 export const environment = {
   production: false,
   ISSUER: "https://dev-09038350.okta.com/oauth2/default",
-  CLIENT_ID: "0oacsxl6qTlJ2Mp3j5d6"//
+  CLIENT_ID: "0oacsxl6qTlJ2Mp3j5d6",
+  locationURL: 'https://localhost:44389/api/Location',
+  charityURL: "https://localhost:44389/api/Charity",
+  subscriptionURL: "https://localhost:44389/api/subscription"
 };

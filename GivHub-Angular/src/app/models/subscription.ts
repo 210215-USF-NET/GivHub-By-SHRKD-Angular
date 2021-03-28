@@ -1,7 +1,8 @@
 import { charity } from './charity';
 export interface subscription{
     
-    chairty:charity,
+    //chairty:charity,
+    id:number,
     email:string,
     charityId:number
 

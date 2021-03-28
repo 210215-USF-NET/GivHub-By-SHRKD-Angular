@@ -1,5 +1,5 @@
 import { charityapi } from '../../models/charityapi';
-import { NgModule } from '@angular/core';
+import { ElementRef, NgModule, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { CharityAPIService } from '../../services/charity-api.service';
 import { CharityRESTService } from '../../services/charity-rest.service';
@@ -18,7 +18,7 @@ export class SearchCharityComponent implements OnInit {
   charitiesapi: charityapi[] =[];
   email: string;
   subscription: subscription;
-  userSubs: subscription[];
+  userSubs: subscription[] = [];
   constructor(private charityService: CharityAPIService, private router: Router, private route: ActivatedRoute, private oktaAuth: OktaAuthService, private charityRESTService: CharityRESTService) {
     this.searchTerm = {
       searchTerm: ''
@@ -27,34 +27,49 @@ export class SearchCharityComponent implements OnInit {
   }
 
   async ngOnInit(){
+    //get the value from the route/url
     this.route.queryParams.subscribe(params => {
       this.searchTerm = params['searchTerm'];
     });
-    
-    if(this.searchTerm){
-      this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
-    }
-    
+
     const userClaims = await this.oktaAuth.getUser();
     this.email = userClaims.email;
 
+    //Get the user subs
     let userSubsObserable = this.charityRESTService.GetUserSubscription(this.email);
     userSubsObserable.toPromise().then(data => {
       data.forEach(x => {
         this.userSubs.push(x);
       });
     })
-    // console.log(this.charitiesapi);
-  }
-  onSubmit(event: any): void{}
-  onSubscribe(eid: any, charityName: string, charity: charity): void{
-    this.subscription = {
-      chairty: charity,
-      email: this.email,
-      charityId: eid
+    console.log(this.userSubs);
+    //if searchterm isnt undefined then find charities
+    if(this.searchTerm){
+      this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
     }
-    this.charityRESTService.UserSubscribe(this.subscription);
-    alert(`You subscribed to ${charityName}.`);
+    
+
+   
   }
 
+  validateId(charity: charityapi) {
+    return this.userSubs.find(x => x.charityId == Number(charity.ein));
+  }
+
+  onSubmit(event: any): void{}
+  onSubscribe(eid: any, charityName: string, charity: charity): void{
+    (<HTMLInputElement>document.getElementById(eid)).innerHTML = "Subscribed";
+    (<HTMLInputElement>document.getElementById(eid)).classList.remove("btn-primary");
+    (<HTMLInputElement>document.getElementById(eid)).classList.add("btn-success");
+    this.subscription = {
+      id: 0,
+      email: this.email,
+      charityId: Number(eid)
+    }
+    this.charityRESTService.UserSubscribe(this.subscription).subscribe(
+      (sub) => {
+        alert(`You subscribed to ${charityName}.`);
+      }
+    );
+  }
 }

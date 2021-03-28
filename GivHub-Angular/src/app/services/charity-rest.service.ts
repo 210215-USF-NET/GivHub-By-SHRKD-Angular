@@ -18,7 +18,7 @@ export class CharityRESTService {
     headers: new HttpHeaders(
       {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*/*',
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'OPTIONS, HEAD, GET, POST, PUT, PATCH, DELETE',
         'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding, X-Auth-Token, content-type',
 
@@ -28,7 +28,7 @@ export class CharityRESTService {
 
   locationURL: string = 'https://localhost:44389/api/Location';
   charityURL: string = "https://localhost:44389/api/Charity";
-  subscriptionURL: string = "https://localhost:44389/api/Subscription"
+  subscriptionURL: string = "https://localhost:44389/api/subscription"
   constructor( private http: HttpClient){}
 
   location: Location;
@@ -53,9 +53,9 @@ export class CharityRESTService {
   }
 
   //makes a user sub, gets called from the search-charity component
-  UserSubscribe(subscription: subscription): Observable<subscription>{
+  UserSubscribe(sub: subscription): Observable<subscription>{
     // console.log(subscription.charityId);
-    // console.log(subscription.email);
-    return this.http.post<subscription>(`${this.subscriptionURL}`,subscription,this.httpOptions);
+    console.log(sub);
+    return this.http.post<subscription>(this.subscriptionURL,sub,this.httpOptions);
   }
 }
