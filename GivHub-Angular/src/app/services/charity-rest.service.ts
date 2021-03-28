@@ -7,7 +7,7 @@ import { HttpClient , HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { subscription } from '../models/subscription';
-
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +26,9 @@ export class CharityRESTService {
     )
   }
 
-  locationURL: string = 'https://localhost:44389/api/Location';
-  charityURL: string = "https://localhost:44389/api/Charity";
-  subscriptionURL: string = "https://localhost:44389/api/subscription"
+  locationURL: string = environment.locationURL;
+  charityURL: string = environment.charityURL;
+  subscriptionURL: string = environment.subscriptionURL;
   constructor( private http: HttpClient){}
 
   location: Location;
