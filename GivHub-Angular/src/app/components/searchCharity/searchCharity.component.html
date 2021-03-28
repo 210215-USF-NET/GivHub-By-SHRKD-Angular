@@ -9,16 +9,21 @@
             <th>Charity name</th>
             <!-- <th>Mission statement</th> -->
             <th>Category</th>
-            <th>Link</th>
+            <th>Website</th>
+            <th>Donate</th>
             <th>EIN</th>
         </thead>
         <tbody>
             <tr *ngFor="let charityapi of charitiesapi;">
                 <td>{{charityapi.charityName}}</td>
                 <td>{{charityapi.category}}</td>
-                <td><a href="{{charityapi.url}}">URL</a></td>
+                <td><a href="{{charityapi.url}}">Org</a></td>
+                <td><a href="{{charityapi.donationUrl}}">Donate</a>
                 <td>{{charityapi.ein}}</td>
+                <td><button *ngIf="validateId(charityapi)" class="btn btn-success" [id]="charityapi.ein">Subscribed</button >
+                <button *ngIf="!validateId(charityapi)" class="btn btn-primary"  (click)="onSubscribe(charityapi.ein,charityapi.charityName)" [id]="charityapi.ein">Subscribe</button ></td>
             </tr>
         </tbody>
+
     </table>
 </div>
