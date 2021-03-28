@@ -2,7 +2,7 @@
 Project 2 Angular Front End, Givhub by SHRKD
 
 
-##Requirements
+## Requirements
 - [x] Create/Update/Delete an account
 - [ ] Search for charities
 - [ ] Subscribe to charities
