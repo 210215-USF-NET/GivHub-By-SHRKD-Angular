@@ -1,17 +1,38 @@
 <p>discover works!</p>
-Disabled
-Copy
-<ul class="nav">
+
+<!-- <ul class="nav">
   <li class="nav-item">
-    <a class="nav-link active" href="#">Active</a>
+    <button mat-raised-button color="primary">Primary</button>
+  </li>
+  <br>
+  <li class="nav-item">
+    <button mat-raised-button color="primary">Primary</button>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" (click)="CharitiesByCategory(C)" href="#">Enviorment</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="#">Disabled</a>
-  </li>
-</ul>
+</ul> -->
+<div class="button-row">
+    <button mat-raised-button color="primary" (click)="$event" name= "A" id="A">Art</button>
+    <button mat-raised-button color="primary">Education</button>
+    <button mat-raised-button color="primary">Enviorment</button>
+</div>
+
+<div class="container transparent">
+    <table class="table">
+        <thead>
+            <th>Charity name</th>
+            <th>Category</th>
+            <th>Link</th>
+            <th>EIN</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let charityapi of charitiesapi;">
+                <td>{{charityapi.charityName}}</td>
+                <td>{{charityapi.category}}</td>
+                <td><a href="{{charityapi.url}}">URL</a></td>
+                <td>{{charityapi.ein}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
