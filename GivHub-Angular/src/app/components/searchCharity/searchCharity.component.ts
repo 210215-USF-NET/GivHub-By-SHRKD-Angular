@@ -19,6 +19,8 @@ export class SearchCharityComponent implements OnInit {
   email: string;
   subscription: subscription;
   userSubs: subscription[] = [];
+  category:any;
+
   constructor(private charityService: CharityAPIService, private router: Router, private route: ActivatedRoute, private oktaAuth: OktaAuthService, private charityRESTService: CharityRESTService) {
     this.searchTerm = {
       searchTerm: ''
@@ -51,6 +53,19 @@ export class SearchCharityComponent implements OnInit {
 
    
   }
+
+  async SearchCategory(){
+    this.route.queryParams.subscribe(params => {
+      this.category = params['category'];
+    });
+    this.category="A"
+    console.log(this.category)
+    if(this.category){
+      this.charitiesapi = this.charityService.SearchCharitiesByCategory(this.category);
+    }
+  }
+
+  
 
   validateId(charity: charityapi) {
     return this.userSubs.find(x => x.charityId == Number(charity.ein));

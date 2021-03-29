@@ -2,7 +2,13 @@
     <input class="form-control mr-sm-2" type="text" name = "searchTerm" id = "searchTerm" placeholder="Search" aria-label="Search">
     <button mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Search</button>
 </form>
-
+<div class="button-row">
+    <form (ngSubmit)="SearchCategory()" class="form-inline md-form mr-auto mb-4">
+        <button (click)="SearchCategory($event)" value= "A" name= "category" id="category"[routerLink]="[]" [queryParams]= "{ category: 'A'}" mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Art</button>
+        <button (click)="SearchCategory($event)" value= "B" name= "category" id="category"[routerLink]="[]" [queryParams]= "{ category: 'B'}" mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Education</button>
+        <button (click)="SearchCategory($event)" value= "C" name= "category" id="category"[routerLink]="[]" [queryParams]= "{ category: 'B'}" mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Enviorment</button>
+    </form>
+</div>
 <div class="container transparent">
     <table class="table">
         <thead>

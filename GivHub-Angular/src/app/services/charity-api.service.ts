@@ -36,7 +36,7 @@ export class CharityAPIService {
   
   SearchCharities(searchTerm: string): charityapi[]{
 
-    const proxyUrl = "https://cors-anywhere.herokuapp.com/"
+    const proxyUrl = "https://cors.bridged.cc/"
     let result = this.http.get<charityArray>(`${proxyUrl}${this.url}&searchTerm=${searchTerm}`, this.requestOptions);
     var newCharityArray:charityapi[] = [];
     result.toPromise().then(data => {
