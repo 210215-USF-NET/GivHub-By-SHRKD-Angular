@@ -24,7 +24,7 @@ export class UserCharitiesComponent implements OnInit {
     
     this.charityService.GetUserSubscription(this.email).subscribe(
     (result)=>{
-     this.subscriptions= result;}
+      this.subscriptions= result;}
     );
 
     console.log(this.subscriptions);
