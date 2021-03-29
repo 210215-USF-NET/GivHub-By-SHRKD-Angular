@@ -4,6 +4,10 @@ import { charityArray } from '../models/charityArray';
 import { HttpHeaders, HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
+import { charityClass } from '../models/charityClass';
+import { location } from '../models/location';
+import { CharityRESTService } from './charity-rest.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,18 +36,45 @@ export class CharityAPIService {
 
   url: string = 'https://data.orghunter.com/v1/charitysearch?user_key=153f832c549a150e74121c7c7c40667e'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private charityRESTService: CharityRESTService) { }
   
   SearchCharities(searchTerm: string): charityapi[]{
 
-    const proxyUrl = "https://cors-anywhere.herokuapp.com/"
+    const proxyUrl = "https://cors.bridged.cc/"
     let result = this.http.get<charityArray>(`${proxyUrl}${this.url}&searchTerm=${searchTerm}`, this.requestOptions);
     var newCharityArray:charityapi[] = [];
     result.toPromise().then(data => {
       data.data.forEach(x => {
         newCharityArray.push(x);
+          var tempCharity = new charityClass();
+          tempCharity.category = x.category;
+          tempCharity.eid = x.ein;
+          tempCharity.location = new location();
+          tempCharity.location.charityid = 0;
+          tempCharity.location.city = x.city;
+          tempCharity.location.state = x.state;
+          tempCharity.location.zipcode = x.zipCode;
+          tempCharity.logourl = "none";
+          if(x.missionStatement){
+            tempCharity.missionstatement = x.missionStatement;
+          }else{
+            tempCharity.missionstatement = "none";
+          }
+          
+          tempCharity.name = x.charityName;
+          if(x.url){
+            tempCharity.website = x.url;
+          }else{
+            tempCharity.website = "none";
+          }
+          this.charityRESTService.AddCharity(tempCharity).subscribe(
+            (sub) => {
+              console.log(sub);
+            }
+          );
       });
     })
+    
     return newCharityArray;
   }
 

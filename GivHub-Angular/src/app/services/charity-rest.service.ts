@@ -53,8 +53,8 @@ export class CharityRESTService {
   }
 
   //Add a charity if it doesnt exist
-  AddCharity(newChairty: charity): Observable<charity>{
-    return this.http.post<charity>(this.charityURL,newChairty,this.httpOptions);
+  AddCharity(newCharity: charity): Observable<charity>{
+    return this.http.post<charity>(this.charityURL,newCharity,this.httpOptions);
   }
 
   //makes a user sub, gets called from the search-charity component

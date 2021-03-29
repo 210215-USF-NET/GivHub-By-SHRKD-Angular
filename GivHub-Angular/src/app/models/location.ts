@@ -5,3 +5,10 @@ export interface location
     zipcode: string,
     charityid: number
 }
+export class location
+{
+    public state: string;
+    public city: string;
+    public zipcode: string;
+    public charityid: number;
+}
