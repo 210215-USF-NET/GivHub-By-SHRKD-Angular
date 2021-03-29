@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
 import { subscription } from '../../models/subscription';
 import { charity } from '../../models/charity';
-
+import { charityClass } from '../../models/charityClass';
 @Component({
   selector: 'app-searchCharity',
   templateUrl: './searchCharity.component.html',
@@ -16,6 +16,7 @@ import { charity } from '../../models/charity';
 export class SearchCharityComponent implements OnInit {
   searchTerm: any;
   charitiesapi: charityapi[] =[];
+  tempCharity: charityClass;
   email: string;
   subscription: subscription;
   userSubs: subscription[] = [];
@@ -46,6 +47,26 @@ export class SearchCharityComponent implements OnInit {
     //if searchterm isnt undefined then find charities
     if(this.searchTerm){
       this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
+      this.charitiesapi.forEach(x => {
+        this.tempCharity = new charityClass();
+        this.tempCharity.category = x.category;
+        this.tempCharity.eid = x.ein;
+        this.tempCharity.location.charityid = 0;
+        this.tempCharity.location.city = x.city;
+        this.tempCharity.location.state = x.state;
+        this.tempCharity.location.zipcode = x.zipCode;
+        this.tempCharity.logourl = "";
+        this.tempCharity.missionstatement = x.missionStatement;
+        this.tempCharity.name = x.charityName;
+        this.tempCharity.website = x.website;
+
+        this.charityRESTService.AddCharity(this.tempCharity).subscribe(
+          (sub) => {
+            //do nothing
+          }
+        );
+      });
+      
     }
     
 
