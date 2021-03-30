@@ -6,7 +6,10 @@
   <div class="row">
     <!-- Articles -->
     <div class="col text-center">
-      <h1>Recent News</h1>
+      <img id="logo" class="mini image" src="//logo.clearbit.com/nytimes.com/" alt="NYT Logo">
+      <h1>Recent News: </h1>
+      <hr>
+
       <div *ngFor="let nytapi of nytapiDocs;" class="container">
         <h2>{{nytapi.headline.main}}</h2>
         <p>{{nytapi.lead_paragraph}}</p>
@@ -16,11 +19,13 @@
     </div>
     <!-- Trending charities -->
     <div class="col my-sidebar">
+      
       <h3>Trending Charities</h3>
-      <div *ngFor="let number of [0,1,2,3,4]" class="container outer">
-        <h4>Charity Name</h4>
+      <!-- <div *ngFor="let number of [0,1,2,3,4]" class="container outer"></div> -->
+      <div *ngFor="let charity of charities" class="container outer">
+        <h4>{{charity.name}}</h4>
         <div class="container inner">
-          <img id="logo" class="ui mini image" src="../../assets/shrkd_color.svg">
+          <img id="logo" class="mini image" src="{{charity.website}}" alt="Their Logo" onerror="this.onerror=null;this.src='../../assets/defaulthand.svg';">
         </div>
       </div>
     </div>

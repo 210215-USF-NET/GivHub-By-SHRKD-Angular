@@ -46,7 +46,7 @@ export class SearchCharityComponent implements OnInit {
     if(this.searchTerm){
       this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
     }
-    debugger
+    
     while(this.charitiesapi.length == 0){
       await new Promise(resolve => setTimeout(resolve, 1000));
     }

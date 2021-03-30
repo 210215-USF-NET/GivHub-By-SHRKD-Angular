@@ -43,36 +43,42 @@ export class CharityAPIService {
     const proxyUrl = "https://cors.bridged.cc/"
     let result = this.http.get<charityArray>(`${proxyUrl}${this.url}&searchTerm=${searchTerm}`, this.requestOptions);
     var newCharityArray:charityapi[] = [];
+    var ourCharityModelArray: charity[] = [];
     result.toPromise().then(data => {
       data.data.forEach(x => {
         newCharityArray.push(x);
-          var tempCharity = new charityClass();
-          tempCharity.category = x.category;
-          tempCharity.eid = x.ein;
-          tempCharity.location = new location();
-          tempCharity.location.charityid = 0;
-          tempCharity.location.city = x.city;
-          tempCharity.location.state = x.state;
-          tempCharity.location.zipcode = x.zipCode;
-          tempCharity.logourl = "none";
-          if(x.missionStatement){
-            tempCharity.missionstatement = x.missionStatement;
-          }else{
-            tempCharity.missionstatement = "none";
-          }
-          
-          tempCharity.name = x.charityName;
-          if(x.url){
-            tempCharity.website = x.url;
-          }else{
-            tempCharity.website = "none";
-          }
-          this.charityRESTService.AddCharity(tempCharity).subscribe(
-            (sub) => {
-              console.log(sub);
-            }
-          );
+        var tempCharity = new charityClass();
+        tempCharity.id = 0;
+        tempCharity.name = x.charityName;
+        tempCharity.location = new location();
+        tempCharity.location.state = x.state;
+        tempCharity.location.city = x.city;
+        tempCharity.location.zipcode = x.zipCode;
+        tempCharity.location.charityid = 0;
+        if(x.missionStatement){
+          tempCharity.missionstatement = x.missionStatement;
+        }else{
+          tempCharity.missionstatement = "none";
+        }
+        if(x.url){
+          tempCharity.website = x.url;
+        }else{
+          tempCharity.website = "none";
+        }
+        tempCharity.category = x.category;
+        tempCharity.logourl = "none";
+        tempCharity.eid = x.ein;
+        
+
+        ourCharityModelArray.push(tempCharity);
       });
+      console.log(ourCharityModelArray);
+      console.log(JSON.stringify(ourCharityModelArray));
+      this.charityRESTService.AddCharity(ourCharityModelArray).subscribe(
+        (sub) => {
+          console.log(sub);
+        }
+      );
     })
     
     return newCharityArray;
