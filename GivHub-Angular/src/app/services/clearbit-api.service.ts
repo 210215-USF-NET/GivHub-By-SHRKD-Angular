@@ -11,6 +11,7 @@ export class ClearbitApiService {
   myClientKey: string = 'sk_930123d0f9d709ac6a6ab77db73119ea';
   headers = new HttpHeaders()
   .set('Content-Type','application/json')
+  .set('Access-Control-Allow-Origin', null)
   .set('Authorization','Bearer sk_930123d0f9d709ac6a6ab77db73119ea');
   requestOptions = {  headers: this.headers};  
   constructor(private http: HttpClient) { }

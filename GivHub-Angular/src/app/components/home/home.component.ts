@@ -60,11 +60,11 @@ export class HomeComponent implements OnInit {
     this.charityService.GetMostPopularCharities().subscribe(
       (result) => {
         this.charities = result;
-        console.log(this.charities);
+        //console.log(this.charities);
         this.charities.forEach(element => {
           let foundLogo = this.clearbitApiService.FindLogoFromName(element.name);
           foundLogo.toPromise().then(data => {
-            console.log(data.logo);
+            //console.log(data.logo);
             element.website = data.logo;
           });
           
