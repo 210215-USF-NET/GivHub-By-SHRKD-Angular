@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
 import { subscription } from '../../models/subscription';
 import { charity } from '../../models/charity';
-
 @Component({
   selector: 'app-searchCharity',
   templateUrl: './searchCharity.component.html',
@@ -46,6 +45,10 @@ export class SearchCharityComponent implements OnInit {
     //if searchterm isnt undefined then find charities
     if(this.searchTerm){
       this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
+    }
+    
+    while(this.charitiesapi.length == 0){
+      await new Promise(resolve => setTimeout(resolve, 1000));
     }
     
 

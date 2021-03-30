@@ -15,6 +15,7 @@ import { OktaAuthService } from '@okta/okta-angular';
 import { charity } from '../../models/charity';
 import { CharityRESTService } from '../../services/charity-rest.service';
 import { NytApiService } from '../../services/nyt-api.service';
+import { ClearbitApiService } from '../../services/clearbit-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { nytapiDocs } from '../../models/nytapiDocs';
 
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit {
   charities: charity[] = [];
   nytapiDocs: nytapiDocs[] = [];
 
-  constructor(public oktaAuth: OktaAuthService, private charityService : CharityRESTService, private router : Router, private route: ActivatedRoute, private nytApiService: NytApiService) {
+  constructor(public oktaAuth: OktaAuthService, private charityService : CharityRESTService, private router : Router, private route: ActivatedRoute, private nytApiService: NytApiService, private clearbitApiService: ClearbitApiService) {
     this.oktaAuth.$authenticationState.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
   }
 
@@ -52,10 +53,23 @@ export class HomeComponent implements OnInit {
 
     this.nytapiDocs = this.nytApiService.GetTopArticles();
     console.log(this.nytapiDocs);
+    
+    
+
     //this is for trending charities
     this.charityService.GetMostPopularCharities().subscribe(
       (result) => {
         this.charities = result;
+        //console.log(this.charities);
+        this.charities.forEach(element => {
+          let foundLogo = this.clearbitApiService.FindLogoFromName(element.name);
+          foundLogo.toPromise().then(data => {
+            //console.log(data.logo);
+            element.website = data.logo;
+          });
+          
+        });
+
       }
     );
   }
