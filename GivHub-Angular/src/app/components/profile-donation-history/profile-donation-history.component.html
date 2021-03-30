@@ -1,11 +1,8 @@
 <h1 class="ui header">
-    {{ userName }}'s Donation History
+    Donation History
   </h1>
   <p>
-    Add donation history here
-  </p>
-  <p>
-    User Claims
+    Add donation here
   </p>
   <table class="ui table">
     <thead>
@@ -14,10 +11,10 @@
         <th>Contribution</th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let claim of claims">
-        <td>{{claim.claim}}</td>
-        <td id="claim-{{claim.claim}}">{{claim.value}}</td>
+    <!-- <tbody>
+      <tr *ngFor="let claim of userDonsObservable">
+        <td>{{}}</td>
+        <td>{{claim.amount}}</td>
       </tr>
-    </tbody>
+    </tbody> -->
   </table>

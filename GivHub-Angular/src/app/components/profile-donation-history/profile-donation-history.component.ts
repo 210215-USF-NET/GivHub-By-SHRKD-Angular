@@ -19,7 +19,6 @@ interface Claim {
   styleUrls: ['./profile-donation-history.component.css']
 })
 export class ProfileDonationHistoryComponent implements OnInit {
-
   email: string;
   donation: donation;
   userDons: donation[] = [];
@@ -30,8 +29,15 @@ export class ProfileDonationHistoryComponent implements OnInit {
 
   async ngOnInit() {
     const userClaims = await this.oktaAuth.getUser();
-    this.userName = userClaims.name;
-    
+    this.email = userClaims.email;
+
+    let userDonsObservable = this.charityRESTService.GetUserDonations(this.email);
+    userDonsObservable.toPromise().then(data => {
+      data.forEach(x => {
+        this.userDons.push(x);
+      })
+    })
+    console.log(this.userDons);
   }
 
 }
