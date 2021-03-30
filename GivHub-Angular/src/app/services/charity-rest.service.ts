@@ -43,13 +43,18 @@ export class CharityRESTService {
   }
 
   GetMostPopularCharities(): Observable<charity[]>{
-    return this.http.get<charity[]>(this.charityURL,this.httpOptions);
+    return this.http.get<charity[]>(`${this.charityURL}/popularcharity`,this.httpOptions);
   }
   GetUserSubscription(userEmail: string): Observable<subscription []>{
     return this.http.get<subscription[]>(`${this.subscriptionURL}/email?email=${userEmail}`,this.httpOptions);
   }
   GetCharityById(id:number): Observable<charity>{
     return this.http.get<charity>(`${this.charityURL}/${id}`,this.httpOptions);
+  }
+
+  //Add a charity if it doesnt exist
+  AddCharity(newCharity: charity[]): Observable<charity[]>{
+    return this.http.post<charity[]>(this.charityURL,JSON.stringify(newCharity),this.httpOptions);
   }
 
   //makes a user sub, gets called from the search-charity component
