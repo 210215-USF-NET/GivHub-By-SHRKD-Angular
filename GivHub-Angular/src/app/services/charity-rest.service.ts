@@ -75,6 +75,6 @@ export class CharityRESTService {
   }
 
   GetUserDonations(userEmail: string): Observable<donation[]>{
-    return this.http.get<donation[]>(`${this.donationURL}/email?email=${userEmail}`, this.httpOptions);
+    return this.http.get<donation[]>(`${this.donationURL}/result/${userEmail}`, this.httpOptions);
   }
 }
