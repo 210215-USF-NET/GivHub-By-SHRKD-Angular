@@ -1,21 +1,17 @@
 <div class="container transparent">
 
-    <div class="form-group">
-        <label for="email">User Email: </label>
-        <input type="text" [(ngModel)]="email" name="email" id="email" 
-            class="form-control" placeholder="Enter your email">
-    </div>
-    <div class="form-group">
-        <label for="eid">Charity EIN: </label>
-        <input type="text" class="form-control" id='eid' [(ngModel)]="charityId"
-            name="eid"  placeholder="Enter charity's EIN">
-    </div>
-    <div class="form-group">
-        <label for="amount">Donation Amount: </label>
-        <input type="number" [(ngModel)]="amount" name="amount" id="amount"  class="form-control"
-            placeholder="Enter donation amount">
-    </div>
-    
-    <button (click)="onSubmit(email, charityId, amount)" class="btn btn-secondary" routerLink="/profile/donation-history">Add Donation</button>
-
+    <form (ngSubmit)="onSubmit()" #donationForm="ngForm">
+        <div class="form-group">
+            <label for="eid">Charity EIN: </label>
+            <input type="text" [(ngModel)]="donation2Add.charityId" class="form-control" id='eid' 
+                name="eid"  placeholder="Enter charity's EIN">
+        </div>
+        <div class="form-group">
+            <label for="amount">Donation Amount: </label>
+            <input type="number" [(ngModel)]="donation2Add.amount" name="amount" id="amount"  class="form-control"
+                placeholder="Enter donation amount">
+        </div>
+        
+        <button type="submit" class="btn btn-secondary">Add Donation</button>
+    </form>
 </div>

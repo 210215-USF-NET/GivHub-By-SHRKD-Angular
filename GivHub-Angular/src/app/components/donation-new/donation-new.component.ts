@@ -20,7 +20,8 @@ export class ProfileNewDonationComponent implements OnInit {
   email: string;
   amount: number;
   eid: any;
-  constructor(private charityService: CharityRESTService, private router: Router) {
+  constructor(public oktaAuth: OktaAuthService, private charityService: CharityRESTService, 
+    private router: Router, private route: ActivatedRoute,) {
     this.donation2Add =
     {
       email: '',
@@ -30,19 +31,35 @@ export class ProfileNewDonationComponent implements OnInit {
 }
 
   async ngOnInit() {
-    
+    const userClaims = await this.oktaAuth.getUser();
+    this.donation2Add.email = userClaims.email;
+    console.log(this.email);
   }
 
-  onSubmit(email: string, eid: any, amount: number): void {
-    this.donation2Add = {
-      email: this.email,
-      charityId: Number(eid),
-      amount: this.amount
-    }
+  onSubmit(): void {
     this.charityService.UserDonate(this.donation2Add).subscribe(
-      (sub) => {
-        alert(`Donation added to your record.`);
+      (don) => {
+        alert(`Donation was added!`);
+        this.router.navigate(['/profile/donation-history'])
+        .then(() => {
+          window.location.reload();
+        });
       }
     );
   }
+  // onSubmit(eid: any, amount: number): void {
+  //   this.donation2Add = {
+  //     email: this.email,
+  //     charityId: Number(eid),
+  //     amount: this.amount
+  //   }
+  //   console.log(this.donation2Add.email);
+  //   console.log(this.donation2Add.charityId);
+  //   console.log(this.donation2Add.amount);
+  //   this.charityService.UserDonate(this.donation2Add).subscribe(
+  //     (sub) => {
+  //       alert(`Donation added to your record.`);
+  //     }
+  //   );
+  // }
 }

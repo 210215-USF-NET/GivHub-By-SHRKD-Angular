@@ -115,6 +115,7 @@ let appRoutes : Routes = [];
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     OktaAuthModule,
     RouterModule.forRoot(appRoutes),
