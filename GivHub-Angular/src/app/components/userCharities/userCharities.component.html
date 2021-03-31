@@ -13,7 +13,7 @@
               <td>{{charity.name}}</td>
               <td>{{charity.category}}</td>
               <td><a href="{{charity.website}}">Org</a></td>
-              <td><a [routerLink]="['/donate']" routerLinkActive="router-link-active">Donate</a></td>
+              <td><a [routerLink]="['/profile/donation-history/donation-new&{{charity.eid}}']" routerLinkActive="router-link-active">Donate</a></td>
               <td>{{charity.eid}}</td>
               <td><button class="btn btn-danger" (click)="unSubscribe(charity.eid,charity.name)">Unsubscribe</button ></td>
           </tr>

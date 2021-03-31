@@ -64,7 +64,11 @@ export class CharityRESTService {
     console.log(sub);
     return this.http.post<subscription>(this.subscriptionURL,sub,this.httpOptions);
   }
-
+  //lets the user remove a sub
+  UserUnSubscribe(userEmail: string, charityein: number): Observable<subscription>{
+    return this.http.delete<subscription>(`${this.subscriptionURL}/${userEmail}, ${charityein}`,this.httpOptions);
+  }
+  
   UserDonate(don: donation): Observable<donation>{
     console.log(don);
     return this.http.post<donation>(this.donationURL, don, this.httpOptions);
