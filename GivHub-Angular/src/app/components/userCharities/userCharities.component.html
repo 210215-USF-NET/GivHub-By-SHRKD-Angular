@@ -1,12 +1,11 @@
 <div class="container transparent">
-  <table class="table">
-    <table class="table">
+    <table class="table" summary="Displays which charities the user is subscribed to">
       <thead>
-          <th>Charity name</th>
-          <th>Category</th>
-          <th>Website</th>
-          <th>Donate</th>
-          <th>EIN</th>
+          <th scope="col">Charity name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Website</th>
+          <th scope="col">Donate</th>
+          <th scope="col">EIN</th>
       </thead>
       <tbody>
           <tr [id]="charity.eid" *ngFor="let charity of charities;">
@@ -15,7 +14,7 @@
               <td><a href="{{charity.website}}">Org</a></td>
               <!--   -->
               <td>
-                <button [routerLink]="['/profile/donation-history/donation-new',{'charityein': charity.eid}]" mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Donate</button>
+                <button [routerLink]="['/profile/donation-history/donation-new',{'charityein': charity.eid}]" class="btn btn-success" type="submit">Donate</button>
               </td>
             <!-- <a [routerLink]="['/profile/donation-history/donation-new&charityein',charity.eid]" routerLinkActive="router-link-active">Donate</a> -->
               <td>{{charity.eid}}</td>
@@ -23,3 +22,4 @@
           </tr>
       </tbody>
   </table>
+</div>
