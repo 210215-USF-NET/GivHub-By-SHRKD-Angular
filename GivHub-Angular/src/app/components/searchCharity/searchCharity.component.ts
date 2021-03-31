@@ -1,3 +1,4 @@
+import { category } from './../../models/category';
 import { charityapi } from '../../models/charityapi';
 import { ElementRef, NgModule, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
 import { subscription } from '../../models/subscription';
 import { charity } from '../../models/charity';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-searchCharity',
   templateUrl: './searchCharity.component.html',
@@ -18,11 +20,15 @@ export class SearchCharityComponent implements OnInit {
   email: string;
   subscription: subscription;
   userSubs: subscription[] = [];
+  category: any;
   constructor(private charityService: CharityAPIService, private router: Router, 
     private route: ActivatedRoute, private oktaAuth: OktaAuthService, 
     private charityRESTService: CharityRESTService) {
     this.searchTerm = {
       searchTerm: ''
+    } 
+    this.category = {
+      category: ''
     }
 
   }
@@ -36,6 +42,7 @@ export class SearchCharityComponent implements OnInit {
 
     const userClaims = await this.oktaAuth.getUser();
     this.email = userClaims.email;
+    this.category =this.route.snapshot.params['category'];
 
     //Get the user subs
     let userSubsObserable = this.charityRESTService.GetUserSubscription(this.email);
@@ -47,12 +54,27 @@ export class SearchCharityComponent implements OnInit {
     //console.log(this.userSubs);
     //if searchterm isnt undefined then find charities
     this.searchCharities();
-    
+    console.log(this.category);
+    if(this.category && this.category != "Choose Category"){
+      this.charitiesapi = this.charityService.SearchCharitiesByCategory(this.category);
+    }
     while(this.charitiesapi.length == 0){
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
   }
-
+  
+  form = new FormGroup({
+    categories: new FormControl('')
+  });
+  
+  get f(){
+    return this.form.controls;
+  }
+  changeCategory(e) {
+    this.category = e.target.value;
+    this.router.navigate(['/searchCharity',{'category': this.category}]);
+    console.log(this.category +" = catty");
+  }
   searchCharities(){
     this.searchTerm = this.route.snapshot.params['searchTerm'];
     if(this.searchTerm && this.searchTerm !== ""){
