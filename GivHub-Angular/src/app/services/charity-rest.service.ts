@@ -29,6 +29,7 @@ export class CharityRESTService {
   locationURL: string = environment.locationURL;
   charityURL: string = environment.charityURL;
   subscriptionURL: string = environment.subscriptionURL;
+  donationURL: string = environment.donationURL;
   constructor( private http: HttpClient){}
 
   location: Location;
@@ -46,7 +47,7 @@ export class CharityRESTService {
     return this.http.get<charity[]>(`${this.charityURL}/popularcharity`,this.httpOptions);
   }
   GetUserSubscription(userEmail: string): Observable<subscription []>{
-    return this.http.get<subscription[]>(`${this.subscriptionURL}/email?email=${userEmail}`,this.httpOptions);
+    return this.http.get<subscription[]>(`${this.subscriptionURL}?email=${userEmail}`,this.httpOptions);
   }
   GetCharityById(id:number): Observable<charity>{
     return this.http.get<charity>(`${this.charityURL}/${id}`,this.httpOptions);
@@ -62,5 +63,14 @@ export class CharityRESTService {
     // console.log(subscription.charityId);
     console.log(sub);
     return this.http.post<subscription>(this.subscriptionURL,sub,this.httpOptions);
+  }
+
+  UserDonate(don: donation): Observable<donation>{
+    console.log(don);
+    return this.http.post<donation>(this.donationURL, don, this.httpOptions);
+  }
+
+  GetUserDonations(userEmail: string): Observable<donation[]>{
+    return this.http.get<donation[]>(`${this.donationURL}/email?email=${userEmail}`, this.httpOptions);
   }
 }

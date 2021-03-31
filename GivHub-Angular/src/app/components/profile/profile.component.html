@@ -1,25 +1,6 @@
-<h1 class="ui header">
-  <i aria-hidden="true" class="drivers license outline icon"></i> {{ userName }}'s Profile
-</h1>
-<p>
-  <!-- TODO: Add donation history -->
-  Add donation history here
-</p>
-<p>
-  User Claims
-</p>
-<table class="ui table">
-  <thead>
-    <tr>
-      <th>Claim</th>
-      <th>Value</th>
-      <th><a href="https://dev-09038350.okta.com/enduser/settings">Edit Profile</a></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let claim of claims">
-      <td>{{claim.claim}}</td>
-      <td id="claim-{{claim.claim}}">{{claim.value}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="menu">
+  <button routerLink="/profile/account">Account Info</button>
+  <button routerLink="/profile/donation-history">Donation History</button>
+</div>
+<br><br>
+<router-outlet></router-outlet> 

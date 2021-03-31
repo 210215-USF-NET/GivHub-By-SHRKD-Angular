@@ -1,0 +1,17 @@
+<div class="container transparent">
+
+    <form (ngSubmit)="onSubmit()" #donationForm="ngForm">
+        <div class="form-group">
+            <label for="eid">Charity EIN: </label>
+            <input type="text" [(ngModel)]="donation2Add.charityId" class="form-control" id='eid' 
+                name="eid"  placeholder="Enter charity's EIN">
+        </div>
+        <div class="form-group">
+            <label for="amount">Donation Amount: </label>
+            <input type="number" [(ngModel)]="donation2Add.amount" name="amount" id="amount"  class="form-control"
+                placeholder="Enter donation amount">
+        </div>
+        
+        <button type="submit" class="btn btn-secondary">Add Donation</button>
+    </form>
+</div>
