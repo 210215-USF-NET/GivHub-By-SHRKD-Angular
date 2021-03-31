@@ -50,17 +50,15 @@ export class UserCharitiesComponent implements OnInit {
     this.router.navigate(['displayCharity'], { queryParams: { charity: charityName } });
   }
   unSubscribe(eid: any, charityName: string, charity: charity): void{
-    (<HTMLInputElement>document.getElementById(eid)).innerHTML = "Subscribed";
-    (<HTMLInputElement>document.getElementById(eid)).classList.remove("btn-primary");
-    (<HTMLInputElement>document.getElementById(eid)).classList.add("btn-success");
+    (<HTMLInputElement>document.getElementById(eid)).remove();
     this.subscription = {
       id: 0,
       email: this.email,
       charityId: Number(eid)
     }
-    this.charityRESTService.UserSubscribe(this.subscription).subscribe(
+    this.charityRESTService.UserUnSubscribe(this.email,Number(eid)).subscribe(
       (sub) => {
-        alert(`You subscribed to ${charityName}.`);
+        alert(`You unsubscribed from ${charityName}.`);
       }
     );
   }
