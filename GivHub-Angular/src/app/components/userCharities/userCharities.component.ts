@@ -49,6 +49,9 @@ export class UserCharitiesComponent implements OnInit {
   DisplayCharity(charityName: string){
     this.router.navigate(['displayCharity'], { queryParams: { charity: charityName } });
   }
+  onSubmit(event: any): void{
+    console.log("donate!!")
+  }
   unSubscribe(eid: any, charityName: string, charity: charity): void{
     (<HTMLInputElement>document.getElementById(eid)).remove();
     this.subscription = {

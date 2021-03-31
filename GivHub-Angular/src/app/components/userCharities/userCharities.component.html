@@ -13,7 +13,11 @@
               <td>{{charity.name}}</td>
               <td>{{charity.category}}</td>
               <td><a href="{{charity.website}}">Org</a></td>
-              <td><a [routerLink]="['/profile/donation-history/donation-new&{{charity.eid}}']" routerLinkActive="router-link-active">Donate</a></td>
+              <!--   -->
+              <td>
+                <button [routerLink]="['/profile/donation-history/donation-new',{'charityein': charity.eid}]" mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Donate</button>
+              </td>
+            <!-- <a [routerLink]="['/profile/donation-history/donation-new&charityein',charity.eid]" routerLinkActive="router-link-active">Donate</a> -->
               <td>{{charity.eid}}</td>
               <td><button class="btn btn-danger" (click)="unSubscribe(charity.eid,charity.name)">Unsubscribe</button ></td>
           </tr>
