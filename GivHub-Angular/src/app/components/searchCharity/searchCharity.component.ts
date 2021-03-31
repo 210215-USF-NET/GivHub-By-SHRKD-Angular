@@ -43,7 +43,7 @@ export class SearchCharityComponent implements OnInit {
         this.userSubs.push(x);
       });
     })
-    console.log(this.userSubs);
+    //console.log(this.userSubs);
     //if searchterm isnt undefined then find charities
     if(this.searchTerm){
       this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);

@@ -25,27 +25,42 @@ export class ProfileNewDonationComponent implements OnInit {
     this.donation2Add =
     {
       email: '',
-      amount: 0,
+      amount: 1,
       charityId: 0
   }
 }
 
   async ngOnInit() {
+    //get the value from the route/url
+    this.eid = this.route.snapshot.params['charityein'];
+    this.donation2Add.charityId = this.eid;
+
     const userClaims = await this.oktaAuth.getUser();
     this.donation2Add.email = userClaims.email;
-    console.log(this.email);
+//    console.log(this.email);
   }
 
   onSubmit(): void {
-    this.charityService.UserDonate(this.donation2Add).subscribe(
-      (don) => {
-        alert(`Donation was added!`);
-        this.router.navigate(['/profile/donation-history'])
-        .then(() => {
-          window.location.reload();
-        });
+    if(this.donation2Add.amount >= 1){
+      document.getElementById("amountError").style.display = "none";
+      if(this.donation2Add.charityId > 0){
+        document.getElementById("einError").style.display = "none";
+        this.charityService.UserDonate(this.donation2Add).subscribe(
+          (don) => {
+            alert(`Donation was added!`);
+            this.router.navigate(['/profile/donation-history'])
+            .then(() => {
+              window.location.reload();
+            });
+          }
+        );
+      }else{
+        document.getElementById("einError").style.display = "block";
       }
-    );
+    }else{
+      document.getElementById("amountError").style.display = "block";
+    }
+    
   }
   // onSubmit(eid: any, amount: number): void {
   //   this.donation2Add = {

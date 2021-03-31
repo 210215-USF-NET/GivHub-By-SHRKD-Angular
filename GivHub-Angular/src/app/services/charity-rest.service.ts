@@ -36,8 +36,8 @@ export class CharityRESTService {
   GetCharity(charityName: string): Observable<charity>{
     return this.http.get<charity>(`${this.charityURL}/${charityName}`,this.httpOptions);
   }
-  GetUsersCharities(userEmail: string) : Observable<charity[]>{
-    return this.http.get<charity[]>(`${this.subscriptionURL}/${userEmail}`,this.httpOptions);
+  GetAllCharities() : Observable<charity[]>{
+    return this.http.get<charity[]>(`${this.charityURL}`,this.httpOptions);
   }
   GetCharityLocations() : Observable<location[]>{
     return this.http.get<location[]>(this.locationURL,this.httpOptions);
@@ -47,10 +47,10 @@ export class CharityRESTService {
     return this.http.get<charity[]>(`${this.charityURL}/popularcharity`,this.httpOptions);
   }
   GetUserSubscription(userEmail: string): Observable<subscription []>{
-    return this.http.get<subscription[]>(`${this.subscriptionURL}?email=${userEmail}`,this.httpOptions);
+    return this.http.get<subscription[]>(`${this.subscriptionURL}/${userEmail}`,this.httpOptions);
   }
   GetCharityById(id:number): Observable<charity>{
-    return this.http.get<charity>(`${this.charityURL}/${id}`,this.httpOptions);
+    return this.http.get<charity>(`${this.charityURL}/eid/${id}`,this.httpOptions);
   }
 
   //Add a charity if it doesnt exist
@@ -64,7 +64,11 @@ export class CharityRESTService {
     console.log(sub);
     return this.http.post<subscription>(this.subscriptionURL,sub,this.httpOptions);
   }
-
+  //lets the user remove a sub
+  UserUnSubscribe(userEmail: string, charityein: number): Observable<subscription>{
+    return this.http.delete<subscription>(`${this.subscriptionURL}/${userEmail}, ${charityein}`,this.httpOptions);
+  }
+  
   UserDonate(don: donation): Observable<donation>{
     console.log(don);
     return this.http.post<donation>(this.donationURL, don, this.httpOptions);
