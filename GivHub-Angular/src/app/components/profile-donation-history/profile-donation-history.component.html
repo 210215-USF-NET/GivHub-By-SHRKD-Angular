@@ -1,20 +1,23 @@
 <h1 class="ui header">
     Donation History
   </h1>
-  <p>
-    Add donation here
-  </p>
+  <div>
+  <button routerLink="/profile/donation-history/donation-new">Add Donation</button>
+  <router-outlet></router-outlet> 
+  </div>
   <table class="ui table">
     <thead>
       <tr>
         <th>Charity</th>
         <th>Contribution</th>
+        <th>Date</th>
       </tr>
     </thead>
-    <!-- <tbody>
-      <tr *ngFor="let claim of userDonsObservable">
-        <td>{{}}</td>
-        <td>{{claim.amount}}</td>
+    <tbody>
+      <tr *ngFor="let donation of userDons;">
+          <td>{{donation.charityId}}</td>
+          <td>{{donation.amount}}</td>
+          
       </tr>
-    </tbody> -->
+  </tbody>
   </table>

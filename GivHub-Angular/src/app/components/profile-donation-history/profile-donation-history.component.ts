@@ -30,14 +30,13 @@ export class ProfileDonationHistoryComponent implements OnInit {
   async ngOnInit() {
     const userClaims = await this.oktaAuth.getUser();
     this.email = userClaims.email;
+    console.log(this.email);
 
-    let userDonsObservable = this.charityRESTService.GetUserDonations(this.email);
-    userDonsObservable.toPromise().then(data => {
-      data.forEach(x => {
-        this.userDons.push(x);
-      })
-    })
-    console.log(this.userDons);
+    this.charityRESTService.GetUserDonations(this.email).subscribe(
+      (result) => {
+        this.userDons = result;
+      }
+    )
   }
 
 }

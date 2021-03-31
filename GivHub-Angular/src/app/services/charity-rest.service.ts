@@ -70,7 +70,7 @@ export class CharityRESTService {
     return this.http.post<donation>(this.donationURL, don, this.httpOptions);
   }
 
-  GetUserDonations(userEmail: string): Observable<donation []>{
+  GetUserDonations(userEmail: string): Observable<donation[]>{
     return this.http.get<donation[]>(`${this.donationURL}/email?email=${userEmail}`, this.httpOptions);
   }
 }
