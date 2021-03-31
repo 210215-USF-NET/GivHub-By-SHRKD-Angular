@@ -41,6 +41,7 @@ import { ProfileDonationHistoryComponent } from './components/profile-donation-h
 import { ProfileNewDonationComponent } from './components/donation-new/donation-new.component';
 
 import { environment } from '../environments/environment';
+import { SearchHistoryComponent } from './search-history/search-history.component';
 let appRoutes : Routes = [];
   appRoutes = [
     {
@@ -94,6 +95,11 @@ let appRoutes : Routes = [];
       canActivate: [OktaAuthGuard],
     },
     {
+          path: 'searchHistory',
+          component: SearchHistoryComponent,
+          canActivate: [OktaAuthGuard],
+        },
+    {
       path: '**',
       redirectTo: ""
     },
@@ -111,6 +117,7 @@ let appRoutes : Routes = [];
     ProfileAccountComponent,
     ProfileDonationHistoryComponent,
     ProfileNewDonationComponent,
+    SearchHistoryComponent,
 
   ],
   imports: [

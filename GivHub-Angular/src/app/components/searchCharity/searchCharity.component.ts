@@ -61,7 +61,8 @@ export class SearchCharityComponent implements OnInit {
     return this.userSubs.find(x => x.charityId == Number(charity.ein));
   }
 
-  onSubmit(event: any): void{}
+  onSubmit(event: any): void{
+  }
   onSubscribe(eid: any, charityName: string, charity: charity): void{
     (<HTMLInputElement>document.getElementById(eid)).innerHTML = "Subscribed";
     (<HTMLInputElement>document.getElementById(eid)).classList.remove("btn-primary");
