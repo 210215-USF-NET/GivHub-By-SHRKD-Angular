@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
 import { subscription } from '../../models/subscription';
 import { charity } from '../../models/charity';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-searchCharity',
@@ -68,16 +68,24 @@ export class SearchCharityComponent implements OnInit {
   }
 
   form = new FormGroup({
-    website: new FormControl('')
+    website: new FormControl('', Validators.required)
   });
   
   get f(){
     return this.form.controls;
   }
-
-  submit(value: string){
-    console.log(value);
+  
+  submit(){
+    console.log(this.form.value);
   }
+  changeWebsite(e) {
+    console.log(e.target.value);
+    if(this.category){
+      this.charitiesapi = this.charityService.SearchCharitiesByCategory(this.category);
+    }
+  }
+
+  
   
 
   validateId(charity: charityapi) {

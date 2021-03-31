@@ -10,18 +10,17 @@
     </form>
 </div>
 <div class="container">
-        
-    <form [formGroup]="form" (ngSubmit)="submit(value)">
-           
+    <form [formGroup]="form" (ngSubmit)="submit()">
+          
         <div class="form-group">
             <label for="website">Website:</label>
-            <select formControlName="website" class="form-control">
-                <option disabled>Select a category</option>
+            <select formControlName="website" class="form-control" (change)="changeWebsite($event)">
+                <option disabled>Select Website</option>
                 <option>Choose Website</option>
-                <option value = "A" >Art</option>
+                <option>A</option>
             </select>
         </div>
-       
+      
         <button class="btn btn-primary" type="submit" >Submit</button>
     </form>
 </div>
