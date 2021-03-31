@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
 import { subscription } from '../../models/subscription';
 import { charity } from '../../models/charity';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-searchCharity',
@@ -44,7 +45,7 @@ export class SearchCharityComponent implements OnInit {
         this.userSubs.push(x);
       });
     })
-    console.log(this.userSubs);
+    // console.log(this.userSubs);
     //if searchterm isnt undefined then find charities
     if(this.searchTerm){
       this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
@@ -54,17 +55,29 @@ export class SearchCharityComponent implements OnInit {
    
   }
 
-  async SearchCategory(){
+  
+   SearchCategory(event:any){
     this.route.queryParams.subscribe(params => {
       this.category = params['category'];
     });
-    this.category="A"
-    console.log(this.category)
+    this.category="A";
+    console.log(this.category+"charity");
     if(this.category){
       this.charitiesapi = this.charityService.SearchCharitiesByCategory(this.category);
     }
   }
 
+  form = new FormGroup({
+    website: new FormControl('')
+  });
+  
+  get f(){
+    return this.form.controls;
+  }
+
+  submit(value: string){
+    console.log(value);
+  }
   
 
   validateId(charity: charityapi) {

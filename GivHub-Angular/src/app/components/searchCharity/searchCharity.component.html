@@ -6,9 +6,26 @@
     <form (ngSubmit)="SearchCategory()" class="form-inline md-form mr-auto mb-4">
         <button (click)="SearchCategory($event)" value= "A" name= "category" id="category"[routerLink]="[]" [queryParams]= "{ category: 'A'}" mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Art</button>
         <button (click)="SearchCategory($event)" value= "B" name= "category" id="category"[routerLink]="[]" [queryParams]= "{ category: 'B'}" mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Education</button>
-        <button (click)="SearchCategory($event)" value= "C" name= "category" id="category"[routerLink]="[]" [queryParams]= "{ category: 'B'}" mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Enviorment</button>
+        <button (click)="SearchCategory('A')" >Enviorment</button>
     </form>
 </div>
+<div class="container">
+        
+    <form [formGroup]="form" (ngSubmit)="submit(value)">
+           
+        <div class="form-group">
+            <label for="website">Website:</label>
+            <select formControlName="website" class="form-control">
+                <option disabled>Select a category</option>
+                <option>Choose Website</option>
+                <option value = "A" >Art</option>
+            </select>
+        </div>
+       
+        <button class="btn btn-primary" type="submit" >Submit</button>
+    </form>
+</div>
+
 <div class="container transparent">
     <table class="table">
         <thead>
