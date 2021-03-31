@@ -2,21 +2,21 @@
     <input class="form-control mr-sm-2" type="text" name = "searchTerm" id = "searchTerm" placeholder="Search" aria-label="Search">
     <button mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Search</button>
 </form>
-<div class="button-row">
+<!-- <div class="button-row">
     <form (ngSubmit)="SearchCategory()" class="form-inline md-form mr-auto mb-4">
         <button (click)="SearchCategory($event)" value= "A" name= "category" id="category"[routerLink]="[]" [queryParams]= "{ category: 'A'}" mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Art</button>
         <button (click)="SearchCategory($event)" value= "B" name= "category" id="category"[routerLink]="[]" [queryParams]= "{ category: 'B'}" mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Education</button>
         <button (click)="SearchCategory('A')" >Enviorment</button>
     </form>
-</div>
+</div> -->
 <div class="container">
-    <form [formGroup]="form" (ngSubmit)="submit()">
+    <form [FormGroup]="form" (ngSubmit)="submit($event)">
           
         <div class="form-group">
-            <label for="website">Website:</label>
-            <select formControlName="website" class="form-control" (change)="changeWebsite($event)">
-                <option disabled>Select Website</option>
-                <option>Choose Website</option>
+            <label for="categories">category:</label>
+            <select formControlName="categories" class="form-control" (change)="changeCategory($event)">
+                <option disabled>Select A Category</option>
+                <option>Choose Category</option>
                 <option>A</option>
             </select>
         </div>

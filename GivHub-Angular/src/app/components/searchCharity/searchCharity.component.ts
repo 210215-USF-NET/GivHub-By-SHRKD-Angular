@@ -1,4 +1,4 @@
-import { charityapi } from '../../models/charityapi';
+import { charityapi } from './../../models/charityapi';
 import { ElementRef, NgModule, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { CharityAPIService } from '../../services/charity-api.service';
@@ -50,25 +50,23 @@ export class SearchCharityComponent implements OnInit {
     if(this.searchTerm){
       this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
     }
-    
 
-   
   }
 
   
-   SearchCategory(event:any){
-    this.route.queryParams.subscribe(params => {
-      this.category = params['category'];
-    });
-    this.category="A";
-    console.log(this.category+"charity");
-    if(this.category){
-      this.charitiesapi = this.charityService.SearchCharitiesByCategory(this.category);
-    }
-  }
+  //  SearchCategory(event:any){
+  //   this.route.queryParams.subscribe(params => {
+  //     this.category = params['category'];
+  //   });
+  //   this.category="A";
+  //   console.log(this.category+"charity");
+  //   if(this.category){
+  //     this.charitiesapi = this.charityService.SearchCharitiesByCategory(this.category);
+  //   }
+  // }
 
   form = new FormGroup({
-    website: new FormControl('', Validators.required)
+    categories: new FormControl('')
   });
   
   get f(){
@@ -76,14 +74,17 @@ export class SearchCharityComponent implements OnInit {
   }
   
   submit(){
-    console.log(this.form.value);
-  }
-  changeWebsite(e) {
-    console.log(e.target.value);
     if(this.category){
-      this.charitiesapi = this.charityService.SearchCharitiesByCategory(this.category);
+      this.charitiesapi = this.charityService.SearchCharitiesByCategory(this.form.value);
     }
   }
+  changeCategory(e) {
+    console.log(e.target.value); 
+    if(this.category){
+      this.charitiesapi = this.charityService.SearchCharitiesByCategory(e.target.value);
+      console.log(this.charitiesapi);
+    }
+    }
 
   
   
