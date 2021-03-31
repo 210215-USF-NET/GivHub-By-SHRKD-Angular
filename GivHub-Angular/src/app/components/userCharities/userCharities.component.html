@@ -1,19 +1,21 @@
-<p>
-  userCharities works!
-</p>
 <div class="container transparent">
   <table class="table">
+    <table class="table">
       <thead>
-          <th>name</th>
-          <th>missionstatement</th>
-          <th>category</th>
+          <th>Charity name</th>
+          <th>Category</th>
+          <th>Website</th>
+          <th>Donate</th>
+          <th>EIN</th>
       </thead>
       <tbody>
-          <tr *ngFor="let carity of charities;" >
+          <tr [id]="charity.eid" *ngFor="let charity of charities;">
               <td>{{charity.name}}</td>
-              <td>{{charity.missionstatement}}</td>
               <td>{{charity.category}}</td>
+              <td><a href="{{charity.website}}">Org</a></td>
+              <td><a [routerLink]="['/donate']" routerLinkActive="router-link-active">Donate</a></td>
+              <td>{{charity.eid}}</td>
+              <td><button class="btn btn-danger" (click)="unSubscribe(charity.eid,charity.name)">Unsubscribe</button ></td>
           </tr>
       </tbody>
   </table>
-</div>
