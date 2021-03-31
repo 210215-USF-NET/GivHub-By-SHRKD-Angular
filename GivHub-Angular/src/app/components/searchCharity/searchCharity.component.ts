@@ -29,9 +29,10 @@ export class SearchCharityComponent implements OnInit {
 
   async ngOnInit(){
     //get the value from the route/url
-    this.route.queryParams.subscribe(params => {
-      this.searchTerm = params['searchTerm'];
-    });
+    // this.route.queryParams.subscribe(params => {
+    //   this.searchTerm = params['searchTerm'];
+    // });
+    
 
     const userClaims = await this.oktaAuth.getUser();
     this.email = userClaims.email;
@@ -45,16 +46,18 @@ export class SearchCharityComponent implements OnInit {
     })
     //console.log(this.userSubs);
     //if searchterm isnt undefined then find charities
-    if(this.searchTerm){
-      this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
-    }
+    this.searchCharities();
     
     while(this.charitiesapi.length == 0){
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
-    
+  }
 
-   
+  searchCharities(){
+    this.searchTerm = this.route.snapshot.params['searchTerm'];
+    if(this.searchTerm && this.searchTerm !== ""){
+      this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
+    }
   }
 
   validateId(charity: charityapi) {
@@ -62,6 +65,12 @@ export class SearchCharityComponent implements OnInit {
   }
 
   onSubmit(event: any): void{
+    event.preventDefault();
+    this.searchTerm = event.target['searchTerm'].value;
+    this.router.navigate(['/searchCharity',{'searchTerm': this.searchTerm}])
+    .then(() => {
+      window.location.reload();
+    });
   }
   onSubscribe(eid: any, charityName: string, charity: charity): void{
     (<HTMLInputElement>document.getElementById(eid)).innerHTML = "Subscribed";
