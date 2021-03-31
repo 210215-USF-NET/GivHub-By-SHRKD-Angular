@@ -72,7 +72,9 @@ export class SearchCharityComponent implements OnInit {
   }
   changeCategory(e) {
     this.category = e.target.value;
-    this.router.navigate(['/searchCharity',{'category': this.category}]);
+    this.router.navigate(['/searchCharity',{'category': this.category}]).then(() => {
+      window.location.reload();
+    });
     console.log(this.category +" = catty");
   }
   searchCharities(){
