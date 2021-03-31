@@ -23,7 +23,10 @@ export class SearchCharityComponent implements OnInit {
   userSubs: subscription[] = [];
   category:any;
 
-  constructor(private charityService: CharityAPIService, private router: Router, private route: ActivatedRoute, private oktaAuth: OktaAuthService, private charityRESTService: CharityRESTService) {
+
+  constructor(private charityService: CharityAPIService, private router: Router, 
+    private route: ActivatedRoute, private oktaAuth: OktaAuthService, 
+    private charityRESTService: CharityRESTService) {
     this.searchTerm = {
       searchTerm: ''
     }
@@ -40,6 +43,7 @@ export class SearchCharityComponent implements OnInit {
     // });
     this.category =this.route.snapshot.params['category'];
 
+    
 
     const userClaims = await this.oktaAuth.getUser();
     this.email = userClaims.email;
@@ -51,11 +55,10 @@ export class SearchCharityComponent implements OnInit {
         this.userSubs.push(x);
       });
     })
-    // console.log(this.userSubs);
+   
+    //console.log(this.userSubs);
     //if searchterm isnt undefined then find charities
-    if(this.searchTerm){
-      this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
-    }
+    this.searchCharities();
     
     if(this.category){
           this.charitiesapi = this.charityService.SearchCharitiesByCategory(this.category);
@@ -80,6 +83,16 @@ export class SearchCharityComponent implements OnInit {
   
   get f(){
     return this.form.controls;
+    while(this.charitiesapi.length == 0){
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+  }
+
+  searchCharities(){
+    this.searchTerm = this.route.snapshot.params['searchTerm'];
+    if(this.searchTerm && this.searchTerm !== ""){
+      this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
+    }
   }
   
 
@@ -98,7 +111,14 @@ export class SearchCharityComponent implements OnInit {
     return this.userSubs.find(x => x.charityId == Number(charity.ein));
   }
 
-  onSubmit(event: any): void{}
+  onSubmit(event: any): void{
+    event.preventDefault();
+    this.searchTerm = event.target['searchTerm'].value;
+    this.router.navigate(['/searchCharity',{'searchTerm': this.searchTerm}])
+    .then(() => {
+      window.location.reload();
+    });
+  }
   onSubscribe(eid: any, charityName: string, charity: charity): void{
     (<HTMLInputElement>document.getElementById(eid)).innerHTML = "Subscribed";
     (<HTMLInputElement>document.getElementById(eid)).classList.remove("btn-primary");

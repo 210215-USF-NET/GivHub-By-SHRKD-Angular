@@ -34,8 +34,11 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UserCharitiesComponent } from './components/userCharities/userCharities.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileAccountComponent } from './components/profile-account/profile-account.component';
 import { SearchCharityComponent } from './components/searchCharity/searchCharity.component';
 import { DisplayCharityComponent} from './components/displayCharity/displayCharity.component';
+import { ProfileDonationHistoryComponent } from './components/profile-donation-history/profile-donation-history.component';
+import { ProfileNewDonationComponent } from './components/donation-new/donation-new.component';
 
 import { environment } from '../environments/environment';
 import { DiscoverComponent } from './components/discover/discover.component';
@@ -57,6 +60,24 @@ let appRoutes : Routes = [];
       path: 'profile',
       component: ProfileComponent,
       canActivate: [ OktaAuthGuard ],
+      children: [
+        { 
+          path: "account", 
+          component: ProfileAccountComponent,
+          canActivate: [ OktaAuthGuard ], 
+        },
+        { 
+          path: "donation-history", 
+          component: ProfileDonationHistoryComponent,
+          canActivate: [ OktaAuthGuard ], 
+          children: [
+          { 
+            path: "donation-new", 
+            component: ProfileNewDonationComponent, 
+            canActivate: [ OktaAuthGuard ], 
+          },
+        ]},
+      ],
     },
     {
       path: 'userCharities',
@@ -93,11 +114,14 @@ let appRoutes : Routes = [];
     ProfileComponent,
     UserCharitiesComponent,
     SearchCharityComponent,
-    DiscoverComponent,
+    ProfileAccountComponent,
+    ProfileDonationHistoryComponent,
+    ProfileNewDonationComponent,
 
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     OktaAuthModule,
     RouterModule.forRoot(appRoutes),
