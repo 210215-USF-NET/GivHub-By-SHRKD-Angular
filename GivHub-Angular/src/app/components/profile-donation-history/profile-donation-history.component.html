@@ -8,15 +8,17 @@
   <table class="ui table">
     <thead>
       <tr>
-        <th>Charity</th>
+        <!-- <th>Charity</th> -->
+        <th>EIN</th>
         <th>Contribution</th>
         <th>Date</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let donation of userDons;">
+          <!-- <td>GetCharityById(donation.charityId).charityName</td> -->
           <td>{{donation.charityId}}</td>
-          <td>{{donation.amount}}</td>
+          <td>${{donation.amount}}</td>
           
       </tr>
   </tbody>

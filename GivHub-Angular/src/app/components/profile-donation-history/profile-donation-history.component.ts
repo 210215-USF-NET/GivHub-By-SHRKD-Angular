@@ -23,7 +23,9 @@ export class ProfileDonationHistoryComponent implements OnInit {
   donation: donation;
   userDons: donation[] = [];
   charity: charity;
-  constructor(public oktaAuth: OktaAuthService,private router: Router, private route: ActivatedRoute, private charityRESTService: CharityRESTService) {
+  constructor(public oktaAuth: OktaAuthService,private router: Router, 
+    private route: ActivatedRoute, private charityRESTService: CharityRESTService,
+    private charityAPIService: CharityAPIService) {
 
   }
 
@@ -37,6 +39,10 @@ export class ProfileDonationHistoryComponent implements OnInit {
         this.userDons = result;
       }
     )
+  }
+  // TODO: FIXME
+  GetCharityById(ein: any) {
+    return this.charityAPIService.GetCharityById(Number(ein));
   }
 
 }
