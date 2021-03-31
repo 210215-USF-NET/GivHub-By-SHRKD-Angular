@@ -1,3 +1,4 @@
+import { category } from './../../models/category';
 import { charityapi } from './../../models/charityapi';
 import { ElementRef, NgModule, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
@@ -26,14 +27,19 @@ export class SearchCharityComponent implements OnInit {
     this.searchTerm = {
       searchTerm: ''
     }
+    this.category = {
+      category: ''
+    }
 
   }
 
   async ngOnInit(){
     //get the value from the route/url
-    this.route.queryParams.subscribe(params => {
-      this.searchTerm = params['searchTerm'];
-    });
+    // this.route.queryParams.subscribe(params => {
+    //   this.searchTerm = params['searchTerm'];
+    // });
+    this.category =this.route.snapshot.params['category'];
+
 
     const userClaims = await this.oktaAuth.getUser();
     this.email = userClaims.email;
@@ -50,7 +56,10 @@ export class SearchCharityComponent implements OnInit {
     if(this.searchTerm){
       this.charitiesapi = this.charityService.SearchCharities(this.searchTerm);
     }
-
+    
+    if(this.category){
+          this.charitiesapi = this.charityService.SearchCharitiesByCategory(this.category);
+        }
   }
 
   
@@ -73,18 +82,14 @@ export class SearchCharityComponent implements OnInit {
     return this.form.controls;
   }
   
-  submit(){
-    if(this.category){
-      this.charitiesapi = this.charityService.SearchCharitiesByCategory(this.form.value);
-    }
-  }
+
   changeCategory(e) {
-    console.log(e.target.value); 
-    if(this.category){
-      this.charitiesapi = this.charityService.SearchCharitiesByCategory(e.target.value);
-      console.log(this.charitiesapi);
-    }
-    }
+    console.log(e.target.value);
+    this.category = e.target.value;
+    this.router.navigate(['/searchCharity',{'category': this.category}]);
+
+    console.log(this.category +" = catty");
+  }
 
   
   
