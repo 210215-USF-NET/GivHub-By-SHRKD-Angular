@@ -18,7 +18,9 @@ export class SearchCharityComponent implements OnInit {
   email: string;
   subscription: subscription;
   userSubs: subscription[] = [];
-  constructor(private charityService: CharityAPIService, private router: Router, private route: ActivatedRoute, private oktaAuth: OktaAuthService, private charityRESTService: CharityRESTService) {
+  constructor(private charityService: CharityAPIService, private router: Router, 
+    private route: ActivatedRoute, private oktaAuth: OktaAuthService, 
+    private charityRESTService: CharityRESTService) {
     this.searchTerm = {
       searchTerm: ''
     }

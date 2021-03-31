@@ -1,0 +1,25 @@
+<h1 class="ui header">
+    Donation History
+  </h1>
+  <div>
+  <button routerLink="/profile/donation-history/donation-new">Add Donation</button>
+  <router-outlet></router-outlet> 
+  </div>
+  <table class="ui table">
+    <thead>
+      <tr>
+        <!-- <th>Charity</th> -->
+        <th>EIN</th>
+        <th>Contribution</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let donation of userDons;">
+          <!-- <td>GetCharityById(donation.charityId).charityName</td> -->
+          <td>{{donation.charityId}}</td>
+          <td>${{donation.amount}}</td>
+          
+      </tr>
+  </tbody>
+  </table>

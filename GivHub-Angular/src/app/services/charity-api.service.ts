@@ -106,4 +106,16 @@ export class CharityAPIService {
     })
     return newCharityArray;
   }
+
+  // TODO: FIXME
+  GetCharityById(ein: number): charityapi[] {
+    let result = this.http.get<charityArray>(`${this.url}&ein=${ein}`, {'headers':this.headers});
+    var newCharityArray:charityapi[]=[];
+    result.toPromise().then(data => {
+      data.data.forEach(x => {
+        newCharityArray.push(x);
+      });
+    })
+    return newCharityArray;
+  }
 }
