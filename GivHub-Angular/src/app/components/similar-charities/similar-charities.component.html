@@ -1,0 +1,25 @@
+<p>similar-charities works!</p>
+<div class="container transparent">
+    <table class="table" summary="Displays the results from searching charities">
+        <thead>
+            <th scope="col">Charity name</th>
+            <!-- <th>Mission statement</th> -->
+            <th scope="col">Category</th>
+            <th scope="col">Website</th>
+            <th scope="col">Donate</th>
+            <th scope="col">EIN</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let charityapi of charitiesapi;">
+                <td>{{charityapi.charityName}}</td>
+                <td>{{charityapi.category}}</td>
+                <td><a href="{{charityapi.url}}" target="_blank">Org</a></td>
+                <td><a href="{{charityapi.donationUrl}}" target="_blank">Donate</a>
+                <td>{{charityapi.ein}}</td>
+                <td><button *ngIf="validateId(charityapi)" class="btn btn-success" [id]="charityapi.ein">Subscribed</button >
+                <button *ngIf="!validateId(charityapi)" class="btn btn-primary"  (click)="onSubscribe(charityapi.ein,charityapi.charityName)" [id]="charityapi.ein">Subscribe</button ></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
