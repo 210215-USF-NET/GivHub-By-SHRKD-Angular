@@ -1,0 +1,9 @@
+.outer{
+    text-align: center;
+}
+.inner{
+    display: inline-flex;
+}
+#searchHistory{
+    margin-left: 15px;
+}
