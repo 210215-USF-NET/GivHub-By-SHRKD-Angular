@@ -30,12 +30,15 @@ export class UserCharitiesComponent implements OnInit {
   anotherUser: boolean = true;
   email:string;
   async ngOnInit() {
+    //check if theres an email in the route because we want to display another users charities
     this.email = this.route.snapshot.params['userEmail'];
     if(!this.email){
       this.anotherUser = false;
       const userClaims =  await this.oktaAuth.getUser();
       this.email = userClaims.email;
     }
+
+    //this allows the page to be refreshed when the user is still on the same page here
     this.router.events.subscribe((val) => window.location.reload());
     
     //Get the user subs

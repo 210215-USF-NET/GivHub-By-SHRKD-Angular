@@ -37,6 +37,7 @@ export class ProfileDonationHistoryComponent implements OnInit {
     this.charityRESTService.GetUserDonations(this.email).subscribe(
       (result) => {
         this.userDons = result;
+        this.userDons.sort(function(a, b){return b.amount-a.amount}); 
       }
     )
   }

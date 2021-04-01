@@ -23,5 +23,6 @@ export const environment = {
   charityURL: "https://localhost:44389/api/Charity",
   donationURL: "https://localhost:44389/api/Donation",
   subscriptionURL: "https://localhost:44389/api/subscription",
+  followURL: "https://localhost:44389/api/Follow",
   searchHistoryURL: "https://localhost:44389/api/SearchHistory"
 };

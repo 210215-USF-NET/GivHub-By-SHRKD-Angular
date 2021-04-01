@@ -6,12 +6,18 @@
 #logo{
     width: 5em;
 }
-
+.outer{
+  text-align: center;
+}
+.inner{
+  display: inline-flex;
+}
 /* The side navigation menu */
 .sidenav {
     position: absolute; 
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
+    text-align: left;
     /* position: fixed; Stay in place */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
@@ -29,6 +35,7 @@
     text-decoration: none;
     /* font-size: 25px; */
     color: #ffffff; 
+    text-align: left;
     display: block;
     transition: 0.3s;
   }
@@ -59,4 +66,15 @@
         .sidenav {padding-top: 15px;}
         .sidenav a {font-size: 18px;}
   }
-  
+a {
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+  color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+ul{
+  overflow: hidden;
+}
