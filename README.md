@@ -14,7 +14,7 @@ Project 2 Angular Front End, Givhub by SHRKD
 - [x] Track user donations
 - [x] Social feature
 ## Stretch Goals
-- [x]View news about charities 
+- [x] View news about charities 
 - [ ] View useful graphs of charity data
 - [ ] View Financial records and IRS standing
 
