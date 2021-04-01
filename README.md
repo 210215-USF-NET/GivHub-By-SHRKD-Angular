@@ -1,5 +1,5 @@
 # GivHub-By-SHRKD-Angular
-Project 2 Angular Front End, Givhub by SHRKD
+Project 2 Angular Front End, Givhub by SHRKD. [Check out the back end.](https://github.com/210215-USF-NET/GivHub-By-SHRKD)
 
 
 ## Required Features
