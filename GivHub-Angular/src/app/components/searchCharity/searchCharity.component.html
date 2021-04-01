@@ -1,9 +1,17 @@
 
+
 <div class="container">
     <form (ngSubmit)="onSubmit($event)" id="searchForm" class="form-inline md-form mr-auto mb-4">
         <input class="form-control mr-sm-2" type="text" name = "searchTerm" id = "searchTerm" placeholder="Search" aria-label="Search">
         <button mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Search</button>
     </form>
+  
+  <div class="menu">
+    <button routerLink="/searchHistory">Search History</button>
+</div>
+<br><br>
+<router-outlet></router-outlet>
+  
     <form [formGroup] = "form" (ngSubmit)="submit()">
         <div class="form-group">
             <label for="categories">category:</label>
@@ -22,6 +30,7 @@
         </div>
     </form>
 </div> 
+
 <div class="container transparent">
     <table class="table" summary="Displays the results from searching charities">
         <thead>

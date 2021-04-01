@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
 import { subscription } from '../../models/subscription';
 import { charity } from '../../models/charity';
+import { searchHistory } from '../../models/searchHistory';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-searchCharity',
   templateUrl: './searchCharity.component.html',
@@ -17,6 +19,7 @@ export class SearchCharityComponent implements OnInit {
   charitiesapi: charityapi[] =[];
   email: string;
   subscription: subscription;
+  searchhistory: searchHistory;
   userSubs: subscription[] = [];
   category: any;
   constructor(private charityService: CharityAPIService, private router: Router, 
@@ -89,6 +92,12 @@ export class SearchCharityComponent implements OnInit {
   onSubmit(event: any): void{
     event.preventDefault();
     this.searchTerm = event.target['searchTerm'].value;
+    this.searchhistory =
+    {
+      email: this.email,
+      phrase: this.searchTerm
+    }
+    this.charityRESTService.AddSearchHistory(this.searchhistory).subscribe();
     this.router.navigate(['/searchCharity',{'searchTerm': this.searchTerm}])
     .then(() => {
       window.location.reload();
