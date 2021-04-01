@@ -84,15 +84,13 @@ let appRoutes : Routes = [];
     {
       path: 'userCharities',
       component: UserCharitiesComponent,
-      canActivate: [ OktaAuthGuard ],children: [
-        { 
-          path: "similar-charities", 
-          component: SimilarCharitiesComponent, 
-          canActivate: [ OktaAuthGuard ], 
-        },
-      ]
-        
-      
+      canActivate: [ OktaAuthGuard ],
+    
+    },
+    {
+      path: 'similar-charities',
+      component: SimilarCharitiesComponent,
+      canActivate: [ OktaAuthGuard ],
     },
     {
       path: 'searchCharity',

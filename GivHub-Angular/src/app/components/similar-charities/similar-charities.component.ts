@@ -15,6 +15,7 @@ import { CharityRESTService } from '../../services/charity-rest.service';
 export class SimilarCharitiesComponent implements OnInit {
   category: any;
   charitiesapi: charityapi[] =[];
+  userSubs: subscription[] = [];
   email: string;
   subscription: subscription;
   indexedArray: {[key: string]:string} = {
@@ -60,7 +61,13 @@ export class SimilarCharitiesComponent implements OnInit {
     const userClaims = await this.oktaAuth.getUser();
     this.email = userClaims.email;
     this.category =this.route.snapshot.params['category'];
+    this.category = this.indexedArray[this.category]
+    console.log(this.category);
     this.charitiesapi = this.charityService.SearchCharitiesByCategory(this.category);
+  console.log(this.charitiesapi);
+  }
+  validateId(charity: charityapi) {
+    return this.userSubs.find(x => x.charityId == Number(charity.ein));
   }
   onSubscribe(eid: any, charityName: string, charity: charity): void{
     (<HTMLInputElement>document.getElementById(eid)).innerHTML = "Subscribed";

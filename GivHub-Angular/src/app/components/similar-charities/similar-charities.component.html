@@ -1,13 +1,13 @@
 <p>similar-charities works!</p>
 <div class="container transparent">
-    <table class="table">
+    <table class="table" summary="Displays the results from searching charities">
         <thead>
-            <th>Charity name</th>
+            <th scope="col">Charity name</th>
             <!-- <th>Mission statement</th> -->
-            <th>Category</th>
-            <th>Website</th>
-            <th>Donate</th>
-            <th>EIN</th>
+            <th scope="col">Category</th>
+            <th scope="col">Website</th>
+            <th scope="col">Donate</th>
+            <th scope="col">EIN</th>
         </thead>
         <tbody>
             <tr *ngFor="let charityapi of charitiesapi;">
