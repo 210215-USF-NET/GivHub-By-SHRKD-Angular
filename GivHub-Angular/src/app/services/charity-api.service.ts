@@ -1,3 +1,4 @@
+import { CategoriesService } from './categories.service';
 import { charityapi } from '../models/charityapi';
 import { charity } from '../models/charity';
 import { charityArray } from '../models/charityArray';
@@ -7,6 +8,7 @@ import { Observable } from "rxjs";
 import { charityClass } from '../models/charityClass';
 import { location } from '../models/location';
 import { CharityRESTService } from './charity-rest.service';
+
 
 @Injectable({
   providedIn: 'root'
