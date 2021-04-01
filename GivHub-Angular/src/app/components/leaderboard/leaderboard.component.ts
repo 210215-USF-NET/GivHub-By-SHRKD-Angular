@@ -20,14 +20,22 @@ export class LeaderboardComponent implements OnInit {
   private charityRESTService: CharityRESTService) { }
 
   async ngOnInit() {
+    //get the most donations
     let findMostDonations = this.charityRESTService.GetMostDonations().toPromise().then(data => {
       data.forEach(x => {
         this.mostDonations.push(x);
       });
       this.mostDonations.sort(function(a, b){return b.amount-a.amount}); 
     }) 
+    //get user email
     const userClaims = await this.oktaAuth.getUser();
     this.email = userClaims.email;
+    //get whos the user following
+    let getUserFollowers = this.charityRESTService.GetFollowers(this.email).toPromise().then(data => {
+      data.forEach(x => {
+        this.userFollows.push(x);
+      });
+    }) 
   }
 
   //check if the user is already following

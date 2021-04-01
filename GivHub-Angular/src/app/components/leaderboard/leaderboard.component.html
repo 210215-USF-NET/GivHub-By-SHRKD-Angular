@@ -15,7 +15,8 @@
               <td></td> 
               <td><a [routerLink]="['/userCharities',{'userEmail': donation.email}]">{{donation.email}}</a></td>
               <td>${{donation.amount}}</td>
-              <td><button *ngIf="email!==donation.email" class="btn btn-warning" (click)="onFollow(donation.email)" >Follow</button>
+              <td><button *ngIf="email!==donation.email && !validateId(donation.email)" class="btn btn-warning" (click)="onFollow(donation.email)" >Follow</button>
+              <button *ngIf="email!==donation.email && validateId(donation.email)" class="btn btn-success">Followed</button>
               <button *ngIf="email===donation.email" class="btn btn-secondary" >You</button></td>
           </tr>
         </tbody>

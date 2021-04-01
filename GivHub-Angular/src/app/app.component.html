@@ -1,23 +1,32 @@
-<div id="navbar"class="ui inverted top fixed menu ">
-  <div class="ui container">
-    <div id="navbar" class="ui inverted menu">
-        <a routerLink="/" class="header item">
-          <img id="logo" class="ui mini image" src="/assets/shrkd_color.svg" alt="GivHub Logo">
-          &nbsp;
-          Giv Hub
-        </a>
-        <a id="profile-button" class="item" routerLink="/about-us">About Us</a>
-        <a id="help-button" class="item" (click)="openHelp()">Help</a>
-        <a id="search-button" class="item" *ngIf="isAuthenticated" routerLink="/searchCharity">Search</a>
-        <a id="search-button" class="item" *ngIf="isAuthenticated" routerLink="/leaderboard">Leaderboard</a>   
+<nav id="navbar" class="navbar navbar-inverse">
+  <div class="container-fluid inverted outer">
+
+    <div class="navbar-header">
+      <a id="logoLink" routerLink="/" class="navbar-header">
+        <img id="logo" class="mini image" src="/assets/shrkd_color.svg" alt="GivHub Logo">
+        &nbsp;
+        Giv Hub
+      </a>
     </div>
-      <div class=" inverted right menu">
-        <a id="messages-button" class="item" *ngIf="isAuthenticated" routerLink="/userCharities"><i aria-hidden="true" class=""></i>Your Charities</a>
-        <a id="profile-button" class="item" *ngIf="isAuthenticated" routerLink="/profile/account">Profile</a>
-        <a id="logout-button" class="item" *ngIf="isAuthenticated" (click)="logout()">Logout</a>
-        <a class="item" *ngIf="!isAuthenticated" (click)="login()">Login</a>
-      </div>
+    <ul class="nav navbar-nav navbar-expand">
+      <li><a id="profile-button" class="" routerLink="/about-us">About Us</a></li>
+      <li><a id="help-button" class="" (click)="openHelp()">Help</a></li>
+      <li><a id="search-button" class="" *ngIf="isAuthenticated" routerLink="/searchCharity">Search</a></li>
+      <li><a id="search-button" class="" *ngIf="isAuthenticated" routerLink="/leaderboard">Leaderboard</a></li> 
+    </ul>
+    <ul class="nav navbar-nav navbar-expand navbar-right">
+      <li><a id="messages-button" class="item" *ngIf="isAuthenticated" routerLink="/userCharities"><i aria-hidden="true" class=""></i>Your Charities</a></li>
+      <li><a id="profile-button" class="item" *ngIf="isAuthenticated" routerLink="/profile/account">Profile</a></li>
+      <li><a id="logout-button" class="item" *ngIf="isAuthenticated" (click)="logout()">Logout</a></li>
+      <li><a class="item" *ngIf="!isAuthenticated" (click)="login()">Login</a></li>
+    </ul>    
   </div>
+
+
+        
+        
+        
+      
 
     <!-- <a>
       <form (ngSubmit)= "onSubmit()" class="form-inline md-form mr-auto mb-4">  
@@ -27,7 +36,7 @@
       </form>
     </a> -->
   
-</div>
+</nav>
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" (click)="closeHelp()">&times;</a>
@@ -48,6 +57,6 @@
 </div>
 
 <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-<div class="ui container" id="body-main"style="margin-top: 7em;">
+<div class="ui container" id="body-main"style="margin-top: 1em;">
   <router-outlet></router-outlet>
 </div>
