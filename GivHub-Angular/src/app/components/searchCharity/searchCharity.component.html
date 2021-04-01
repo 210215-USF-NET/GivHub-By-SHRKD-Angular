@@ -2,7 +2,25 @@
     <input class="form-control mr-sm-2" type="text" name = "searchTerm" id = "searchTerm" placeholder="Search" aria-label="Search">
     <button mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Search</button>
 </form>
-
+<div class="container">
+    <form [formGroup] = "form" (ngSubmit)="submit()">
+        <div class="form-group">
+            <label for="categories">category:</label>
+            <select formControlName="categories" class="form-control" (change)="changeCategory($event)">
+                <option disabled>Select A Category</option>
+                <option>Choose Category</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+                <option>E</option>
+                <option>F</option>
+                <option>G</option>
+                <option>Z</option>
+            </select>
+        </div>
+    </form>
+</div> 
 <div class="container transparent">
     <table class="table">
         <thead>
