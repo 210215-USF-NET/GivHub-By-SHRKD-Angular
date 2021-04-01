@@ -1,9 +1,9 @@
 
-<button (click)="similar()">View Similar Charities</button>
 <div class="container transparent">
     <div class="conatiner outer">
       <h4 *ngIf="anotherUser == true">{{email}}'s Subscribed Charities</h4>
       <h4 *ngIf="anotherUser == false">Your Subscribed Charities</h4>
+      <button (click)="similar()">View Similar Charities</button>
     </div>
     <br>
     <table class="table" summary="Displays which charities the user is subscribed to">
