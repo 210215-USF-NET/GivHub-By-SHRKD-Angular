@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OktaAuthService } from '@okta/okta-angular';
-import { subscription } from 'src/app/models/subscription';
+import { subscription } from '../../models/subscription';
 import { charityapi } from '../../models/charityapi';
 import { CharityAPIService } from '../../services/charity-api.service';
 import { charity } from '../../models/charity';
