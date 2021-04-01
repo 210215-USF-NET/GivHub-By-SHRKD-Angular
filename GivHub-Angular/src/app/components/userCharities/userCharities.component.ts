@@ -27,10 +27,16 @@ export class UserCharitiesComponent implements OnInit {
     },
     this.flag = false
   }
+  anotherUser: boolean = true;
   email:string;
   async ngOnInit() {
-    const userClaims =  await this.oktaAuth.getUser();
-    this.email = userClaims.email;
+    this.email = this.route.snapshot.params['userEmail'];
+    if(!this.email){
+      this.anotherUser = false;
+      const userClaims =  await this.oktaAuth.getUser();
+      this.email = userClaims.email;
+    }
+    this.router.events.subscribe((val) => window.location.reload());
     
     //Get the user subs
     let userSubsObserable = this.charityRESTService.GetUserSubscription(this.email);

@@ -39,9 +39,11 @@ import { SearchCharityComponent } from './components/searchCharity/searchCharity
 import { DisplayCharityComponent} from './components/displayCharity/displayCharity.component';
 import { ProfileDonationHistoryComponent } from './components/profile-donation-history/profile-donation-history.component';
 import { ProfileNewDonationComponent } from './components/donation-new/donation-new.component';
-
 import { environment } from '../environments/environment';
 import { SimilarCharitiesComponent } from './components/similar-charities/similar-charities.component';
+import { SearchHistoryComponent } from './components/search-history/search-history.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+
 let appRoutes : Routes = [];
   appRoutes = [
     {
@@ -103,6 +105,16 @@ let appRoutes : Routes = [];
       canActivate: [OktaAuthGuard],
     },
     {
+      path: 'searchHistory',
+      component: SearchHistoryComponent,
+      canActivate: [OktaAuthGuard],
+    },
+    {
+      path: 'leaderboard',
+      component: LeaderboardComponent,
+      canActivate: [OktaAuthGuard],
+    },
+    {
       path: '**',
       redirectTo: ""
     },
@@ -121,6 +133,8 @@ let appRoutes : Routes = [];
     ProfileDonationHistoryComponent,
     ProfileNewDonationComponent,
     SimilarCharitiesComponent,
+    SearchHistoryComponent,
+    LeaderboardComponent,
 
   ],
   imports: [
