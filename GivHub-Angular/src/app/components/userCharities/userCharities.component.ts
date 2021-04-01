@@ -84,9 +84,7 @@ export class UserCharitiesComponent implements OnInit {
       this.category = this.charities[Math.floor(Math.random() * this.charities.length)].category;
       console.log(this.category);
     }
-    this.router.navigate(['/userCharities/similar-charities',{'category': this.category}]).then(() => {
-      window.location.reload();
-    });
+    this.router.navigate(['/userCharities/similar-charities',{'category': this.category}]);
   }
 
   DisplayCharity(charityName: string){
