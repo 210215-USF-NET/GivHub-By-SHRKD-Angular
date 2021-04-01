@@ -52,6 +52,10 @@ export class CharityRESTService {
   GetCharityById(id:number): Observable<charity>{
     return this.http.get<charity>(`${this.charityURL}/eid/${id}`,this.httpOptions);
   }
+  GetCharityByCategory(category:string): Observable<charity[]>{
+    return this.http.get<charity[]>(`${this.charityURL}/categories/${category}`,this.httpOptions);
+  }
+  
 
   //Add a charity if it doesnt exist
   AddCharity(newCharity: charity[]): Observable<charity[]>{

@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   error: Error;
   charities: charity[] = [];
   nytapiDocs: nytapiDocs[] = [];
-
+ 
   constructor(public oktaAuth: OktaAuthService, private charityService : CharityRESTService, private router : Router, private route: ActivatedRoute, private nytApiService: NytApiService, private clearbitApiService: ClearbitApiService) {
     this.oktaAuth.$authenticationState.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
   }
@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   }
 
   async ngOnInit() {
+
     this.isAuthenticated = await this.oktaAuth.isAuthenticated();
     if (this.isAuthenticated) {
       const userClaims = await this.oktaAuth.getUser();

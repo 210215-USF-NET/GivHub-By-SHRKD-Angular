@@ -41,6 +41,7 @@ import { ProfileDonationHistoryComponent } from './components/profile-donation-h
 import { ProfileNewDonationComponent } from './components/donation-new/donation-new.component';
 
 import { environment } from '../environments/environment';
+import { SimilarCharitiesComponent } from './components/similar-charities/similar-charities.component';
 let appRoutes : Routes = [];
   appRoutes = [
     {
@@ -81,7 +82,15 @@ let appRoutes : Routes = [];
     {
       path: 'userCharities',
       component: UserCharitiesComponent,
-      canActivate: [ OktaAuthGuard ],
+      canActivate: [ OktaAuthGuard ],children: [
+        { 
+          path: "similar-charities", 
+          component: SimilarCharitiesComponent, 
+          canActivate: [ OktaAuthGuard ], 
+        },
+      ]
+        
+      
     },
     {
       path: 'searchCharity',
@@ -111,6 +120,7 @@ let appRoutes : Routes = [];
     ProfileAccountComponent,
     ProfileDonationHistoryComponent,
     ProfileNewDonationComponent,
+    SimilarCharitiesComponent,
 
   ],
   imports: [

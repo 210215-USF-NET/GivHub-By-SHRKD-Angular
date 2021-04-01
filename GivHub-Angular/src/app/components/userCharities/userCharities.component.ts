@@ -1,11 +1,13 @@
+import { category } from './../../models/category';
 import { charityapi } from './../../models/charityapi';
 import { subscription } from './../../models/subscription';
 import { charity } from './../../models/charity';
 import { OktaAuthService } from '@okta/okta-angular';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CharityRESTService } from './../../services/charity-rest.service';
 import { Component, OnInit } from '@angular/core';
 import {location } from '../../models/location';
+import { CharityAPIService } from '../../services/charity-api.service';
 
 @Component({
   selector: 'app-userCharities',
@@ -16,7 +18,15 @@ export class UserCharitiesComponent implements OnInit {
   subscriptions:subscription[]=[];
   subscription: subscription;
   charities : charity[]=[];
-  constructor(private oktaAuth: OktaAuthService, private charityRESTService: CharityRESTService, private router:Router) { }
+  category: any;
+  charitiesapi: charityapi[] =[];
+  flag:boolean = false;
+  constructor(private oktaAuth: OktaAuthService, private charityRESTService: CharityRESTService,private charityService: CharityAPIService, private router:Router, private route: ActivatedRoute) {
+    this.category = {
+      category: ''
+    },
+    this.flag = false
+  }
   email:string;
   async ngOnInit() {
     const userClaims =  await this.oktaAuth.getUser();
@@ -35,15 +45,42 @@ export class UserCharitiesComponent implements OnInit {
     }
     // console.log(this.subscriptions);
     // console.log(this.subscriptions.length);
-    let getUserCharities = this.charityRESTService.GetAllCharities();
-    getUserCharities.toPromise().then(data => {
+    this.category =this.route.snapshot.queryParamMap.get("category");
+    if(this.route.snapshot.queryParamMap.get("flag") == "true")
+    {this.flag =true;
+    }else {
+      this.flag =false;
+    }
+    if( this.category !== "" &&this.flag){
+      let getCharities = this.charityRESTService.GetCharityByCategory(this.category);
+      getCharities.toPromise().then(data => {
       data.forEach(x => {
-        if(this.subscriptions.find(y => y.charityId.toString() === x.eid)){
           this.charities.push(x);
-        }
       });
     })
+    }else{
+      let getUserCharities = this.charityRESTService.GetAllCharities();
+      getUserCharities.toPromise().then(data => {
+        data.forEach(x => {
+          if(this.subscriptions.find(y => y.charityId.toString() === x.eid)){
+            this.charities.push(x);
+          }
+        });
+      })
+    }
     // console.log(this.charities);
+  }
+
+  similar(){
+    this.flag = true;
+    console.log(Math.floor(Math.random() * 9));
+    if(this.charities.length>0 ){
+      this.category = this.charities[Math.floor(Math.random() * this.charities.length)].category;
+      console.log(this.category);
+    }
+    this.router.navigate(['/userCharities/similar-charities',{'category': this.category}]).then(() => {
+      window.location.reload();
+    });
   }
 
   DisplayCharity(charityName: string){
