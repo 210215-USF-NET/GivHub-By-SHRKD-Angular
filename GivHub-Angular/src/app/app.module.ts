@@ -13,7 +13,7 @@
 //import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
@@ -120,6 +120,7 @@ let appRoutes : Routes = [];
     OktaAuthModule,
     RouterModule.forRoot(appRoutes),
     HttpClientJsonpModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: OKTA_CONFIG, useValue: config.oidc },

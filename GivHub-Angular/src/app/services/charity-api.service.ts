@@ -97,16 +97,49 @@ export class CharityAPIService {
     return newCharityArray;
   }
   SearchCharitiesByCategory(category: string): charityapi[]{
-    let result = this.http.get<charityArray>(`${this.url}&categoty=${category}`, {'headers':this.headers});
+    const proxyUrl = "https://cors.bridged.cc/"
+    let result = this.http.get<charityArray>(`${proxyUrl}${this.url}&category=${category}`, {'headers':this.headers});
     var newCharityArray:charityapi[] = [];
+    var ourCharityModelArray: charity[] = [];
     result.toPromise().then(data => {
       data.data.forEach(x => {
         newCharityArray.push(x);
-      });
-    })
-    return newCharityArray;
-  }
+        var tempCharity = new charityClass();
+        tempCharity.id = 0;
+        tempCharity.name = x.charityName;
+        tempCharity.location = new location();
+        tempCharity.location.state = x.state;
+        tempCharity.location.city = x.city;
+        tempCharity.location.zipcode = x.zipCode;
+        tempCharity.location.charityid = 0;
+        if(x.missionStatement){
+          tempCharity.missionstatement = x.missionStatement;
+        }else{
+          tempCharity.missionstatement = "none";
+        }
+        if(x.url){
+          tempCharity.website = x.url;
+        }else{
+          tempCharity.website = "none";
+        }
+        tempCharity.category = x.category;
+        tempCharity.logourl = "none";
+        tempCharity.eid = x.ein;
+        
 
+        ourCharityModelArray.push(tempCharity);
+      });
+      console.log(ourCharityModelArray);
+      console.log(JSON.stringify(ourCharityModelArray));
+      this.charityRESTService.AddCharity(ourCharityModelArray).subscribe(
+        (sub) => {
+          console.log(sub);
+        }
+      );
+    
+  })
+  return newCharityArray;
+}  
   // TODO: FIXME
   GetCharityById(ein: number): charityapi[] {
     let result = this.http.get<charityArray>(`${this.url}&ein=${ein}`, {'headers':this.headers});
