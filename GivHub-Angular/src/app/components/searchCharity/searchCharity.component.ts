@@ -1,3 +1,4 @@
+import { CategoriesService } from './../../services/categories.service';
 import { charityapi } from '../../models/charityapi';
 import { Router, ActivatedRoute} from '@angular/router';
 import { CharityAPIService } from '../../services/charity-api.service';
@@ -24,7 +25,7 @@ export class SearchCharityComponent implements OnInit {
   category: any;
   constructor(private charityService: CharityAPIService, private router: Router, 
     private route: ActivatedRoute, private oktaAuth: OktaAuthService, 
-    private charityRESTService: CharityRESTService) {
+    private charityRESTService: CharityRESTService, private catties:CategoriesService) {
     this.searchTerm = {
       searchTerm: ''
     } 
@@ -44,7 +45,7 @@ export class SearchCharityComponent implements OnInit {
     const userClaims = await this.oktaAuth.getUser();
     this.email = userClaims.email;
     this.category =this.route.snapshot.params['category'];
-
+    this.category = this.catties.indexedArray[this.category]
     //Get the user subs
     let userSubsObserable = this.charityRESTService.GetUserSubscription(this.email);
     userSubsObserable.toPromise().then(data => {
