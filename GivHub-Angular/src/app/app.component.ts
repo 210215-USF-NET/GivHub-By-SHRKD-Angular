@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   openHelp() {
     this.display = !this.display;
     if (this.display==false){
-      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("mySidenav").style.width = "300px";
     }
     else {
       document.getElementById("mySidenav").style.width = "0";

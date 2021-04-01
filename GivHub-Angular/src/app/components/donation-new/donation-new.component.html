@@ -1,0 +1,19 @@
+<div class="container transparent">
+
+    <form (ngSubmit)="onSubmit()" #donationForm="ngForm">
+        <div class="form-group">
+            <label for="eid">Charity EIN: </label>
+            <input type="number" [(ngModel)]="donation2Add.charityId" class="form-control" id='eid' 
+                name="eid" min="1" onkeyup="if(this.value<0){this.value= this.value * -1}" placeholder="Enter charity's EIN">
+            <p id="einError" style="display: none; color: red;">EIN cannot be 0</p>
+        </div>
+        <div class="form-group">
+            <label for="amount">Donation Amount: </label>
+            <input type="number" [(ngModel)]="donation2Add.amount" name="amount" id="amount" class="form-control" min="1"
+            onkeyup="if(this.value<0){this.value= this.value * -1}" placeholder="Enter donation amount">
+            <p id="amountError" style="display: none; color: red;">Amount must be greater than 1.</p>
+        </div>
+        
+        <button type="submit" class="btn btn-secondary">Add Donation</button>
+    </form>
+</div>

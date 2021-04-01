@@ -1,24 +1,71 @@
-<form (ngSubmit)="onSubmit($event)" class="form-inline md-form mr-auto mb-4">
-    <input class="form-control mr-sm-2" type="text" name = "searchTerm" id = "searchTerm" placeholder="Search" aria-label="Search">
-    <button mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Search</button>
-</form>
+
+
+<div class="container">
+    <div class="outer" >
+        <div class="inner" >   
+            <form (ngSubmit)="onSubmit($event)" id="searchForm" class="form-inline md-form mr-auto mb-4">
+                <input class="form-control mr-sm-2" type="text" name = "searchTerm" id = "searchTerm" placeholder="Search" aria-label="Search">
+                <button mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Search</button>
+            </form>
+            
+        </div>
+        <button id="searchHistory" routerLink="/searchHistory">Search History</button>
+    </div>
+<router-outlet></router-outlet>
+  
+    <form [formGroup] = "form" (ngSubmit)="submit()">
+        <div class="form-group">
+            <label for="categories">Category:</label>
+            <select formControlName="categories" class="form-control" (change)="changeCategory($event)">
+                <option disabled>Select A Category</option>
+                <option>Choose Category</option>
+                <option>Animal-Related</option>
+                <option>Arts, Culture and Humanities</option>
+                <option>Civil Rights, Social Action, Advocacy</option>
+                <option>Community Improvement, Capacity Building</option>
+                <option>Crime, Legal-Related</option>
+                <option>Diseases, Disorders, Medical Disciplines</option>
+                <option>Educational Institutions and Related Activities</option>
+                <option>Employment, Job-Related</option>
+                <option>Environmental Quality, Protection and Beautification</option>
+                <option>Food, Agriculture and Nutrition</option>
+                <option>Health - General and Rehabilitative</option>
+                <option>Housing, Shelter</option>
+                <option>Human Services - Multipurpose and Other</option> 
+                <option>International, Foreign Affairs and National Security</option>
+                <option>Medical Research</option> 
+                <option>Mental Health, Crisis Intervention</option> 
+                <option>Mutual\/Membership Benefit Organizations, Other</option>
+                <option>Philanthropy, Voluntarism and Grantmaking Foundations</option>
+                <option>Public Safety, Disaster Preparedness and Relief</option>
+                <option>Public, Society Benefit - Multipurpose and Other</option>
+                <option>Recreation, Sports, Leisure, Athletics</option>
+                <option>Religion-Related, Spiritual Development</option>
+                <option>Science and Technology Research Institutes, Services</option>
+                <option>Social Science Research Institutes, Services</option>
+                <option>Unknown</option>
+                <option>Youth Development</option> 
+            </select>
+        </div>
+    </form>
+</div> 
 
 <div class="container transparent">
-    <table class="table">
+    <table class="table" summary="Displays the results from searching charities">
         <thead>
-            <th>Charity name</th>
+            <th scope="col">Charity name</th>
             <!-- <th>Mission statement</th> -->
-            <th>Category</th>
-            <th>Website</th>
-            <th>Donate</th>
-            <th>EIN</th>
+            <th scope="col">Category</th>
+            <th scope="col">Website</th>
+            <th scope="col">Donate</th>
+            <th scope="col">EIN</th>
         </thead>
         <tbody>
             <tr *ngFor="let charityapi of charitiesapi;">
                 <td>{{charityapi.charityName}}</td>
                 <td>{{charityapi.category}}</td>
-                <td><a href="{{charityapi.url}}">Org</a></td>
-                <td><a href="{{charityapi.donationUrl}}">Donate</a>
+                <td><a href="{{charityapi.url}}" target="_blank">Org</a></td>
+                <td><a href="{{charityapi.donationUrl}}" target="_blank">Donate</a>
                 <td>{{charityapi.ein}}</td>
                 <td><button *ngIf="validateId(charityapi)" class="btn btn-success" [id]="charityapi.ein">Subscribed</button >
                 <button *ngIf="!validateId(charityapi)" class="btn btn-primary"  (click)="onSubscribe(charityapi.ein,charityapi.charityName)" [id]="charityapi.ein">Subscribe</button ></td>

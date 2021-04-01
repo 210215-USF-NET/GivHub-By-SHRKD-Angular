@@ -1,0 +1,12 @@
+<div class="container transparent">
+    <table class="ui table" summary="Search Phrases that were used">
+        <thead>
+            <th scope="col">Search Phrase</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let searchHistory of usersh;">
+                <td>{{searchHistory.phrase}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

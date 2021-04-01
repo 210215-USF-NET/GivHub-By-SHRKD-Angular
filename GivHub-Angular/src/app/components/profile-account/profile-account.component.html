@@ -1,0 +1,19 @@
+<h1 class="ui header">
+  <i aria-hidden="true" class="drivers license outline icon"></i> {{ userName }}'s Profile
+</h1>
+
+<table class="ui table" summary="User account information">
+  <thead>
+    <tr>
+      <th scope="col">Claim</th>
+      <th scope="col">Value</th>
+      <th scope="col"><a href="https://dev-09038350.okta.com/enduser/settings">Edit Profile</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let claim of claims">
+      <td>{{claim.claim}}</td>
+      <td id="claim-{{claim.claim}}">{{claim.value}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -13,7 +13,7 @@
 //import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
@@ -34,10 +34,16 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UserCharitiesComponent } from './components/userCharities/userCharities.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileAccountComponent } from './components/profile-account/profile-account.component';
 import { SearchCharityComponent } from './components/searchCharity/searchCharity.component';
 import { DisplayCharityComponent} from './components/displayCharity/displayCharity.component';
-
+import { ProfileDonationHistoryComponent } from './components/profile-donation-history/profile-donation-history.component';
+import { ProfileNewDonationComponent } from './components/donation-new/donation-new.component';
 import { environment } from '../environments/environment';
+import { SimilarCharitiesComponent } from './components/similar-charities/similar-charities.component';
+import { SearchHistoryComponent } from './components/search-history/search-history.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+
 let appRoutes : Routes = [];
   appRoutes = [
     {
@@ -56,10 +62,34 @@ let appRoutes : Routes = [];
       path: 'profile',
       component: ProfileComponent,
       canActivate: [ OktaAuthGuard ],
+      children: [
+        { 
+          path: "account", 
+          component: ProfileAccountComponent,
+          canActivate: [ OktaAuthGuard ], 
+        },
+        { 
+          path: "donation-history", 
+          component: ProfileDonationHistoryComponent,
+          canActivate: [ OktaAuthGuard ], 
+          children: [
+          { 
+            path: "donation-new", 
+            component: ProfileNewDonationComponent, 
+            canActivate: [ OktaAuthGuard ], 
+          },
+        ]},
+      ],
     },
     {
       path: 'userCharities',
       component: UserCharitiesComponent,
+      canActivate: [ OktaAuthGuard ],
+    
+    },
+    {
+      path: 'similar-charities',
+      component: SimilarCharitiesComponent,
       canActivate: [ OktaAuthGuard ],
     },
     {
@@ -70,6 +100,16 @@ let appRoutes : Routes = [];
     {
       path: 'displayCharity',
       component: DisplayCharityComponent,
+      canActivate: [OktaAuthGuard],
+    },
+    {
+      path: 'searchHistory',
+      component: SearchHistoryComponent,
+      canActivate: [OktaAuthGuard],
+    },
+    {
+      path: 'leaderboard',
+      component: LeaderboardComponent,
       canActivate: [OktaAuthGuard],
     },
     {
@@ -87,14 +127,22 @@ let appRoutes : Routes = [];
     ProfileComponent,
     UserCharitiesComponent,
     SearchCharityComponent,
+    ProfileAccountComponent,
+    ProfileDonationHistoryComponent,
+    ProfileNewDonationComponent,
+    SimilarCharitiesComponent,
+    SearchHistoryComponent,
+    LeaderboardComponent,
 
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     OktaAuthModule,
     RouterModule.forRoot(appRoutes),
     HttpClientJsonpModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: OKTA_CONFIG, useValue: config.oidc },

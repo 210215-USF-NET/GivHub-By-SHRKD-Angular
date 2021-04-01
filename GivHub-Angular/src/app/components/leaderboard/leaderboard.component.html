@@ -1,0 +1,25 @@
+<div class="container transparent">
+  <div class="conatiner outer">
+    <h3>Leaderboard</h3>
+    
+    <br>
+    <table class="table css-serial" summary="Displays the results from the leaderboard">
+        <thead>
+            <th scope="col">#</th>
+            <th scope="col">User Email</th>
+            <th scope="col">Total Amount Donated</th>
+            <th scope="col">Follow User</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let donation of mostDonations;">  
+              <td></td> 
+              <td><a [routerLink]="['/userCharities',{'userEmail': donation.email}]">{{donation.email}}</a></td>
+              <td>${{donation.amount}}</td>
+              <td><button *ngIf="email!==donation.email && !validateId(donation.email)" class="btn btn-warning" (click)="onFollow(donation.email)" >Follow</button>
+              <button *ngIf="email!==donation.email && validateId(donation.email)" class="btn btn-success">Followed</button>
+              <button *ngIf="email===donation.email" class="btn btn-secondary" >You</button></td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>

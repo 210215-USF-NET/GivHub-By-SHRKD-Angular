@@ -21,5 +21,8 @@ export const environment = {
   CLIENT_ID: "0oacsxl6qTlJ2Mp3j5d6",
   locationURL: 'https://localhost:44389/api/Location',
   charityURL: "https://localhost:44389/api/Charity",
-  subscriptionURL: "https://localhost:44389/api/subscription"
+  donationURL: "https://localhost:44389/api/Donation",
+  subscriptionURL: "https://localhost:44389/api/subscription",
+  followURL: "https://localhost:44389/api/Follow",
+  searchHistoryURL: "https://localhost:44389/api/SearchHistory"
 };

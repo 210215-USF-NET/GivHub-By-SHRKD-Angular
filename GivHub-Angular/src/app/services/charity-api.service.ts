@@ -1,3 +1,4 @@
+import { CategoriesService } from './categories.service';
 import { charityapi } from '../models/charityapi';
 import { charity } from '../models/charity';
 import { charityArray } from '../models/charityArray';
@@ -8,11 +9,40 @@ import { charityClass } from '../models/charityClass';
 import { location } from '../models/location';
 import { CharityRESTService } from './charity-rest.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class CharityAPIService {
 
+
+export class CharityAPIService {
+ addToDB = function(x:any,ourCharityModelArray:charity[]){
+  var tempCharity = new charityClass();
+        tempCharity.id = 0;
+        tempCharity.name = x.charityName;
+        tempCharity.location = new location();
+        tempCharity.location.state = x.state;
+        tempCharity.location.city = x.city;
+        tempCharity.location.zipcode = x.zipCode;
+        tempCharity.location.charityid = 0;
+        if(x.missionStatement){
+          tempCharity.missionstatement = x.missionStatement;
+        }else{
+          tempCharity.missionstatement = "none";
+        }
+        if(x.url){
+          tempCharity.website = x.url;
+        }else{
+          tempCharity.website = "none";
+        }
+        tempCharity.category = x.category;
+        tempCharity.logourl = "none";
+        tempCharity.eid = x.ein;
+        
+
+        ourCharityModelArray.push(tempCharity);
+     
+}
   // {
   //   'Content-Type': 'application/json',
   //   'Access-Control-Allow-Origin': '*',
@@ -47,31 +77,32 @@ export class CharityAPIService {
     result.toPromise().then(data => {
       data.data.forEach(x => {
         newCharityArray.push(x);
-        var tempCharity = new charityClass();
-        tempCharity.id = 0;
-        tempCharity.name = x.charityName;
-        tempCharity.location = new location();
-        tempCharity.location.state = x.state;
-        tempCharity.location.city = x.city;
-        tempCharity.location.zipcode = x.zipCode;
-        tempCharity.location.charityid = 0;
-        if(x.missionStatement){
-          tempCharity.missionstatement = x.missionStatement;
-        }else{
-          tempCharity.missionstatement = "none";
-        }
-        if(x.url){
-          tempCharity.website = x.url;
-        }else{
-          tempCharity.website = "none";
-        }
-        tempCharity.category = x.category;
-        tempCharity.logourl = "none";
-        tempCharity.eid = x.ein;
+      //   var tempCharity = new charityClass();
+      //   tempCharity.id = 0;
+      //   tempCharity.name = x.charityName;
+      //   tempCharity.location = new location();
+      //   tempCharity.location.state = x.state;
+      //   tempCharity.location.city = x.city;
+      //   tempCharity.location.zipcode = x.zipCode;
+      //   tempCharity.location.charityid = 0;
+      //   if(x.missionStatement){
+      //     tempCharity.missionstatement = x.missionStatement;
+      //   }else{
+      //     tempCharity.missionstatement = "none";
+      //   }
+      //   if(x.url){
+      //     tempCharity.website = x.url;
+      //   }else{
+      //     tempCharity.website = "none";
+      //   }
+      //   tempCharity.category = x.category;
+      //   tempCharity.logourl = "none";
+      //   tempCharity.eid = x.ein;
         
 
-        ourCharityModelArray.push(tempCharity);
-      });
+      //   ourCharityModelArray.push(tempCharity);
+      this.addToDB(x,ourCharityModelArray);
+       });
       console.log(ourCharityModelArray);
       console.log(JSON.stringify(ourCharityModelArray));
       this.charityRESTService.AddCharity(ourCharityModelArray).subscribe(
@@ -97,8 +128,30 @@ export class CharityAPIService {
     return newCharityArray;
   }
   SearchCharitiesByCategory(category: string): charityapi[]{
-    let result = this.http.get<charityArray>(`${this.url}&categoty=${category}`, {'headers':this.headers});
+    const proxyUrl = "https://cors.bridged.cc/"
+    let result = this.http.get<charityArray>(`${proxyUrl}${this.url}&category=${category}`, {'headers':this.headers});
     var newCharityArray:charityapi[] = [];
+    var ourCharityModelArray: charity[] = [];
+    result.toPromise().then(data => {
+      data.data.forEach(x => {
+        newCharityArray.push(x);
+        this.addToDB(x,ourCharityModelArray);
+       });
+      console.log(ourCharityModelArray);
+      console.log(JSON.stringify(ourCharityModelArray));
+      this.charityRESTService.AddCharity(ourCharityModelArray).subscribe(
+        (sub) => {
+          console.log(sub);
+        }
+      );
+    
+    })
+  return newCharityArray;
+  }  
+  // TODO: FIXME
+  GetCharityById(ein: number): charityapi[] {
+    let result = this.http.get<charityArray>(`${this.url}&ein=${ein}`, {'headers':this.headers});
+    var newCharityArray:charityapi[]=[];
     result.toPromise().then(data => {
       data.data.forEach(x => {
         newCharityArray.push(x);
