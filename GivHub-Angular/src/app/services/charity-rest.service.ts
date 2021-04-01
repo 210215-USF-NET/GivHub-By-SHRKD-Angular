@@ -95,6 +95,10 @@ export class CharityRESTService {
     return this.http.post<searchHistory>(this.searchHistoryURL,sh,this.httpOptions);
   }
 
+  UserRemoveSearchResult(userEmail: string, phrase: string): Observable<searchHistory>{
+    return this.http.delete<searchHistory>(`${this.searchHistoryURL}/${userEmail},${phrase}`,this.httpOptions);
+  }
+
   GetMostDonations(): Observable<donation[]>{
     return this.http.get<donation[]>(`${this.donationURL}/topdonations`, this.httpOptions);
   }

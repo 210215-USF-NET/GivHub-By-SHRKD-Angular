@@ -4,8 +4,9 @@
             <th scope="col">Search Phrase</th>
         </thead>
         <tbody>
-            <tr *ngFor="let searchHistory of usersh;">
+            <tr [id] = "searchHistory.phrase"*ngFor="let searchHistory of usersh;">
                 <td>{{searchHistory.phrase}}</td>
+                <td><button class="btn btn-danger" *ngIf="!anotherUser" (click)="removeResult(searchHistory.phrase)">Remove</button ></td>
             </tr>
         </tbody>
     </table>

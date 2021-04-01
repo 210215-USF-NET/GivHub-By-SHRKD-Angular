@@ -17,6 +17,7 @@ interface Claim {
 })
 export class SearchHistoryComponent implements OnInit {
   email: string;
+  phrase: string;
   searchHistory: searchHistory;
   usersh: searchHistory[] = [];
   constructor(public oktaAuth: OktaAuthService, private router: Router, 
@@ -34,4 +35,19 @@ export class SearchHistoryComponent implements OnInit {
     )
   }
 
+  onSubmit(event: any): void{
+    
+  }
+  removeResult(phrase: string): void{
+    (<HTMLInputElement>document.getElementById(phrase)).remove();
+    this.searchHistory = {
+      email: this.email,
+      phrase: this.phrase
+    }
+    this.charityRESTService.UserRemoveSearchResult(this.email,phrase).subscribe(
+      (sub) => {
+        alert(`${phrase} was removed from your search history.`);
+      }
+    );
+  }
 }
