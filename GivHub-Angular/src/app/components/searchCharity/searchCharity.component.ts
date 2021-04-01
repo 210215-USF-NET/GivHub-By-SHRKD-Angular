@@ -1,6 +1,4 @@
-import { category } from './../../models/category';
 import { charityapi } from '../../models/charityapi';
-import { ElementRef, NgModule, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { CharityAPIService } from '../../services/charity-api.service';
 import { CharityRESTService } from '../../services/charity-rest.service';
