@@ -83,4 +83,9 @@ export class CharityRESTService {
   {
     return this.http.get<searchHistory[]>(`${this.searchHistoryURL}/${userEmail}`, this.httpOptions);
   }
+
+  AddSearchHistory(sh: searchHistory): Observable<searchHistory>{
+    console.log(sh);
+    return this.http.post<searchHistory>(this.searchHistoryURL,sh,this.httpOptions);
+  }
 }

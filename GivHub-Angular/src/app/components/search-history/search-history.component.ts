@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OktaAuthService } from '@okta/okta-angular';
-import { searchHistory } from '../models/searchHistory';
-import { CharityAPIService } from '../services/charity-api.service';
-import { CharityRESTService } from '../services/charity-rest.service';
+import { searchHistory } from '../../models/searchHistory';
+import { CharityAPIService } from '../../services/charity-api.service';
+import { CharityRESTService } from '../../services/charity-rest.service';
 
 interface Claim {
   claim: string;

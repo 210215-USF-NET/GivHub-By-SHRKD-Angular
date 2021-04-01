@@ -41,7 +41,7 @@ import { ProfileDonationHistoryComponent } from './components/profile-donation-h
 import { ProfileNewDonationComponent } from './components/donation-new/donation-new.component';
 
 import { environment } from '../environments/environment';
-import { SearchHistoryComponent } from './search-history/search-history.component';
+import { SearchHistoryComponent } from './components/search-history/search-history.component';
 let appRoutes : Routes = [];
   appRoutes = [
     {
