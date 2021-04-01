@@ -13,7 +13,7 @@
 //import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
@@ -39,9 +39,10 @@ import { SearchCharityComponent } from './components/searchCharity/searchCharity
 import { DisplayCharityComponent} from './components/displayCharity/displayCharity.component';
 import { ProfileDonationHistoryComponent } from './components/profile-donation-history/profile-donation-history.component';
 import { ProfileNewDonationComponent } from './components/donation-new/donation-new.component';
-
 import { environment } from '../environments/environment';
 import { SearchHistoryComponent } from './components/search-history/search-history.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+
 let appRoutes : Routes = [];
   appRoutes = [
     {
@@ -95,10 +96,15 @@ let appRoutes : Routes = [];
       canActivate: [OktaAuthGuard],
     },
     {
-          path: 'searchHistory',
-          component: SearchHistoryComponent,
-          canActivate: [OktaAuthGuard],
-        },
+      path: 'searchHistory',
+      component: SearchHistoryComponent,
+      canActivate: [OktaAuthGuard],
+    },
+    {
+      path: 'leaderboard',
+      component: LeaderboardComponent,
+      canActivate: [OktaAuthGuard],
+    },
     {
       path: '**',
       redirectTo: ""
@@ -118,6 +124,7 @@ let appRoutes : Routes = [];
     ProfileDonationHistoryComponent,
     ProfileNewDonationComponent,
     SearchHistoryComponent,
+    LeaderboardComponent,
 
   ],
   imports: [
@@ -127,6 +134,7 @@ let appRoutes : Routes = [];
     OktaAuthModule,
     RouterModule.forRoot(appRoutes),
     HttpClientJsonpModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: OKTA_CONFIG, useValue: config.oidc },

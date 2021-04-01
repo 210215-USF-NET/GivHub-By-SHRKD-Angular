@@ -88,4 +88,9 @@ export class CharityRESTService {
     console.log(sh);
     return this.http.post<searchHistory>(this.searchHistoryURL,sh,this.httpOptions);
   }
+
+  GetMostDonations(): Observable<donation[]>{
+    return this.http.get<donation[]>(`${this.donationURL}/topdonations`, this.httpOptions);
+  }
+
 }

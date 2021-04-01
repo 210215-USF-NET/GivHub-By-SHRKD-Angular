@@ -1,23 +1,45 @@
-<form (ngSubmit)="onSubmit($event)" id="searchForm" class="form-inline md-form mr-auto mb-4">
-    <input class="form-control mr-sm-2" type="text" name = "searchTerm" id = "searchTerm" placeholder="Search" aria-label="Search">
-    <button mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Search</button>
-</form>
 
-<div class="menu">
+
+<div class="container">
+    <form (ngSubmit)="onSubmit($event)" id="searchForm" class="form-inline md-form mr-auto mb-4">
+        <input class="form-control mr-sm-2" type="text" name = "searchTerm" id = "searchTerm" placeholder="Search" aria-label="Search">
+        <button mdbBtn size="sm" color="elegant" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Search</button>
+    </form>
+  
+  <div class="menu">
     <button routerLink="/searchHistory">Search History</button>
 </div>
 <br><br>
-<router-outlet></router-outlet> 
+<router-outlet></router-outlet>
+  
+    <form [formGroup] = "form" (ngSubmit)="submit()">
+        <div class="form-group">
+            <label for="categories">category:</label>
+            <select formControlName="categories" class="form-control" (change)="changeCategory($event)">
+                <option disabled>Select A Category</option>
+                <option>Choose Category</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+                <option>E</option>
+                <option>F</option>
+                <option>G</option>
+                <option>Z</option>
+            </select>
+        </div>
+    </form>
+</div> 
 
 <div class="container transparent">
-    <table class="table">
+    <table class="table" summary="Displays the results from searching charities">
         <thead>
-            <th>Charity name</th>
+            <th scope="col">Charity name</th>
             <!-- <th>Mission statement</th> -->
-            <th>Category</th>
-            <th>Website</th>
-            <th>Donate</th>
-            <th>EIN</th>
+            <th scope="col">Category</th>
+            <th scope="col">Website</th>
+            <th scope="col">Donate</th>
+            <th scope="col">EIN</th>
         </thead>
         <tbody>
             <tr *ngFor="let charityapi of charitiesapi;">
