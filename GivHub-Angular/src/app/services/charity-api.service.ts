@@ -11,8 +11,36 @@ import { CharityRESTService } from './charity-rest.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CharityAPIService {
 
+
+export class CharityAPIService {
+ addToDB = function(x:any,ourCharityModelArray:charity[]){
+  var tempCharity = new charityClass();
+        tempCharity.id = 0;
+        tempCharity.name = x.charityName;
+        tempCharity.location = new location();
+        tempCharity.location.state = x.state;
+        tempCharity.location.city = x.city;
+        tempCharity.location.zipcode = x.zipCode;
+        tempCharity.location.charityid = 0;
+        if(x.missionStatement){
+          tempCharity.missionstatement = x.missionStatement;
+        }else{
+          tempCharity.missionstatement = "none";
+        }
+        if(x.url){
+          tempCharity.website = x.url;
+        }else{
+          tempCharity.website = "none";
+        }
+        tempCharity.category = x.category;
+        tempCharity.logourl = "none";
+        tempCharity.eid = x.ein;
+        
+
+        ourCharityModelArray.push(tempCharity);
+     
+}
   // {
   //   'Content-Type': 'application/json',
   //   'Access-Control-Allow-Origin': '*',
@@ -47,31 +75,32 @@ export class CharityAPIService {
     result.toPromise().then(data => {
       data.data.forEach(x => {
         newCharityArray.push(x);
-        var tempCharity = new charityClass();
-        tempCharity.id = 0;
-        tempCharity.name = x.charityName;
-        tempCharity.location = new location();
-        tempCharity.location.state = x.state;
-        tempCharity.location.city = x.city;
-        tempCharity.location.zipcode = x.zipCode;
-        tempCharity.location.charityid = 0;
-        if(x.missionStatement){
-          tempCharity.missionstatement = x.missionStatement;
-        }else{
-          tempCharity.missionstatement = "none";
-        }
-        if(x.url){
-          tempCharity.website = x.url;
-        }else{
-          tempCharity.website = "none";
-        }
-        tempCharity.category = x.category;
-        tempCharity.logourl = "none";
-        tempCharity.eid = x.ein;
+      //   var tempCharity = new charityClass();
+      //   tempCharity.id = 0;
+      //   tempCharity.name = x.charityName;
+      //   tempCharity.location = new location();
+      //   tempCharity.location.state = x.state;
+      //   tempCharity.location.city = x.city;
+      //   tempCharity.location.zipcode = x.zipCode;
+      //   tempCharity.location.charityid = 0;
+      //   if(x.missionStatement){
+      //     tempCharity.missionstatement = x.missionStatement;
+      //   }else{
+      //     tempCharity.missionstatement = "none";
+      //   }
+      //   if(x.url){
+      //     tempCharity.website = x.url;
+      //   }else{
+      //     tempCharity.website = "none";
+      //   }
+      //   tempCharity.category = x.category;
+      //   tempCharity.logourl = "none";
+      //   tempCharity.eid = x.ein;
         
 
-        ourCharityModelArray.push(tempCharity);
-      });
+      //   ourCharityModelArray.push(tempCharity);
+      this.addToDB(x,ourCharityModelArray);
+       });
       console.log(ourCharityModelArray);
       console.log(JSON.stringify(ourCharityModelArray));
       this.charityRESTService.AddCharity(ourCharityModelArray).subscribe(
@@ -104,31 +133,8 @@ export class CharityAPIService {
     result.toPromise().then(data => {
       data.data.forEach(x => {
         newCharityArray.push(x);
-        var tempCharity = new charityClass();
-        tempCharity.id = 0;
-        tempCharity.name = x.charityName;
-        tempCharity.location = new location();
-        tempCharity.location.state = x.state;
-        tempCharity.location.city = x.city;
-        tempCharity.location.zipcode = x.zipCode;
-        tempCharity.location.charityid = 0;
-        if(x.missionStatement){
-          tempCharity.missionstatement = x.missionStatement;
-        }else{
-          tempCharity.missionstatement = "none";
-        }
-        if(x.url){
-          tempCharity.website = x.url;
-        }else{
-          tempCharity.website = "none";
-        }
-        tempCharity.category = x.category;
-        tempCharity.logourl = "none";
-        tempCharity.eid = x.ein;
-        
-
-        ourCharityModelArray.push(tempCharity);
-      });
+        this.addToDB(x,ourCharityModelArray);
+       });
       console.log(ourCharityModelArray);
       console.log(JSON.stringify(ourCharityModelArray));
       this.charityRESTService.AddCharity(ourCharityModelArray).subscribe(
