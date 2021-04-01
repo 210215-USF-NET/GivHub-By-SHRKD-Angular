@@ -41,6 +41,7 @@ import { ProfileDonationHistoryComponent } from './components/profile-donation-h
 import { ProfileNewDonationComponent } from './components/donation-new/donation-new.component';
 
 import { environment } from '../environments/environment';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 let appRoutes : Routes = [];
   appRoutes = [
     {
@@ -94,6 +95,11 @@ let appRoutes : Routes = [];
       canActivate: [OktaAuthGuard],
     },
     {
+      path: 'leaderboard',
+      component: LeaderboardComponent,
+      canActivate: [OktaAuthGuard],
+    },
+    {
       path: '**',
       redirectTo: ""
     },
@@ -111,6 +117,7 @@ let appRoutes : Routes = [];
     ProfileAccountComponent,
     ProfileDonationHistoryComponent,
     ProfileNewDonationComponent,
+    LeaderboardComponent,
 
   ],
   imports: [

@@ -2,7 +2,7 @@ import { charityapi } from './../../models/charityapi';
 import { subscription } from './../../models/subscription';
 import { charity } from './../../models/charity';
 import { OktaAuthService } from '@okta/okta-angular';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CharityRESTService } from './../../services/charity-rest.service';
 import { Component, OnInit } from '@angular/core';
 import {location } from '../../models/location';
@@ -16,11 +16,18 @@ export class UserCharitiesComponent implements OnInit {
   subscriptions:subscription[]=[];
   subscription: subscription;
   charities : charity[]=[];
-  constructor(private oktaAuth: OktaAuthService, private charityRESTService: CharityRESTService, private router:Router) { }
+  anotherUser: boolean = true;
+  constructor(private oktaAuth: OktaAuthService, private charityRESTService: CharityRESTService, private router:Router,
+    private route: ActivatedRoute) { }
   email:string;
   async ngOnInit() {
-    const userClaims =  await this.oktaAuth.getUser();
-    this.email = userClaims.email;
+    this.email = this.route.snapshot.params['userEmail'];
+    if(!this.email){
+      this.anotherUser = false;
+      const userClaims =  await this.oktaAuth.getUser();
+      this.email = userClaims.email;
+    }
+    this.router.events.subscribe((val) => window.location.reload());
     
     //Get the user subs
     let userSubsObserable = this.charityRESTService.GetUserSubscription(this.email);

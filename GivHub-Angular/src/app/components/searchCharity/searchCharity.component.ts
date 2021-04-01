@@ -1,4 +1,3 @@
-import { category } from './../../models/category';
 import { charityapi } from '../../models/charityapi';
 import { Router, ActivatedRoute} from '@angular/router';
 import { CharityAPIService } from '../../services/charity-api.service';
