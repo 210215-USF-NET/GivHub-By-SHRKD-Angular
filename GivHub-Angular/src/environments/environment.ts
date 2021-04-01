@@ -22,5 +22,6 @@ export const environment = {
   locationURL: 'https://localhost:44389/api/Location',
   charityURL: "https://localhost:44389/api/Charity",
   donationURL: "https://localhost:44389/api/Donation",
-  subscriptionURL: "https://localhost:44389/api/subscription"
+  subscriptionURL: "https://localhost:44389/api/subscription",
+  searchHistoryURL: "https://localhost:44389/api/SearchHistory"
 };

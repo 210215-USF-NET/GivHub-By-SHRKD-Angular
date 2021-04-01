@@ -30,6 +30,7 @@ export class CharityRESTService {
   charityURL: string = environment.charityURL;
   subscriptionURL: string = environment.subscriptionURL;
   donationURL: string = environment.donationURL;
+  searchHistoryURL: string = environment.searchHistoryURL;
   constructor( private http: HttpClient){}
 
   location: Location;
@@ -78,7 +79,18 @@ export class CharityRESTService {
     return this.http.get<donation[]>(`${this.donationURL}/result/${userEmail}`, this.httpOptions);
   }
 
+  GetUserSearchHistory(userEmail: string): Observable<searchHistory[]>
+  {
+    return this.http.get<searchHistory[]>(`${this.searchHistoryURL}/${userEmail}`, this.httpOptions);
+  }
+
+  AddSearchHistory(sh: searchHistory): Observable<searchHistory>{
+    console.log(sh);
+    return this.http.post<searchHistory>(this.searchHistoryURL,sh,this.httpOptions);
+  }
+
   GetMostDonations(): Observable<donation[]>{
     return this.http.get<donation[]>(`${this.donationURL}/topdonations`, this.httpOptions);
   }
+
 }
