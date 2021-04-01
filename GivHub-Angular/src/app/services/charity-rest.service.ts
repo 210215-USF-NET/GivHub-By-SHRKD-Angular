@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { subscription } from '../models/subscription';
 import { environment } from '../../environments/environment';
+import { follow } from '../models/follow';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,7 @@ export class CharityRESTService {
   charityURL: string = environment.charityURL;
   subscriptionURL: string = environment.subscriptionURL;
   donationURL: string = environment.donationURL;
+  followURL: string = environment.followURL;
   constructor( private http: HttpClient){}
 
   location: Location;
@@ -80,5 +82,13 @@ export class CharityRESTService {
 
   GetMostDonations(): Observable<donation[]>{
     return this.http.get<donation[]>(`${this.donationURL}/topdonations`, this.httpOptions);
+  }
+
+  FollowUser(newFollow: follow): Observable<follow>{
+    return this.http.post<follow>(`${this.followURL}`,newFollow,this.httpOptions);
+  }
+
+  GetFollowers(email: string): Observable<follow[]>{
+    return this.http.get<follow[]>(`${this.followURL}/${email}/following`,this.httpOptions);
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OktaAuthService } from '@okta/okta-angular';
 import { donation } from '../../models/donatin';
+import { follow } from '../../models/follow';
 import { CharityRESTService } from '../../services/charity-rest.service';
 
 @Component({
@@ -12,16 +13,38 @@ import { CharityRESTService } from '../../services/charity-rest.service';
 export class LeaderboardComponent implements OnInit {
 
   mostDonations: donation[] = [];
-
+  email: string;
+  newFollow: follow;
+  userFollows: follow[] = [];
   constructor(private router: Router, private route: ActivatedRoute, private oktaAuth: OktaAuthService, 
   private charityRESTService: CharityRESTService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     let findMostDonations = this.charityRESTService.GetMostDonations().toPromise().then(data => {
       data.forEach(x => {
         this.mostDonations.push(x);
       });
       this.mostDonations.sort(function(a, b){return b.amount-a.amount}); 
     }) 
+    const userClaims = await this.oktaAuth.getUser();
+    this.email = userClaims.email;
   }
+
+  //check if the user is already following
+  validateId(findEmail: string) {
+    return this.userFollows.find(x => x.followingEmail === findEmail);
+  }
+
+  onFollow(followEmail:string){
+    this.newFollow = {
+      followingEmail:followEmail,
+      userEmail:this.email,
+    }
+    this.charityRESTService.FollowUser(this.newFollow).subscribe(
+      (sub) => {
+
+      }
+    );
+  }
+
 }

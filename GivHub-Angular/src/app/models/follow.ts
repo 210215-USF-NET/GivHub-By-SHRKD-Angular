@@ -1,4 +1,4 @@
-export interface follow{
-    userEmail: string,
-    followingEmail: string
+export class follow{
+    userEmail: string;
+    followingEmail: string;
 }
