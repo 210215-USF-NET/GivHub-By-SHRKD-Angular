@@ -12,6 +12,7 @@
 .inner{
   display: inline-flex;
 }
+
 /* The side navigation menu */
 .sidenav {
     position: absolute; 
