@@ -1,25 +1,25 @@
 <nav id="navbar" class="navbar navbar-inverse">
   <div class="container-fluid inverted outer">
-
-    <div class="navbar-header">
+    
+    <div class="nav navbar-header mx-auto">
       <a id="logoLink" routerLink="/" class="navbar-header">
         <img id="logo" class="mini image" src="/assets/shrkd_color.svg" alt="GivHub Logo">
         &nbsp;
         Giv Hub
       </a>
     </div>
-    <ul class="nav navbar-nav navbar-expand">
+    <ul class="nav navbar-nav navbar-expand mx-auto">
       <li><a id="profile-button" class="" routerLink="/about-us">About Us</a></li>
       <li><a id="help-button" class="" (click)="openHelp()">Help</a></li>
       <li><a id="search-button" class="" *ngIf="isAuthenticated" routerLink="/searchCharity">Search</a></li>
       <li><a id="search-button" class="" *ngIf="isAuthenticated" routerLink="/leaderboard">Leaderboard</a></li> 
     </ul>
-    <ul class="nav navbar-nav navbar-expand navbar-right">
+    <ul class="nav navbar-nav navbar-expand mx-auto">
       <li><a id="messages-button" class="item" *ngIf="isAuthenticated" routerLink="/userCharities"><i aria-hidden="true" class=""></i>Your Charities</a></li>
       <li><a id="profile-button" class="item" *ngIf="isAuthenticated" routerLink="/profile/account">Profile</a></li>
       <li><a id="logout-button" class="item" *ngIf="isAuthenticated" (click)="logout()">Logout</a></li>
       <li><a class="item" *ngIf="!isAuthenticated" (click)="login()">Login</a></li>
-    </ul>    
+    </ul>   
   </div>
 
 
