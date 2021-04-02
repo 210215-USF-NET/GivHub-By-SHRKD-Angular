@@ -53,6 +53,9 @@ export class LeaderboardComponent implements OnInit {
 
       }
     );
+    (<HTMLInputElement>document.getElementById(followEmail)).innerHTML = "Followed";
+    (<HTMLInputElement>document.getElementById(followEmail)).classList.remove("btn-warning");
+    (<HTMLInputElement>document.getElementById(followEmail)).classList.add("btn-success");
   }
 
 }

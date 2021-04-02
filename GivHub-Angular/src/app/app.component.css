@@ -12,7 +12,12 @@
 .inner{
   display: inline-flex;
 }
-
+#help-button{
+  color: white;
+}
+#help-button:hover{
+  text-decoration: underline;
+}
 /* The side navigation menu */
 .sidenav {
     position: absolute; 
