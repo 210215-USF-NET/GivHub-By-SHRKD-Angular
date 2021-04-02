@@ -8,7 +8,7 @@
   <table class="ui table" summary="User's donation history">
     <thead>
       <tr>
-        <!-- <th>Charity</th> -->
+        <th>Charity</th>
         <th scope="col">EIN</th>
         <th scope="col">Contribution</th>
         <!-- <th scope="col">Date</th> -->
@@ -16,9 +16,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let donation of userDons;">
-          <!-- <td>GetCharityById(donation.charityId).charityName</td> -->
-          <td>{{donation.charityId}}</td>
-          <td>${{donation.amount}}</td>
+          <td>{{donation.charityName}}</td>
+          <td>{{donation.donation.charityId}}</td>
+          <td>${{donation.donation.amount}}</td>
           
       </tr>
   </tbody>
